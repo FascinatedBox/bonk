@@ -1,0 +1,28 @@
+-----source-----
+#!/usr/bin/env bash
+
+WID=`./bonk select --instance xterm`
+./bonk decoration -w $WID bad-name && exit 99
+./bonk move-resize -w $WID 100 100 -100 -100 && exit 99
+./bonk move-resize -w $WID a 100 100 100 && exit 99
+./bonk move-resize -w $WID 100 b 100 100 && exit 99
+./bonk move-resize -w $WID 100 100 c 100 && exit 99
+./bonk move-resize -w $WID 100 100 100 d && exit 99
+./bonk select --quickbrownfox && exit 99
+./bonk decoration -w $WID && exit 99
+exit 0
+
+-----stdout-----
+
+-----stderr-----
+bonk decoration error: Invalid decoration 'bad-name'.
+bonk move-resize error: Invalid coordinates given to move-resize.
+bonk move-resize error: Invalid coordinates given to move-resize.
+bonk move-resize error: Invalid coordinates given to move-resize.
+bonk move-resize error: Invalid coordinates given to move-resize.
+bonk move-resize error: Invalid coordinates given to move-resize.
+select: unrecognized option '--quickbrownfox'
+bonk decoration error: Command expected 1 args, but only have 0 left. Exiting.
+
+-----exitcode-----
+0

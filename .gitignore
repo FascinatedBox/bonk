@@ -1,0 +1,9 @@
+bonk
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+Makefile
+.report.info
+reportdata
+scripts/__pycache__/

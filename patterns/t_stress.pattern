@@ -1,0 +1,47 @@
+-----source-----
+#!/usr/bin/env bash
+
+xeyes 2> /dev/null &
+XEYES_WID=`./bonk select --retry --instance xeyes`
+./bonk prop-delete -w $XEYES_WID WM_CLASS
+./bonk prop-adjust -w $XEYES_WID --class xeyes
+./bonk prop-delete -w $XEYES_WID WM_CLASS
+./bonk prop-adjust -w $XEYES_WID --instance xeyes
+./bonk prop-delete -w $XEYES_WID sphinxofblackquartzjudgemyvow
+./bonk state -w $XEYES_WID
+./bonk state -w $XEYES_WID -a sphinxofblackquartzjudgemyvow
+./bonk state -w $XEYES_WID -t above -t above -t above -t above -t above \
+						   -t above -t above -t above -t above -t above \
+						   -t above -t above -t above -t above -t above
+./bonk get-focus state || exit 99
+pkill xeyes
+./bonk quickbrownfox && exit 99
+SAVE_DISPLAY=$DISPLAY
+DISPLAY=:25
+./bonk get-focus && exit 99
+DISPLAY=$SAVE_DISPLAY
+./bonk get-focus raise %-1 || exit 99 # Valid index, next two are invalid.
+./bonk get-focus raise %-2 && exit 99
+./bonk get-focus raise %2 && exit 99
+./bonk select -c
+./bonk select --all --instance xterm unmap select --instance xterm raise && exit 99
+./bonk select --all --instance xterm map
+./bonk select --instance ""
+./bonk select --class "*" && exit 99
+exit 0
+
+-----stdout-----
+0x00400012
+
+-----stderr-----
+bonk state error: 'sphinxofblackquartzjudgemyvow' is not a valid state atom. Stopping.
+bonk state error: Too many atoms to adjust at once (max = 8)
+bonk error: Invalid command 'quickbrownfox'.
+bonk error: Unable to open X display. Stopping.
+bonk error: Invalid window index '-2' (%0 .. %-1).
+bonk error: Invalid window index '2' (%0 .. %-1).
+bonk raise error: The window stack is empty. Stopping.
+bonk select error: '*' is not a valid match pattern.
+
+-----exitcode-----
+0

@@ -1,0 +1,39 @@
+-----source-----
+#!/usr/bin/env bash
+
+./bonk help
+exit $?
+
+-----stdout-----
+Usage: bonk <commands [arguments]>
+
+place windows into the window stack
+    get-active    Use window manager's active window
+    get-focus     The window that currently has input focus
+    pick          Left click to select a window
+    select        Search for a window using criteria
+
+window actions
+    activate      Tell window manager to set active window
+    close         Attempt to close a window
+    decoration    Set MOTIF (titlebar) hints
+    focus         Give input focus to a window
+    lower         Push a window to the back, behind other windows
+    map           Reveal a window a window hidden with unmap
+    move-resize   Specify an exact size and place for a window
+    raise         Pull a window to the front, ahead of other windows
+    state         Minimize, maximize, fullscreen, and more
+    unmap         Hide a window (does not minimize to taskbar)
+
+information
+    get-title     Get title of a window
+
+properties
+    prop-adjust   Update a simple property (class, instance, etc.)
+    prop-delete   Remove a property from a window (use with caution)
+
+
+-----stderr-----
+
+-----exitcode-----
+0
