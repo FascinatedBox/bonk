@@ -116,7 +116,9 @@ int b_select(bonk_state_t *b)
         }
 
         if (ret == 0) {
-            fprintf(stderr, "bonk select error: '%s' is not a valid match pattern.\n", optarg);
+            const char *error = bonk_select_error_str(s);
+
+            fprintf(stderr, "bonk select error: '%s' %s\n", optarg, error);
             return 0;
         }
     }

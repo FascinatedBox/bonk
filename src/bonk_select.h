@@ -13,6 +13,11 @@
 # define B_RETRY              0x20
 # define B_USE_CLIENT_LIST    0x40
 
+typedef enum {
+    ec_ok,
+    ec_bad_pattern,
+} bonk_select_error_code;
+
 typedef union {
     char *text;
     regex_t pattern;
@@ -31,6 +36,7 @@ typedef struct {
     bonk_criteria title_criteria;
     xcb_atom_t has_prop;
 
+    bonk_select_error_code error_code;
     unsigned int mask;
     unsigned int rxmask;
 } bonk_select_t;
@@ -52,6 +58,7 @@ bonk_select_t *bonk_new_select(bonk_state_t *);
 void bonk_free_select(bonk_select_t *);
 int bonk_select_exec(bonk_state_t *, bonk_select_t *);
 
+const char *bonk_select_error_str(bonk_select_t *);
 void bonk_select_set_show_hidden(bonk_select_t *);
 void bonk_select_use_client_list(bonk_select_t *);
 void bonk_select_set_retry(bonk_select_t *);

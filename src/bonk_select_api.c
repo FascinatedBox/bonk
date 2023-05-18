@@ -7,6 +7,7 @@ bonk_select_t *bonk_new_select(bonk_state_t *b)
     bonk_select_t *s = malloc(sizeof(*s));
 
     s->conn = b->conn;
+    s->error_code = ec_ok;
     s->mask = B_ONLY_VISIBLE;
     s->rxmask = 0;
     s->jar = bonk_new_cookie_jar(64);
@@ -64,6 +65,24 @@ int bonk_select_set_criteria(bonk_select_t *s,
             s->rxmask |= criteria;
 
         s->mask |= criteria;
+    }
+    else
+        s->error_code = ec_bad_pattern;
+
+    return (s->error_code == ec_ok);
+}
+
+const char *bonk_select_error_str(bonk_select_t *s)
+{
+    const char *result = NULL;
+
+    switch (s->error_code) {
+        case ec_bad_pattern:
+            result = "is not a valid match pattern.";
+            break;
+        case ec_ok:
+            result = "";
+            break;
     }
 
     return result;
