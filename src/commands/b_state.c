@@ -162,7 +162,7 @@ int b_state(bonk_state_t *b)
 
         xcb_atom_t atom = name_to_wm_state_atom(b, optarg);
 
-        if (atom == 0) {
+        if (atom == XCB_ATOM_NONE) {
             fprintf(stderr, "bonk state error: '%s' is not a valid state atom. Stopping.\n",
                     optarg);
             return 0;
