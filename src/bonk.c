@@ -116,6 +116,7 @@ int bonk_exec(bonk_state_t *b)
             b->current_command = command;
             found = 1;
             result = e.dispatch_func(b);
+            break;
         }
 
         if (found == 0) {
