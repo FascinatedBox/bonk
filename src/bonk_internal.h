@@ -68,6 +68,6 @@ void bonk_usage(bonk_state_t *, const char *);
 xcb_window_t *bonk_window_list_get(bonk_state_t *, int *);
 
 void bonk_use_window_arg(bonk_state_t *, const char *);
-void bonk_strcpy_upper(char *, const char *);
+xcb_atom_t bonk_window_state_atom_from_string(bonk_state_t *, const char *);
 
 #endif

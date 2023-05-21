@@ -176,7 +176,7 @@ void bonk_use_window_arg(bonk_state_t *b, const char *arg)
     b->window_stack->pos = 1;
 }
 
-void bonk_strcpy_upper(char *a, const char *b)
+static void strcpy_upper(char *a, const char *b)
 {
     while (*b) {
         *a = toupper(*b);
@@ -185,4 +185,95 @@ void bonk_strcpy_upper(char *a, const char *b)
     }
 
     *a = '\0';
+}
+
+static int find_state_atom_index(const char *str)
+{
+    static char *atom_table[] = {
+        "ABOVE",
+        "BELOW",
+        "DEMANDS_ATTENTION",
+        "FULLSCREEN",
+        "HIDDEN",
+        "MAXIMIZED_HORZ",
+        "MAXIMIZED_VERT",
+        "MODAL",
+        "SHADED",
+        "SKIP_PAGER",
+        "SKIP_TASKBAR",
+        "STICKY",
+        NULL,
+    };
+    char *atom_name, upper_buffer[64];
+    int i;
+
+    strcpy_upper(upper_buffer, str);
+
+    for (i = 0, atom_name = atom_table[i];
+         atom_name != NULL;
+         i++, atom_name = atom_table[i]) {
+
+        if (atom_name[0] != upper_buffer[0] ||
+            strcmp(atom_name, upper_buffer) != 0)
+            continue;
+
+        break;
+    }
+
+    return i;
+}
+
+#define B_ABOVE              0
+#define B_BELOW              1
+#define B_DEMANDS_ATTENTION  2
+#define B_FULLSCREEN         3
+#define B_HIDDEN             4
+#define B_MAXIMIZED_HORZ     5
+#define B_MAXIMIZED_VERT     6
+#define B_MODAL              7
+#define B_SHADED             8
+#define B_SKIP_PAGER         9
+#define B_SKIP_TASKBAR      10
+#define B_STICKY            11
+
+#define ATOM_CASE(index_name) \
+case B_##index_name: \
+    result = ewmh->_NET_WM_STATE_##index_name; \
+    break;
+
+static xcb_atom_t window_state_atom_from_index(bonk_state_t *b, int index)
+{
+    xcb_ewmh_connection_t *ewmh = b->ewmh;
+    xcb_atom_t result;
+
+    switch (index) {
+        ATOM_CASE(ABOVE)
+        ATOM_CASE(BELOW)
+        ATOM_CASE(DEMANDS_ATTENTION)
+        ATOM_CASE(FULLSCREEN)
+        ATOM_CASE(HIDDEN)
+        ATOM_CASE(MAXIMIZED_HORZ)
+        ATOM_CASE(MAXIMIZED_VERT)
+        ATOM_CASE(MODAL)
+        ATOM_CASE(SHADED)
+        ATOM_CASE(SKIP_PAGER)
+        ATOM_CASE(SKIP_TASKBAR)
+        ATOM_CASE(STICKY)
+        default:
+            result = XCB_ATOM_NONE;
+            break;
+    }
+
+    return result;
+}
+
+xcb_atom_t bonk_window_state_atom_from_string(bonk_state_t *b, const char *str)
+{
+    if (strlen(str) >= 32)
+        return XCB_ATOM_NONE;
+
+    int index = find_state_atom_index(str);
+    xcb_atom_t result = window_state_atom_from_index(b, index);
+
+    return result;
 }
