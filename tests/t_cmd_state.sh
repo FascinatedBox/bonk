@@ -54,6 +54,7 @@ xtrace -D :9 ./bonk select --all --instance xterm \
                     state -w $WID \
                           -t modal \
                           -t shaded \
+                          --wait \
                           -t skip_pager \
                           -t skip_taskbar \
                           -t sticky

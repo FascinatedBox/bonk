@@ -55,6 +55,7 @@ xtrace -D :9 ./bonk select --all --instance xterm \
                     state -w $WID \
                           -t modal \
                           -t shaded \
+                          --wait \
                           -t skip_pager \
                           -t skip_taskbar \
                           -t sticky
@@ -473,6 +474,7 @@ exit $?
 000:<:0064: 44: Request(25): SendEvent propagate=false(0x00) destination=0x0000051e event-mask=SubstructureNotify,SubstructureRedirect ClientMessage(33) format=0x20 window=@1 type=("_NET_WM_STATE") data=0x02,0x00,0x00,0x00,0x32,0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x02,0x00,0x00,0x00,0x00,0x00,0x00,0x00;
 000:<:0065: 44: Request(25): SendEvent propagate=false(0x00) destination=0x0000051e event-mask=SubstructureNotify,SubstructureRedirect ClientMessage(33) format=0x20 window=@1 type=("_NET_WM_STATE") data=0x02,0x00,0x00,0x00,0x2e,0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x02,0x00,0x00,0x00,0x00,0x00,0x00,0x00;
 000:<:0066:  4: Request(43): GetInputFocus 
+000:<:0067:  4: Request(43): GetInputFocus 
 
 -----stderr-----
 Got connection from unknown(local)

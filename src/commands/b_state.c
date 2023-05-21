@@ -9,6 +9,7 @@ typedef enum {
     opt_help = 'h',
     opt_remove = 'r',
     opt_toggle = 't',
+    opt_wait,
     opt_window = 'w',
 } optlist_t;
 
@@ -16,6 +17,7 @@ static struct option longopts[] = {
     {"add",    required_argument, NULL, opt_add},
     {"remove", required_argument, NULL, opt_remove},
     {"toggle", required_argument, NULL, opt_toggle},
+    {"wait",   no_argument,       NULL, opt_wait},
     {"window", required_argument, NULL, opt_window},
     {"help",   no_argument,       NULL, opt_help},
     {NULL,     0,                 NULL, 0},
@@ -23,6 +25,7 @@ static struct option longopts[] = {
 
 static const char *usage =
     "Usage: %s [options] [<window-arg>=%0]\n"
+    "--wait                   flush output buffer before continuing.\n"
     "-a, --add <property>     add a property\n"
     "-t, --toggle <property>  toggle a property\n"
     "-w, --window <wid>       add window <wid> to the stack\n"
@@ -54,7 +57,7 @@ int b_state(bonk_state_t *b)
     /* Valid values are from xcb_ewmh_wm_state_action_t. */
     xcb_atom_t atom_list[MAX_AT_ONCE];
     xcb_ewmh_wm_state_action_t action_list[MAX_AT_ONCE];
-    int list_index = 0;
+    int list_index = 0, wait = 0;
 
     BONK_GETOPT_LOOP(c, b, "+a:hr:t:w:", longopts) {
         int action = -1;
@@ -69,6 +72,9 @@ int b_state(bonk_state_t *b)
             case opt_toggle:
                 action = XCB_EWMH_WM_STATE_TOGGLE;
                 break;
+            case opt_wait:
+                wait = 1;
+                continue;
             BONK_GETOPT_COMMON
         }
 
@@ -103,6 +109,9 @@ int b_state(bonk_state_t *b)
         for (i = 0;i < list_index;i++)
             do_state(b, iter_window, action_list[i], atom_list[i]);
     }
+
+    if (wait)
+        bonk_connection_flush(b);
 
     return 1;
 }
