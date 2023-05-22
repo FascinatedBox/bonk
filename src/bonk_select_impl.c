@@ -188,6 +188,58 @@ static void filter_has_prop(bonk_select_t *s)
     s->jar->pos = 0;
 }
 
+static void filter_has_state(bonk_select_t *s)
+{
+    int i;
+    xcb_atom_t state_atom = s->ewmh->_NET_WM_STATE;
+    xcb_atom_t search_atom = s->has_state_atom;
+
+    for (i = 0;i < s->window_stack->pos;i++) {
+        xcb_window_t w = s->window_stack->data[i];
+        xcb_get_property_cookie_t c = xcb_get_property(
+                s->conn,
+                0, /* Don't delete it */
+                w,
+                state_atom,
+                XCB_GET_PROPERTY_TYPE_ANY,
+                /* Start at the beginning and send everything. */
+                0, 0x7fffffff);
+
+        bonk_cookie_push(s->jar, c);
+    }
+
+    BONK_INIT_COOKIE_LIST(xcb_get_property_cookie_t *, cookie_list);
+    xcb_window_t *window_list = s->window_stack->data;
+    int cursor = 0;
+
+    for (i = 0;i < s->jar->pos;i++) {
+        xcb_get_property_cookie_t c = cookie_list[i];
+        xcb_get_property_reply_t *r = xcb_get_property_reply(s->conn, c, NULL);
+
+        if (r == NULL || r->type == XCB_ATOM_NONE ||
+            r->length == 0 || r->format != 32)
+            continue;
+
+        void *raw_value = xcb_get_property_value(r);
+        int found = 0;
+
+        for (int j = 0;j < r->length;j++) {
+            if (*(int *)raw_value == search_atom) {
+                window_list[cursor] = window_list[i];
+                cursor++;
+                break;
+            }
+
+            raw_value += sizeof(int32_t);
+        }
+
+        free(r);
+    }
+
+    s->window_stack->pos = cursor;
+    s->jar->pos = 0;
+}
+
 static void filter_class_and_instance(bonk_select_t *s)
 {
     int i;
@@ -370,6 +422,9 @@ int bonk_select_exec(bonk_state_t *b, bonk_select_t *s)
 
     if (s->mask & B_HAS_PROPERTY)
         filter_has_prop(s);
+
+    if (s->mask & B_HAS_STATE)
+        filter_has_state(s);
 
     if (s->mask & B_SELECT_TITLE)
         filter_title(s);

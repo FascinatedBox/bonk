@@ -23,6 +23,7 @@ typedef enum {
     opt_exact_instance,
     opt_exact_title,
     opt_has_property,
+    opt_has_state,
     opt_help,
     opt_match_class,
     opt_match_classname,
@@ -43,6 +44,7 @@ struct option longopts[] = {
     { "exact-instance", required_argument, NULL, opt_exact_instance },
     { "exact-title", required_argument, NULL, opt_exact_title },
     { "has-property", required_argument, NULL, opt_has_property },
+    { "has-state", required_argument, NULL, opt_has_state },
     { "instance", required_argument, NULL, opt_match_instance },
     { "retry", no_argument, NULL, opt_retry },
     { "show", no_argument, NULL, opt_show },
@@ -57,6 +59,8 @@ static const char *usage =
     "--<criteria> <pattern>       match against regexp <pattern>\n"
     "--exact-<criteria> <string>  must be exactly <string>\n"
     "--has-property <property>    window has <property> set to any value\n"
+    "--has-state <atom>           window has <atom> in _NET_WM_STATE\n"
+    "                             (see 'bonk state --help' for a list).\n"
     "\n"
     "--retry                      retry until a result is found\n"
     "--sync                       wait until a result is found\n"
@@ -98,6 +102,9 @@ int b_select(bonk_state_t *b)
                 break;
             case opt_has_property:
                 bonk_select_set_has_property(s, optarg);
+                break;
+            case opt_has_state:
+                ret = bonk_select_set_has_state(s, b, optarg);
                 break;
             case opt_sync:
                 fprintf(stderr, "bonk select warning: use retry instead of sync (ok for now).\n");

@@ -9,13 +9,15 @@
 # define B_SELECT_TITLE       0x04
 
 # define B_HAS_PROPERTY       0x08
-# define B_ONLY_VISIBLE       0x10
-# define B_RETRY              0x20
-# define B_USE_CLIENT_LIST    0x40
+# define B_HAS_STATE          0x10
+# define B_ONLY_VISIBLE       0x20
+# define B_RETRY              0x40
+# define B_USE_CLIENT_LIST    0x80
 
 typedef enum {
     ec_ok,
     ec_bad_pattern,
+    ec_bad_state_name,
 } bonk_select_error_code;
 
 typedef union {
@@ -35,6 +37,7 @@ typedef struct {
     bonk_criteria instance_criteria;
     bonk_criteria title_criteria;
     xcb_atom_t has_prop;
+    xcb_atom_t has_state_atom;
 
     bonk_select_error_code error_code;
     unsigned int mask;
@@ -63,6 +66,7 @@ void bonk_select_set_show_hidden(bonk_select_t *);
 void bonk_select_use_client_list(bonk_select_t *);
 void bonk_select_set_retry(bonk_select_t *);
 void bonk_select_set_has_property(bonk_select_t *, const char *);
+int bonk_select_set_has_state(bonk_select_t *, bonk_state_t *, const char *);
 int bonk_select_set_criteria(bonk_select_t *s,
                              unsigned int criteria,
                              int is_pattern,
