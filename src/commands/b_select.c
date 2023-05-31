@@ -17,14 +17,12 @@ case opt_exact##criteria: \
 
 typedef enum {
     opt_all,
-    opt_clients = 'c',
     opt_exact_class,
     opt_exact_classname,
     opt_exact_instance,
     opt_exact_title,
     opt_has_property,
     opt_has_state,
-    opt_help,
     opt_match_class,
     opt_match_classname,
     opt_match_instance,
@@ -32,6 +30,8 @@ typedef enum {
     opt_retry,
     opt_show,
     opt_sync,
+    opt_clients = 'c',
+    opt_help = 'h',
 } optlist_t;
 
 struct option longopts[] = {

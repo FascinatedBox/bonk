@@ -5,11 +5,11 @@
 #include "bonk_internal.h"
 
 typedef enum {
+    opt_wait,
     opt_add = 'a',
     opt_help = 'h',
     opt_remove = 'r',
     opt_toggle = 't',
-    opt_wait,
     opt_window = 'w',
 } optlist_t;
 

@@ -7,10 +7,10 @@
 
 typedef enum {
     opt_class,
-    opt_help = 'h',
     opt_instance,
     opt_title,
     opt_wait,
+    opt_help = 'h',
     opt_window = 'w',
 } optlist_t;
 
