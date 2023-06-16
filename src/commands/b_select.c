@@ -34,7 +34,7 @@ typedef enum {
     opt_help = 'h',
 } optlist_t;
 
-struct option longopts[] = {
+static struct option longopts[] = {
     { "all", no_argument, NULL, opt_all },
     { "classname", required_argument, NULL, opt_match_classname },
     { "class", required_argument, NULL, opt_match_class },
