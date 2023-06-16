@@ -72,7 +72,7 @@ extern int b_select(bonk_state_t *);
 extern int b_state(bonk_state_t *);
 extern int b_unmap(bonk_state_t *);
 
-bonk_dispatch_entry dispatch_table[] = {
+static bonk_dispatch_entry dispatch_table[] = {
     { "activate",             b_activate },
     { "close",                b_close },
     { "decoration",           b_decoration },
