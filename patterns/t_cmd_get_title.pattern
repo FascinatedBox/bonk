@@ -111,9 +111,9 @@ exit $?
 000:<:0062:  8: Request(15): QueryTree window=@2
 000:<:0063: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
 000:<:0064: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:0065: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:0066: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:0067: 24: Request(20): GetProperty delete=false(0x00) window=@1 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:0065: 24: Request(20): GetProperty delete=false(0x00) window=@1 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:0066: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:0067: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
 000:<:0068:  4: Request(43): GetInputFocus 
 box@desktop: /media/box/storage/p/bonk
 box@desktop: /media/box/storage/p/bonk

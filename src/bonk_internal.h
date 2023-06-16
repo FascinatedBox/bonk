@@ -47,7 +47,7 @@ typedef struct {
     xcb_window_t *w_list = bonk_window_list_get(b, &w_count); \
     for (w_index = 0, iter_window = w_list[0]; \
          w_index != w_count; \
-         iter_window = w_list[w_index], w_index++)
+         w_index++, iter_window = w_list[w_index])
 
 /* API functions for commands. */
 
