@@ -115,11 +115,7 @@ int b_select(bonk_state_t *b)
             case opt_show:
                 show = 1;
                 break;
-            case opt_help:
-                bonk_usage(b, usage);
-                break;
-            default:
-                return 0;
+            BONK_GETOPT_HELP
         }
 
         if (ret == 0) {

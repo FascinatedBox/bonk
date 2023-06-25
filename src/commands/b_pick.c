@@ -27,11 +27,7 @@ int b_pick(bonk_state_t *b)
 {
     BONK_GETOPT_LOOP(c, b, "+h", longopts) {
         switch (c) {
-            case opt_help:
-                bonk_usage(b, usage);
-                break;
-            default:
-                return 0;
+            BONK_GETOPT_HELP
         }
     }
 

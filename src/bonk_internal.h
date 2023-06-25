@@ -35,6 +35,9 @@ typedef struct {
     case opt_window: \
         bonk_use_window_arg(b, optarg); \
         continue; \
+    BONK_GETOPT_HELP
+
+#define BONK_GETOPT_HELP \
     case opt_help: \
         bonk_usage(b, usage); \
         break; \
