@@ -76,7 +76,7 @@ static void request_icccm_names(bonk_select_t *s, char *status_buffer)
             continue;
 
         xcb_window_t w = s->window_stack->data[i];
-        xcb_get_property_cookie_t c = xcb_ewmh_get_wm_name(s->ewmh, w);
+        xcb_get_property_cookie_t c = xcb_icccm_get_wm_name(s->conn, w);
 
         bonk_cookie_push(s->jar, c);
     }
@@ -92,7 +92,7 @@ static void compare_icccm_names(bonk_select_t *s, char *status_buffer)
     for (window_i = 0, cookie_j = 0;
          cookie_j < s->jar->pos;
          window_i++) {
-        if (status_buffer[window_i] == 0)
+        if (status_buffer[window_i] != 0)
             /* Already matched against this window. */
             continue;
 

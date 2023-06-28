@@ -9,6 +9,7 @@ xtrace -D :9 ./bonk select --show --instance xterm \
                     select --sync --instance xterm \
                     select --retry --instance xterm \
                     select --show --exact-title xterm \
-                    select --show --title xterm
+                    select --show --title xterm \
+                    select --show --title xeyes
 
 exit $?

@@ -10,7 +10,8 @@ xtrace -D :9 ./bonk select --show --instance xterm \
                     select --sync --instance xterm \
                     select --retry --instance xterm \
                     select --show --exact-title xterm \
-                    select --show --title xterm
+                    select --show --title xterm \
+                    select --show --title xeyes
 
 exit $?
 
@@ -172,8 +173,8 @@ exit $?
 000:<:009a: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
 000:<:009b: 24: Request(20): GetProperty delete=false(0x00) window=@1 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
 000:<:009c: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:009d: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:009e: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:009d: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:009e: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
 000:<:009f:  8: Request(15): QueryTree window=@0
 000:<:00a0:  8: Request(15): QueryTree window=@1
 000:<:00a1:  8: Request(15): QueryTree window=@2
@@ -183,9 +184,20 @@ exit $?
 000:<:00a5: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
 000:<:00a6: 24: Request(20): GetProperty delete=false(0x00) window=@1 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
 000:<:00a7: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:00a8: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:00a9: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:00aa:  4: Request(43): GetInputFocus 
+000:<:00a8: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:00a9: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:00aa:  8: Request(15): QueryTree window=@0
+000:<:00ab:  8: Request(15): QueryTree window=@1
+000:<:00ac:  8: Request(15): QueryTree window=@2
+000:<:00ad:  8: Request(3): GetWindowAttributes window=@0
+000:<:00ae:  8: Request(3): GetWindowAttributes window=@1
+000:<:00af:  8: Request(3): GetWindowAttributes window=@2
+000:<:00b0: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:00b1: 24: Request(20): GetProperty delete=false(0x00) window=@1 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:00b2: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:00b3: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:00b4: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:00b5:  4: Request(43): GetInputFocus 
 @1
 @1
 @1
