@@ -11,6 +11,7 @@ int b_help(bonk_state_t *b)
     "    get-active    Use window manager's active window\n"
     "    get-focus     Use the window that currently has input focus\n"
     "    pick          Left click to select a window\n"
+    "    reject        Remove windows using criteria\n"
     "    select        Search for a window using criteria\n"
     "\n"
     "window actions\n"

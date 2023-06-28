@@ -124,3 +124,8 @@ int bonk_select_set_has_state(bonk_select_t *s, bonk_state_t *b,
     s->mask |= B_HAS_STATE;
     return (result != XCB_ATOM_NONE);
 }
+
+void bonk_select_set_is_reject(bonk_select_t *s)
+{
+    s->mask |= B_IS_REJECT;
+}

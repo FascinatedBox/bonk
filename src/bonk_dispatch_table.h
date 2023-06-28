@@ -23,6 +23,7 @@ extern int b_pick(bonk_state_t *);
 extern int b_prop_adjust(bonk_state_t *);
 extern int b_prop_delete(bonk_state_t *);
 extern int b_raise(bonk_state_t *);
+extern int b_reject(bonk_state_t *);
 extern int b_select(bonk_state_t *);
 extern int b_state(bonk_state_t *);
 extern int b_unmap(bonk_state_t *);
@@ -43,6 +44,7 @@ static bonk_dispatch_entry dispatch_table[] = {
     { "prop-adjust",          b_prop_adjust },
     { "prop-delete",          b_prop_delete },
     { "raise",                b_raise },
+    { "reject",               b_reject },
     { "select",               b_select },
     { "state",                b_state },
     { "unmap",                b_unmap },

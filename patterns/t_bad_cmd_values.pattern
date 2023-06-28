@@ -10,6 +10,8 @@ WID=`./bonk select --instance xterm`
 ./bonk move-resize -w $WID 100 100 100 d && exit 99
 ./bonk select --quickbrownfox && exit 99
 ./bonk select --has-state asdf && exit 99
+./bonk select --all reject --quickbrownfox && exit 99
+./bonk select --all reject --has-state asdf && exit 99
 ./bonk decoration -w $WID && exit 99
 exit 0
 
@@ -24,6 +26,8 @@ bonk move-resize error: Invalid coordinates given to move-resize.
 bonk move-resize error: Invalid coordinates given to move-resize.
 select: unrecognized option '--quickbrownfox'
 bonk select error: 'asdf' is not a valid atom state name.
+reject: unrecognized option '--quickbrownfox'
+bonk reject error: 'asdf' is not a valid atom state name.
 bonk decoration error: Command expected 1 args, but only have 0 left. Exiting.
 
 -----exitcode-----

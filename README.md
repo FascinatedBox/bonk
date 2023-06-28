@@ -113,6 +113,7 @@ window stack management
     get-active    Use window manager's active window
     get-focus     Use the window that currently has input focus
     pick          Left click to select a window
+    reject        Remove windows using criteria
     select        Search for a window using criteria
 
 window actions

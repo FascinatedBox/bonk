@@ -4,15 +4,16 @@
 
 # include "bonk_internal.h"
 
-# define B_SELECT_CLASS       0x01
-# define B_SELECT_INSTANCE    0x02
-# define B_SELECT_TITLE       0x04
+# define B_SELECT_CLASS       0x001
+# define B_SELECT_INSTANCE    0x002
+# define B_SELECT_TITLE       0x004
 
-# define B_HAS_PROPERTY       0x08
-# define B_HAS_STATE          0x10
-# define B_ONLY_VISIBLE       0x20
-# define B_RETRY              0x40
-# define B_USE_CLIENT_LIST    0x80
+# define B_HAS_PROPERTY       0x008
+# define B_HAS_STATE          0x010
+# define B_IS_REJECT          0x020
+# define B_ONLY_VISIBLE       0x040
+# define B_RETRY              0x080
+# define B_USE_CLIENT_LIST    0x100
 
 typedef enum {
     ec_ok,
@@ -67,6 +68,7 @@ void bonk_select_use_client_list(bonk_select_t *);
 void bonk_select_set_retry(bonk_select_t *);
 void bonk_select_set_has_property(bonk_select_t *, const char *);
 int bonk_select_set_has_state(bonk_select_t *, bonk_state_t *, const char *);
+void bonk_select_set_is_reject(bonk_select_t *);
 int bonk_select_set_criteria(bonk_select_t *s,
                              unsigned int criteria,
                              int is_pattern,

@@ -329,6 +329,42 @@ static void filter_visible(bonk_select_t *s)
     s->jar->pos = 0;
 }
 
+static void process_rejections(bonk_select_t *s, bonk_state_t *b)
+{
+    xcb_window_t *reject_list = s->window_stack->data;
+    xcb_window_t *state_list = b->window_stack->data;
+    int reject_count = s->window_stack->pos;
+    int state_count = b->window_stack->pos;
+    int reject_start, state_i, state_next;
+
+    for (reject_start = 0, state_i = 0, state_next = 0;
+         state_i != state_count;
+         state_i++) {
+        xcb_window_t state_w = state_list[state_i];
+        int reject_i = reject_start;
+        int found = 0;
+
+        for (reject_i = reject_start;reject_i < reject_count;reject_i++) {
+            xcb_window_t reject_w = reject_list[reject_i];
+
+            if (state_w == reject_w) {
+                found = 1;
+                break;
+            }
+        }
+
+        if (found)
+            /* Each rejection will only match one entry. */
+            reject_start++;
+        else {
+            state_list[state_next] = state_w;
+            state_next++;
+        }
+    }
+
+    b->window_stack->pos = state_next;
+}
+
 static void walk_for_windows(bonk_select_t *s)
 {
     xcb_connection_t *conn = s->conn;
@@ -407,12 +443,23 @@ static void load_client_list(bonk_select_t *s)
     xcb_ewmh_get_windows_reply_wipe(&r);
 }
 
+static void copy_window_stack(bonk_select_t *s, bonk_state_t *b)
+{
+    xcb_window_t *window_list = b->window_stack->data;
+    uint32_t i;
+
+    for (i = 0;i < b->window_stack->pos;i++)
+        bonk_window_list_push(s->window_stack, window_list[i]);
+}
+
 int bonk_select_exec(bonk_state_t *b, bonk_select_t *s)
 {
-    if ((s->mask & B_USE_CLIENT_LIST) == 0)
+    if (s->mask & B_USE_CLIENT_LIST)
+        load_client_list(s);
+    else if ((s->mask & B_IS_REJECT) == 0)
         walk_screens(s);
     else
-        load_client_list(s);
+        copy_window_stack(s, b);
 
     if (s->mask & B_ONLY_VISIBLE)
         filter_visible(s);
@@ -430,14 +477,23 @@ int bonk_select_exec(bonk_state_t *b, bonk_select_t *s)
         filter_title(s);
 
     int result = s->window_stack->pos;
+    int swap;
 
-    /* Don't swap stacks until this is good and done. */
-    if ((s->mask & B_RETRY) == 0 || s->window_stack->pos) {
+    if (s->mask & B_RETRY)
+        swap = result;
+    else if (s->mask & B_IS_REJECT) {
+        process_rejections(s, b);
+        swap = 0;
+        result = b->window_stack->pos;
+    }
+    else
+        swap = 1;
+
+    if (swap) {
         bonk_window_list *temp = b->window_stack;
 
         b->window_stack = s->window_stack;
         s->window_stack = temp;
-        result = b->window_stack->pos;
     }
 
     return result;

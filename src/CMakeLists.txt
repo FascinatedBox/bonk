@@ -17,6 +17,7 @@ set(
         commands/b_prop_delete.c
         commands/b_prop_adjust.c
         commands/b_raise.c
+        commands/b_reject.c
         commands/b_select.c
         commands/b_state.c
         commands/b_unmap.c
