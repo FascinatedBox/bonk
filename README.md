@@ -107,16 +107,18 @@ Execute `./run-tests.sh` to run all tests.
 Here are all commands that Bonk supports (output of `bonk help`).
 
 ```
-place windows into the window stack
+Usage: bonk <commands [arguments]>
+
+window stack management
     get-active    Use window manager's active window
-    get-focus     The window that currently has input focus
+    get-focus     Use the window that currently has input focus
     pick          Left click to select a window
     select        Search for a window using criteria
 
 window actions
     activate      Tell window manager to set active window
     close         Attempt to close a window
-    decoration    Set MOTIF (border) hints
+    decoration    Set MOTIF (titlebar + border) hints
     focus         Give input focus to a window
     lower         Push a window to the back, behind other windows
     map           Reveal a window a window hidden with unmap
