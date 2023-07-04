@@ -39,7 +39,7 @@ int b_lower(bonk_state_t *b)
 
     bonk_arg_window_only(b);
 
-    BONK_FOREACH_WINDOW_DO {
+    BONK_FOREACH_WINDOW_DO(
         xcb_configure_window_value_list_t v;
 
         memset(&v, 0, sizeof(v));
@@ -48,7 +48,7 @@ int b_lower(bonk_state_t *b)
                                  iter_window,
                                  XCB_CONFIG_WINDOW_STACK_MODE,
                                  &v);
-    }
+    )
 
     if (wait)
         bonk_connection_flush(b);

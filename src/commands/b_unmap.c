@@ -37,9 +37,9 @@ int b_unmap(bonk_state_t *b)
 
     bonk_arg_window_only(b);
 
-    BONK_FOREACH_WINDOW_DO {
+    BONK_FOREACH_WINDOW_DO(
         xcb_unmap_window(b->conn, iter_window);
-    }
+    )
 
     if (wait)
         bonk_connection_flush(b);

@@ -103,12 +103,12 @@ int b_state(bonk_state_t *b)
     if (list_index == 0)
         return 1;
 
-    BONK_FOREACH_WINDOW_DO {
+    BONK_FOREACH_WINDOW_DO(
         int i;
 
         for (i = 0;i < list_index;i++)
             do_state(b, iter_window, action_list[i], atom_list[i]);
-    }
+    )
 
     if (wait)
         bonk_connection_flush(b);

@@ -35,9 +35,9 @@ int b_prop_delete(bonk_state_t *b)
     if (to_delete == 0)
         return 1;
 
-    BONK_FOREACH_WINDOW_DO {
+    BONK_FOREACH_WINDOW_DO(
         xcb_delete_property(b->conn, iter_window, to_delete);
-    }
+    )
 
     return 1;
 }

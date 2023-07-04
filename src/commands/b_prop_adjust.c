@@ -114,7 +114,7 @@ int b_prop_adjust(bonk_state_t *b)
 
     bonk_arg_window_only(b);
 
-    BONK_FOREACH_WINDOW_DO {
+    BONK_FOREACH_WINDOW_DO(
         if (flags & (ADJUST_CLASS | ADJUST_INSTANCE)) {
             int buffer_len;
             char *buffer = get_wm_class_and_instance(
@@ -127,7 +127,7 @@ int b_prop_adjust(bonk_state_t *b)
             xcb_ewmh_set_wm_name(
                     b->ewmh, iter_window, strlen(a_title), a_title);
         }
-    }
+    )
 
     if (wait)
         bonk_connection_flush(b);

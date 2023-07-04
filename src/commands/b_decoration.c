@@ -119,9 +119,9 @@ int b_decoration(bonk_state_t *b)
     if (decorations == UINT32_MAX || motif_atom == 0)
         return 0;
 
-    BONK_FOREACH_WINDOW_DO {
+    BONK_FOREACH_WINDOW_DO(
         do_set_motif_wm_hints(b, iter_window, motif_atom, decorations);
-    }
+    )
 
     return 1;
 }

@@ -44,13 +44,13 @@ typedef struct {
     default: \
         return 0;
 
-#define BONK_FOREACH_WINDOW_DO \
+#define BONK_FOREACH_WINDOW_DO(action) \
     int w_index, w_count; \
-    xcb_window_t iter_window; \
     xcb_window_t *w_list = bonk_window_list_get(b, &w_count); \
-    for (w_index = 0, iter_window = w_list[0]; \
-         w_index != w_count; \
-         w_index++, iter_window = w_list[w_index])
+    for (w_index = 0;w_index != w_count;w_index++) { \
+        xcb_window_t iter_window = w_list[w_index]; \
+        action \
+    }
 
 /* API functions for commands. */
 

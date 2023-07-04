@@ -38,13 +38,13 @@ int b_close(bonk_state_t *b)
 
     bonk_arg_window_only(b);
 
-    BONK_FOREACH_WINDOW_DO {
+    BONK_FOREACH_WINDOW_DO(
         xcb_ewmh_request_close_window(b->ewmh,
                                       0,
                                       iter_window,
                                       XCB_CURRENT_TIME,
                                       XCB_EWMH_CLIENT_SOURCE_TYPE_OTHER);
-    }
+    )
 
     if (wait)
         bonk_connection_flush(b);

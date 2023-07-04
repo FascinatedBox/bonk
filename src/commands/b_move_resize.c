@@ -76,7 +76,7 @@ int b_move_resize(bonk_state_t *b)
         return 0;
     }
 
-    BONK_FOREACH_WINDOW_DO {
+    BONK_FOREACH_WINDOW_DO(
         LETTER_ARG(x, 'x', X)
         LETTER_ARG(y, 'y', Y)
         LETTER_ARG(h, 'h', WIDTH)
@@ -84,7 +84,7 @@ int b_move_resize(bonk_state_t *b)
 
         do_move_resize(b, screen, iter_window,
                       opt_flags, x, y, h, w);
-    }
+    )
 
     return 1;
 }

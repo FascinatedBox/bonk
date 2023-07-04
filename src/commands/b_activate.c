@@ -38,7 +38,7 @@ int b_activate(bonk_state_t *b)
 
     bonk_arg_window_only(b);
 
-    BONK_FOREACH_WINDOW_DO {
+    BONK_FOREACH_WINDOW_DO(
         /* Last value is zero since this application doesn't have an active
            window. */
         xcb_ewmh_request_change_active_window(b->ewmh,
@@ -47,7 +47,7 @@ int b_activate(bonk_state_t *b)
                                               XCB_EWMH_CLIENT_SOURCE_TYPE_OTHER,
                                               XCB_CURRENT_TIME,
                                               0);
-    }
+    )
 
     if (wait)
         bonk_connection_flush(b);

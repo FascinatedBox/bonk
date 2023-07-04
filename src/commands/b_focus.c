@@ -38,12 +38,12 @@ int b_focus(bonk_state_t *b)
 
     bonk_arg_window_only(b);
 
-    BONK_FOREACH_WINDOW_DO {
+    BONK_FOREACH_WINDOW_DO(
         xcb_set_input_focus(b->conn,
                             XCB_INPUT_FOCUS_PARENT,
                             iter_window,
                             XCB_CURRENT_TIME);
-    }
+    )
 
     if (wait)
         bonk_connection_flush(b);
