@@ -30,7 +30,7 @@ static const char *usage =
     "--instance <value>       Update the instance in WM_CLASS.\n"
     "--title <value>          Update the window's title (_NET_WM_NAME).\n"
     "\n"
-    "--wait                   flush output buffer before continuing.\n"
+    "--wait                   flush output buffer before next command\n"
     "-w, --window <wid>       add window <wid> to the stack\n"
     "-h, --help               display this help and exit\n"
     ;
