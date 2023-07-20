@@ -27,6 +27,7 @@ static const char *usage =
     "Usage: %s [options] [<window-arg>=%0]\n"
     "--wait                   flush output buffer before continuing.\n"
     "-a, --add <property>     add a property\n"
+    "-r, --remove <property>  remove a property\n"
     "-t, --toggle <property>  toggle a property\n"
     "-w, --window <wid>       add window <wid> to the stack\n"
     "property can be one of \n"
