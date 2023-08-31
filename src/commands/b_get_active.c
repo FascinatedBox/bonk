@@ -41,7 +41,7 @@ int b_get_active(bonk_state_t *b)
         return 0;
 
     if (b->argc == 0)
-        fprintf(stdout, "0x%.8x\n", w);
+        printf("0x%.8x\n", w);
     else {
         b->window_stack->data[0] = w;
         b->window_stack->pos = 1;

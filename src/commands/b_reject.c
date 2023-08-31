@@ -111,7 +111,7 @@ int b_reject(bonk_state_t *b)
     if (b->argc == 0 || show == 1) {
         int i;
         for (i = 0;i < b->window_stack->pos;i++) {
-            fprintf(stdout, "0x%.8x\n", b->window_stack->data[i]);
+            printf("0x%.8x\n", b->window_stack->data[i]);
         }
     }
 
