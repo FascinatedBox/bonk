@@ -47,5 +47,9 @@ int b_pick(bonk_state_t *b)
     b->window_stack->data[0] = window;
     b->window_stack->pos = 1;
     xpick_state_free(s);
+
+    if (b->argc == 0)
+        printf("0x%.8x\n", window);
+
     return 1;
 }
