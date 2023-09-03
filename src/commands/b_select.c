@@ -68,6 +68,7 @@ static const char *usage =
     "--all                        include hidden windows\n"
     "-c, --clients                use managed clients\n"
     "                             (wm must support _NET_CLIENT_LIST)\n"
+    "--show                       print the window stack\n"
     "-h, --help                   display this help and exit\n"
     "\n"
     "Criteria can be any of the following:\n"
