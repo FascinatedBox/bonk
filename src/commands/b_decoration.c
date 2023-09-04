@@ -12,18 +12,23 @@
 #define DECORATION_CLOSE (1L << 5)
 
 typedef enum {
+    opt_wait,
     opt_help = 'h',
     opt_window = 'w',
 } optlist_t;
 
 static struct option longopts[] = {
     { "help", no_argument, NULL, opt_help },
+    { "wait", no_argument, NULL, opt_wait },
     { "window", required_argument, NULL, opt_window },
     { NULL, 0, NULL, 0 },
 };
 
 static const char *usage =
     "Usage: %s [<window-arg>=%0] decorations...\n"
+    "--wait                   flush output buffer before next command\n"
+    "-w, --window <wid>       add window <wid> to the stack\n"
+    "-h, --help               display this help and exit\n"
     "\n"
     "Set a window's decorations to only include 'decorations'.\n"
     "Valid decorations are:\n"
@@ -104,8 +109,13 @@ uint32_t parse_decorations(char *decoration_str)
 
 int b_decoration(bonk_state_t *b)
 {
+    int wait = 0;
+
     BONK_GETOPT_LOOP(c, b, "+hw:", longopts) {
         switch (c) {
+            case opt_wait:
+                wait = 1;
+                break;
             BONK_GETOPT_COMMON
         }
     }
@@ -122,6 +132,9 @@ int b_decoration(bonk_state_t *b)
     BONK_FOREACH_WINDOW_DO(
         do_set_motif_wm_hints(b, iter_window, motif_atom, decorations);
     )
+
+    if (wait)
+        bonk_connection_flush(b);
 
     return 1;
 }
