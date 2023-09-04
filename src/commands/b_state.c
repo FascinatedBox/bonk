@@ -30,8 +30,9 @@ static const char *usage =
     "-r, --remove <property>  remove a property\n"
     "-t, --toggle <property>  toggle a property\n"
     "-w, --window <wid>       add window <wid> to the stack\n"
-    "property can be one of \n"
-    "ABOVE BELOW DEMANDS_ATTENTION FULLSCREEN HIDDEN MAXIMIZED_HORZ,\n"
+    "\n"
+    "property can be one of the following:\n"
+    "ABOVE BELOW DEMANDS_ATTENTION FULLSCREEN HIDDEN MAXIMIZED_HORZ\n"
     "MAXIMIZED_VERT MODAL SHADED SKIP_PAGER SKIP_TASKBAR STICKY\n"
     ;
 
