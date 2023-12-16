@@ -25,6 +25,6 @@ DISPLAY=$SAVE_DISPLAY
 ./bonk select -c
 ./bonk select --all --instance xterm unmap select --instance xterm raise && exit 99
 ./bonk select --all --instance xterm map
-./bonk select --instance ""
+./bonk select --exact-instance ""
 ./bonk select --class "*" && exit 99
 exit 0

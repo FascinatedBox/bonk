@@ -26,12 +26,11 @@ DISPLAY=$SAVE_DISPLAY
 ./bonk select -c
 ./bonk select --all --instance xterm unmap select --instance xterm raise && exit 99
 ./bonk select --all --instance xterm map
-./bonk select --instance ""
+./bonk select --exact-instance ""
 ./bonk select --class "*" && exit 99
 exit 0
 
 -----stdout-----
-0x00400012
 
 -----stderr-----
 bonk state error: 'sphinxofblackquartzjudgemyvow' is not a valid state atom. Stopping.
