@@ -55,6 +55,9 @@ int bonk_exec(bonk_state_t *b)
     b->argc--;
     optind = 0;
 
+    if (b->argc == 0)
+        return b_help(b);
+
     while (b->argc) {
         char *command = b->argv[0];
         int found = 0;
