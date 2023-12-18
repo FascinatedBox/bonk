@@ -101,8 +101,8 @@ exit $?
 000:<:005a: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("WM_CLASS") type=("STRING") long-offset=0x00000000 long-length=0x00000800
 000:<:005b: 24: Request(20): GetProperty delete=false(0x00) window=@1 property=("WM_CLASS") type=("STRING") long-offset=0x00000000 long-length=0x00000800
 000:<:005c: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("WM_CLASS") type=("STRING") long-offset=0x00000000 long-length=0x00000800
-000:<:005d: 12: Request(42): SetInputFocus revert-to=Parent(0x02) focus=0x00400012 time=CurrentTime(0x00000000)
-000:<:005e: 12: Request(42): SetInputFocus revert-to=Parent(0x02) focus=0x00400012 time=CurrentTime(0x00000000)
+000:<:005d: 12: Request(42): SetInputFocus revert-to=Parent(0x02) focus=@1 time=CurrentTime(0x00000000)
+000:<:005e: 12: Request(42): SetInputFocus revert-to=Parent(0x02) focus=@1 time=CurrentTime(0x00000000)
 000:<:005f:  4: Request(43): GetInputFocus 
 000:<:0060:  4: Request(43): GetInputFocus 
 

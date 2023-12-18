@@ -24,6 +24,7 @@ def _pattern_for_input(input_bytes):
     input_lines = _lines_for_input(input_bytes)
     result = []
     window_rx = re.compile("window=(0x\\S+)")
+    focus_rx = re.compile("focus=(0x\\S+)")
     show_rx = re.compile("(0x\\S+)")
 
     # Types are formatted as "type=<atom id>(atom name)". Replace out the id so
@@ -43,11 +44,14 @@ def _pattern_for_input(input_bytes):
 
         if l.startswith("000"):
             matches = window_rx.findall(l)
+            matches += focus_rx.findall(l)
 
             if matches:
                 for m in matches:
                     p = _window_pattern(m, window_cache)
                     l = l.replace("window=" + m, "window=" + p)
+                    l = l.replace("focus=" + m, "focus=" + p)
+
         elif l.startswith("0x"):
             matches = show_rx.findall(l)
 
