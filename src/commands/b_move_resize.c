@@ -15,13 +15,14 @@ static struct option longopts[] = {
 };
 
 static const char *usage =
-    "Usage: %s [options] [<window-arg>=%0] x y w h\n"
+    "Usage: %s [options] [<window-arg>=%0] x y width height\n"
     "-w, --window <wid>       add window <wid> to the stack\n"
     "-h, --help               display this help and exit\n"
     "\n"
-    "If you use literal 'x' or 'y' for the x coordinates, then the current\n"
-    "coordinate will be used. This is useful for moving the window along\n"
-    "only one axis.\n"
+    ""
+    "If the corresponding letter (ex: 'x' for x) is used instead of a number, "
+    "then\nthe current coordinate is used. This can be used to move a window "
+    "along only one\naxis.\n"
     ;
 
 void do_move_resize(bonk_state_t *b,
@@ -52,6 +53,8 @@ int b_move_resize(bonk_state_t *b)
         XCB_EWMH_MOVERESIZE_WINDOW_WIDTH |
         XCB_EWMH_MOVERESIZE_WINDOW_HEIGHT;
 
+    uint32_t values[4] = {0, 0, 0, 0};
+
     BONK_GETOPT_LOOP(c, b, "+hw:", longopts) {
         switch (c) {
             BONK_GETOPT_COMMON
@@ -60,30 +63,52 @@ int b_move_resize(bonk_state_t *b)
 
     bonk_arg_window_and_require_n(b, 4);
 
-    char *x_arg = bonk_arg_next_unchecked(b);
-    char *y_arg = bonk_arg_next_unchecked(b);
-    char *h_arg = bonk_arg_next_unchecked(b);
-    char *w_arg = bonk_arg_next_unchecked(b);
-    char *x_end, *y_end, *h_end, *w_end;
-    int x = strtol(x_arg, &x_end, 10);
-    int y = strtol(y_arg, &y_end, 10);
-    int h = strtol(h_arg, &h_end, 10);
-    int w = strtol(w_arg, &w_end, 10);
+    char letter_for_arg[] = {'x', 'y', 'w', 'h'};
+    char *letter_args[4];
+    xcb_ewmh_moveresize_window_opt_flags_t flag_for_arg[4] = {
+        XCB_EWMH_MOVERESIZE_WINDOW_X,
+        XCB_EWMH_MOVERESIZE_WINDOW_Y,
+        XCB_EWMH_MOVERESIZE_WINDOW_WIDTH,
+        XCB_EWMH_MOVERESIZE_WINDOW_HEIGHT,
+    };
 
-    if (*x_end || *y_end || *h_end || *w_end ||
-        x < 0 || y < 0 || h < 0 || w < 0) {
-        fprintf(stderr, "bonk move-resize error: Invalid coordinates given to move-resize.\n");
-        return 0;
+    int valid = 1;
+
+    for (int i = 0;i < 4;i++) {
+        char *a = bonk_arg_next_unchecked(b);
+        char *a_end;
+        int a_value = strtol(a, &a_end, 10);
+        int ok = 1;
+
+        if (a_value < -1 || a_value > 10000)
+            ok = 0;
+        else if (*a_end != '\0') {
+            if (*a == letter_for_arg[i] && a[1] == '\0')
+                opt_flags &= ~flag_for_arg[i];
+            else
+                ok = 0;
+        }
+        else
+            values[i] = (uint32_t)a_value;
+
+        if (ok == 0) {
+            fprintf(stderr, "bonk move-resize error: Invalid %c coordinate (%s).\n",
+                    letter_for_arg[i], a);
+            valid = 0;
+        }
     }
 
-    BONK_FOREACH_WINDOW_DO(
-        LETTER_ARG(x, 'x', X)
-        LETTER_ARG(y, 'y', Y)
-        LETTER_ARG(h, 'h', WIDTH)
-        LETTER_ARG(w, 'w', HEIGHT)
+    if (valid == 0)
+        return 0;
 
+    uint32_t x = values[0],
+             y = values[1],
+             w = values[2],
+             h = values[3];
+
+    BONK_FOREACH_WINDOW_DO(
         do_move_resize(b, screen, iter_window,
-                      opt_flags, x, y, h, w);
+                       opt_flags, x, y, w, h);
     )
 
     return 1;

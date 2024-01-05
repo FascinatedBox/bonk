@@ -4,7 +4,11 @@
 WID=`./bonk select --instance xterm`
 xtrace -D :9 ./bonk move-resize -w $WID 100 100 100 100 \
                     select --instance xterm \
-                    move-resize 100 100 100 100
+                    move-resize 100 100 100 100 \
+                    move-resize 50 y w h \
+                    move-resize x 50 w h \
+                    move-resize x y 50 h \
+                    move-resize x y w 50
 
 exit $?
 
@@ -104,7 +108,11 @@ exit $?
 000:<:005c: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("WM_CLASS") type=("STRING") long-offset=0x00000000 long-length=0x00000800
 000:<:005d: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("WM_CLASS") type=("STRING") long-offset=0x00000000 long-length=0x00000800
 000:<:005e: 44: Request(25): SendEvent propagate=false(0x00) destination=0x0000051e event-mask=SubstructureNotify,SubstructureRedirect ClientMessage(33) format=0x20 window=@0 type=("_NET_MOVERESIZE_WINDOW") data=0x0a,0x2f,0x00,0x00,0x64,0x00,0x00,0x00,0x64,0x00,0x00,0x00,0x64,0x00,0x00,0x00,0x64,0x00,0x00,0x00;
-000:<:005f:  4: Request(43): GetInputFocus 
+000:<:005f: 44: Request(25): SendEvent propagate=false(0x00) destination=0x0000051e event-mask=SubstructureNotify,SubstructureRedirect ClientMessage(33) format=0x20 window=@0 type=("_NET_MOVERESIZE_WINDOW") data=0x0a,0x21,0x00,0x00,0x32,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00;
+000:<:0060: 44: Request(25): SendEvent propagate=false(0x00) destination=0x0000051e event-mask=SubstructureNotify,SubstructureRedirect ClientMessage(33) format=0x20 window=@0 type=("_NET_MOVERESIZE_WINDOW") data=0x0a,0x22,0x00,0x00,0x00,0x00,0x00,0x00,0x32,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00;
+000:<:0061: 44: Request(25): SendEvent propagate=false(0x00) destination=0x0000051e event-mask=SubstructureNotify,SubstructureRedirect ClientMessage(33) format=0x20 window=@0 type=("_NET_MOVERESIZE_WINDOW") data=0x0a,0x24,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x32,0x00,0x00,0x00,0x00,0x00,0x00,0x00;
+000:<:0062: 44: Request(25): SendEvent propagate=false(0x00) destination=0x0000051e event-mask=SubstructureNotify,SubstructureRedirect ClientMessage(33) format=0x20 window=@0 type=("_NET_MOVERESIZE_WINDOW") data=0x0a,0x28,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x32,0x00,0x00,0x00;
+000:<:0063:  4: Request(43): GetInputFocus 
 
 -----stderr-----
 Got connection from unknown(local)
