@@ -52,6 +52,9 @@ typedef struct {
         action \
     }
 
+#define BONK_PRINT_WINDOW(w) \
+    printf("0x%.8x\n", w)
+
 /* API functions for commands. */
 
 bonk_window_list *bonk_new_window_list(int);

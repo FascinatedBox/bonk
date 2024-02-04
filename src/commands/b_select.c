@@ -150,7 +150,7 @@ int b_select(bonk_state_t *b)
     if (b->argc == 0 || show == 1) {
         int i;
         for (i = 0;i < b->window_stack->pos;i++) {
-            printf("0x%.8x\n", b->window_stack->data[i]);
+            BONK_PRINT_WINDOW(b->window_stack->data[i]);
         }
     }
 

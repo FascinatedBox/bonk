@@ -49,7 +49,7 @@ int b_pick(bonk_state_t *b)
     xpick_state_free(s);
 
     if (b->argc == 0)
-        printf("0x%.8x\n", window);
+        BONK_PRINT_WINDOW(window);
 
     return 1;
 }

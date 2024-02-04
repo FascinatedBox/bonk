@@ -3,6 +3,7 @@
 
 WID=`./bonk select --instance xterm`
 xtrace -D :9 ./bonk select --show --instance xterm \
+                    select --if-empty-stack --show --instance banana \
                     select --show --exact-class XTerm \
                     select --show --exact-classname xterm \
                     select --show --classname xterm \
@@ -198,6 +199,7 @@ exit $?
 000:<:00b3: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
 000:<:00b4: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
 000:<:00b5:  4: Request(43): GetInputFocus 
+@1
 @1
 @1
 @1

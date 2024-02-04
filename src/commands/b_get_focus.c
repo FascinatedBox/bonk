@@ -38,7 +38,7 @@ int b_get_focus(bonk_state_t *b)
         xcb_window_t w = r->focus;
 
         if (b->argc == 0)
-            printf("0x%.8x\n", w);
+            BONK_PRINT_WINDOW(w);
         else {
             b->window_stack->data[0] = w;
             b->window_stack->pos = 1;
