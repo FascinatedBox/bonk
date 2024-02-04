@@ -23,6 +23,7 @@ typedef enum {
     opt_exact_title,
     opt_has_property,
     opt_has_state,
+    opt_if_empty_stack,
     opt_match_class,
     opt_match_classname,
     opt_match_instance,
@@ -45,6 +46,7 @@ static struct option longopts[] = {
     { "exact-title", required_argument, NULL, opt_exact_title },
     { "has-property", required_argument, NULL, opt_has_property },
     { "has-state", required_argument, NULL, opt_has_state },
+    { "if-empty-stack", no_argument, NULL, opt_if_empty_stack },
     { "instance", required_argument, NULL, opt_match_instance },
     { "retry", no_argument, NULL, opt_retry },
     { "show", no_argument, NULL, opt_show },
@@ -62,6 +64,7 @@ static const char *usage =
     "--has-state <atom>           window has <atom> in _NET_WM_STATE\n"
     "                             (see 'bonk state --help' for a list).\n"
     "\n"
+    "--if-empty-stack             only search if the window stack is empty\n"
     "--retry                      retry until a result is found\n"
     "--sync                       wait until a result is found\n"
     "\n"
@@ -78,6 +81,7 @@ static const char *usage =
 int b_select(bonk_state_t *b)
 {
     bonk_select_t *s = bonk_new_select(b);
+    int if_empty_stack = 0;
     int ret = 1;
     int show = 0;
     int retry = 0;
@@ -107,6 +111,9 @@ int b_select(bonk_state_t *b)
             case opt_has_state:
                 ret = bonk_select_set_has_state(s, b, optarg);
                 break;
+            case opt_if_empty_stack:
+                if_empty_stack = 1;
+                break;
             case opt_sync:
                 fprintf(stderr, "bonk select warning: use retry instead of sync (ok for now).\n");
             case opt_retry:
@@ -129,13 +136,15 @@ int b_select(bonk_state_t *b)
 
     bonk_arg_require_n(b, 0);
 
-    while (1) {
-        int result = bonk_select_exec(b, s);
+    if ((if_empty_stack && b->window_stack->pos) == 0) {
+        while (1) {
+            int result = bonk_select_exec(b, s);
 
-        if (retry == 0 || result)
-            break;
+            if (retry == 0 || result)
+                break;
 
-        usleep(500000);
+            usleep(500000);
+        }
     }
 
     if (b->argc == 0 || show == 1) {
