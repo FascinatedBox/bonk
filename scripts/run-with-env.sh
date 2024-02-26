@@ -13,4 +13,6 @@ xterm 2> /dev/null &
 # Don't use -c here because there's no wm to provide a client list.
 ./bonk select --retry --instance xterm > /dev/null
 "$@"
+RESULT=$?
 pkill Xephyr
+exit $RESULT
