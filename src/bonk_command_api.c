@@ -48,7 +48,7 @@ void bonk_arg_require_n(bonk_state_t *b, int n)
     exit(EXIT_FAILURE);
 }
 
-static char *get_arg_if_maybe_window_arg(bonk_state_t *b)
+static void pick_first_window(bonk_state_t *b)
 {
     if (b->window_stack->pos == 0) {
         fprintf(stderr, "bonk %s error: The window stack is empty. Stopping.\n",
@@ -56,68 +56,100 @@ static char *get_arg_if_maybe_window_arg(bonk_state_t *b)
         exit(EXIT_FAILURE);
     }
 
-    if (b->argc == 0)
-        return NULL;
-
-    char *arg = b->argv[0];
-
-    if (arg[0] != '%')
-        return NULL;
-
-    b->argv++;
-    b->argc--;
-
-    /* Skip the percent so window argument parsing doesn't have to. */
-    return arg + 1;
+    b->iter_windows = &b->window_stack->data[0];
+    b->iter_window_count = 1;
 }
 
-static void parse_window_arg(bonk_state_t *b, char *arg)
+static void parse_percent_arg(bonk_state_t *b, const char *arg_start)
 {
-    if (arg == NULL) {
-        /* No explicit window arg, so default to the first window provided.
-           Arg checking confirms that there is a window, so this is safe. */
-        b->iter_windows = &b->window_stack->data[0];
-        b->iter_window_count = 1;
+    const char *arg = arg_start;
+    int digits = 0, is_negative = 0, ok = 0, total = 0;
+
+    if (b->window_stack->pos == 0) {
+        fprintf(stderr, "bonk %s error: The window stack is empty. Stopping.\n",
+                b->current_command);
+        exit(EXIT_FAILURE);
+    }
+
+    if (*arg == '-') {
+        is_negative = 1;
+        arg++;
+    }
+
+    /* Keep it simple: 0...999, no leading zero trimming. */
+    for (digits = 0;digits < 4;digits++) {
+        if (*arg == '\0') {
+            /* Block '%' and '%-'. */
+            ok = digits;
+            break;
+        }
+
+        if (*arg < '0' || *arg > '9') {
+            ok = 0;
+            break;
+        }
+
+        total = (total * 10) + (*arg - '0');
+        arg++;
+    }
+
+    if (is_negative)
+        total = -total + (int)b->window_stack->pos;
+
+    if (total >= b->window_stack->pos ||
+        total < 0 ||
+        ok == 0) {
+        fprintf(stderr, "bonk error: Invalid window index '%s' (%%%d .. %%%d).\n",
+                arg_start, b->window_stack->pos - 1,
+                -(int)b->window_stack->pos);
+        exit(EXIT_FAILURE);
+    }
+
+    b->iter_windows = &b->window_stack->data[total];
+    b->iter_window_count = 1;
+}
+
+static void setup_iter_windows(bonk_state_t *b)
+{
+    if (b->argc == 0) {
+        pick_first_window(b);
         return;
     }
 
-    /* Special case %@ to mean "all windows" since the default is the first one
-       in the stack. */
+    char *arg = b->argv[0];
+
+    if (arg[0] != '%') {
+        /* Argument is not a window, so do not consume. */
+        pick_first_window(b);
+        return;
+    }
+
+    b->argv++;
+    b->argc--;
+    /* Skip past starting '%'. */
+    arg = arg + 1;
+
     if (arg[0] == '@' && arg[1] == '\0') {
+        /* For %@, send all windows. */
         b->iter_windows = b->window_stack->data;
         b->iter_window_count = b->window_stack->pos;
         return;
     }
 
-    int index = atoi(arg);
-
-    if (index < 0)
-        index += (int)b->window_stack->pos;
-
-    if (index >= b->window_stack->pos ||
-        index < 0 ||
-        arg[0] == '\0') {
-        fprintf(stderr, "bonk error: Invalid window index '%s' (%%%d .. %%%d).\n",
-                arg, b->window_stack->pos - 1, -(int)b->window_stack->pos);
-        exit(EXIT_FAILURE);
-    }
-
-    b->iter_windows = &b->window_stack->data[index];
-    b->iter_window_count = 1;
+    parse_percent_arg(b, arg);
 }
 
 void bonk_arg_window_and_require_n(bonk_state_t *b, int n)
 {
     getopt_advance(b);
-    parse_window_arg(b, get_arg_if_maybe_window_arg(b));
-
+    setup_iter_windows(b);
     bonk_arg_require_n(b, n);
 }
 
 void bonk_arg_window_only(bonk_state_t *b)
 {
     getopt_advance(b);
-    parse_window_arg(b, get_arg_if_maybe_window_arg(b));
+    setup_iter_windows(b);
 }
 
 static xcb_atom_t _string_to_atom(xcb_connection_t *conn,

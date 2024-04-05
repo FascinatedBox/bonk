@@ -19,9 +19,13 @@ SAVE_DISPLAY=$DISPLAY
 DISPLAY=:25
 ./bonk get-focus && exit 99
 DISPLAY=$SAVE_DISPLAY
-./bonk get-focus raise %-1 || exit 99 # Valid index, next two are invalid.
+./bonk get-focus raise %-1 || exit 99 # Valid index, the rest are invalid.
 ./bonk get-focus raise %-2 && exit 99
 ./bonk get-focus raise %2 && exit 99
+./bonk get-focus raise %J && exit 99
+./bonk get-focus raise %0A && exit 99
+./bonk get-focus raise %- && exit 99
+./bonk get-focus raise % && exit 99
 ./bonk select -c
 ./bonk select --all --instance xterm unmap select --instance xterm raise && exit 99
 ./bonk select --all --instance xterm map
