@@ -31,9 +31,19 @@ static const char *usage =
     "-t, --toggle <property>  toggle a property\n"
     "-w, --window <wid>       add window <wid> to the stack\n"
     "\n"
-    "property can be one of the following:\n"
-    "ABOVE BELOW DEMANDS_ATTENTION FULLSCREEN HIDDEN MAXIMIZED_HORZ\n"
-    "MAXIMIZED_VERT MODAL SHADED SKIP_PAGER SKIP_TASKBAR STICKY\n"
+    "Available properties are:\n"
+    "  above             - Keep this window above others\n"
+    "  below             - Keep this window below others\n"
+    "  demands_attention - WM may flash this window's taskbar entry\n"
+    "  fullscreen        - Make this window cover all others\n"
+    "  hidden            - Make this window invisible\n"
+    "  maximized_vert    - Spread a window vertically\n"
+    "  maximized_horz    - Spread a window horizontally\n"
+    "  modal             - This window is a dialog box\n"
+    "  shaded            - Only show the window's titlebar\n"
+    "  skip_pager        - Do not show this window in a pager\n"
+    "  skip_taskbar      - Omit this window from the taskbar\n"
+    "  sticky            - This window shouldn't move if the desktop scrolls\n"
     ;
 
 void do_state(bonk_state_t *b,
