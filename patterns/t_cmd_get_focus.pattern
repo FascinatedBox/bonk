@@ -186,6 +186,9 @@ exit $?
 Got connection from unknown(local)
 Got connection from unknown(local)
 Usage: get-focus [options]
+
+Return the window that currently has input focus
+
 -h, --help               display this help and exit
 
 -----exitcode-----

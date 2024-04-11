@@ -15,6 +15,9 @@ static struct option longopts[] = {
 
 static const char *usage =
     "Usage: %s [options] [<window-arg>=%0] <property-name>\n"
+    "\n"
+    "Delete a property on a window\n"
+    "\n"
     "-w, --window <wid>       add window <wid> to the stack\n"
     "-h, --help               display this help and exit\n"
     ;

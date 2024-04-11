@@ -18,6 +18,9 @@ static struct option longopts[] = {
 
 static const char *usage =
     "Usage: %s [options] [<window-arg>=%0]\n"
+    "\n"
+    "Possibly close a window (similar to clicking X to close a window)\n"
+    "\n"
     "--wait                   flush output buffer before next command\n"
     "-w, --window <wid>       add window <wid> to the stack\n"
     "-h, --help               display this help and exit\n"

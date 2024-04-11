@@ -48,6 +48,9 @@ struct option longopts[] = {
 
 static const char *usage =
     "Usage: %s [options]\n"
+    "\n"
+    "Remove windows from the window stack that match criteria.\n"
+    "\n"
     "--<criteria> <pattern>       match against regexp <pattern>\n"
     "--exact-<criteria> <string>  must be exactly <string>\n"
     "--has-property <property>    window has <property> set to any value\n"

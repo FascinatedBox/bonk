@@ -16,6 +16,9 @@ static struct option longopts[] = {
 
 static const char *usage =
     "Usage: %s [options] [<window-arg>=%0] x y width height\n"
+    "\n"
+    "Move and resize a window (implemented as one action)\n"
+    "\n"
     "-w, --window <wid>       add window <wid> to the stack\n"
     "-h, --help               display this help and exit\n"
     "\n"

@@ -17,6 +17,9 @@ static struct option longopts[] = {
 
 static const char *usage =
     "Usage: %s [options]\n"
+    "\n"
+    "Return the window that currently has input focus\n"
+    "\n"
     "-h, --help               display this help and exit\n"
     ;
 

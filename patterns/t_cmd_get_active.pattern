@@ -184,6 +184,9 @@ exit $?
 Got connection from unknown(local)
 Got connection from unknown(local)
 Usage: get-active [options]
+
+Return the WM's active window (will probably focus and raise it)
+
 -h, --help               display this help and exit
 
 -----exitcode-----

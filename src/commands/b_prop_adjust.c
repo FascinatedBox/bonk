@@ -26,6 +26,9 @@ static struct option longopts[] = {
 
 static const char *usage =
     "Usage: %s [options] [<window-arg>=%0]\n"
+    "\n"
+    "Adjust simple window properties\n"
+    "\n"
     "--class <value>          Update the class in WM_CLASS.\n"
     "--instance <value>       Update the instance in WM_CLASS.\n"
     "--title <value>          Update the window's title (_NET_WM_NAME).\n"

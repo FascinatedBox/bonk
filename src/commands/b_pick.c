@@ -17,9 +17,12 @@ static struct option longopts[] = {
 
 static const char *usage =
     "Usage: %s [options]\n"
-    "Switch the cursor to a crosshair so the user can select a window.\n"
+    "\n"
+    "Select a window using a crosshair cursor\n"
+    "\n"
     "Left click selects a window, any other mouse press cancels it.\n"
     "The selected window replaces the window stack.\n"
+    "\n"
     "-h, --help               display this help and exit\n"
     ;
 
