@@ -11,8 +11,8 @@ xtrace -D :9 ./bonk select --instance xterm \
                     prop-adjust --wid $WID --wait --title xterm
 
 xtrace -D :9 ./bonk select --instance xterm \
-                    prop-delete WM_HINTS \
-                    prop-delete -w $WID WM_HINTS
+                    prop-delete --wait WM_HINTS \
+                    prop-delete -w $WID WM_HINTS \
 
 exit $?
 
@@ -217,9 +217,10 @@ exit $?
 000:<:005c: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("WM_CLASS") type=("STRING") long-offset=0x00000000 long-length=0x00000800
 000:<:005d: 16: Request(16): InternAtom only-if-exists=true(0x01) name='WM_HINTS'
 000:<:005e: 12: Request(19): DeleteProperty window=@1 property=("WM_HINTS")
-000:<:005f: 16: Request(16): InternAtom only-if-exists=true(0x01) name='WM_HINTS'
-000:<:0060: 12: Request(19): DeleteProperty window=@1 property=("WM_HINTS")
-000:<:0061:  4: Request(43): GetInputFocus 
+000:<:005f:  4: Request(43): GetInputFocus 
+000:<:0060: 16: Request(16): InternAtom only-if-exists=true(0x01) name='WM_HINTS'
+000:<:0061: 12: Request(19): DeleteProperty window=@1 property=("WM_HINTS")
+000:<:0062:  4: Request(43): GetInputFocus 
 
 -----stderr-----
 Got connection from unknown(local)

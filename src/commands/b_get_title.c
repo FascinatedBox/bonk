@@ -74,9 +74,6 @@ int b_get_title(bonk_state_t *b)
 
     BONK_GETOPT_LOOP(c, b, "+hw:", longopts) {
         switch (c) {
-            case opt_wait:
-                wait = 1;
-                break;
             BONK_GETOPT_COMMON
         }
     }

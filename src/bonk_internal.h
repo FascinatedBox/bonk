@@ -31,7 +31,16 @@ typedef struct {
  \
     while ((c_ = getopt_long_only(b_->argc, b_->argv, shortargs, longopts, NULL)) != -1)
 
+#define BONK_GETOPT_COMMON_NOWAIT \
+    case opt_window: \
+        bonk_use_window_arg(b, optarg); \
+        continue; \
+    BONK_GETOPT_HELP
+
 #define BONK_GETOPT_COMMON \
+    case opt_wait: \
+        wait = 1; \
+        break; \
     case opt_window: \
         bonk_use_window_arg(b, optarg); \
         continue; \

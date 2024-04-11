@@ -87,10 +87,12 @@ int b_state(bonk_state_t *b)
             case opt_toggle:
                 action = XCB_EWMH_WM_STATE_TOGGLE;
                 break;
+            /* BONK_GETOPT_COMMON assumes break instead of continue, so wait
+               must be implemented manually. */
             case opt_wait:
                 wait = 1;
                 continue;
-            BONK_GETOPT_COMMON
+            BONK_GETOPT_COMMON_NOWAIT
         }
 
         if (list_index == MAX_AT_ONCE) {

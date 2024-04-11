@@ -27,7 +27,7 @@ int b_get_focus(bonk_state_t *b)
 {
     BONK_GETOPT_LOOP(c, b, "+h", longopts) {
         switch (c) {
-            BONK_GETOPT_COMMON
+            BONK_GETOPT_COMMON_NOWAIT
         }
     }
 

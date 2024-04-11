@@ -108,9 +108,6 @@ int b_prop_adjust(bonk_state_t *b)
                 flags |= ADJUST_TITLE;
                 a_title = optarg;
                 break;
-            case opt_wait:
-                wait = 1;
-                break;
             BONK_GETOPT_COMMON
         }
     }

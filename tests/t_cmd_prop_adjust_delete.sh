@@ -10,7 +10,7 @@ xtrace -D :9 ./bonk select --instance xterm \
                     prop-adjust --wid $WID --wait --title xterm
 
 xtrace -D :9 ./bonk select --instance xterm \
-                    prop-delete WM_HINTS \
-                    prop-delete -w $WID WM_HINTS
+                    prop-delete --wait WM_HINTS \
+                    prop-delete -w $WID WM_HINTS \
 
 exit $?

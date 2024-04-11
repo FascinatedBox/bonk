@@ -4,12 +4,14 @@
 #include "bonk_internal.h"
 
 typedef enum {
+    opt_wait,
     opt_help = 'h',
     opt_window = 'w',
 } optlist_t;
 
 static struct option longopts[] = {
     { "help", no_argument, NULL, opt_help },
+    { "wait", no_argument, NULL, opt_wait },
     { "window", required_argument, NULL, opt_window },
     { NULL, 0, NULL, 0 },
 };
@@ -19,6 +21,7 @@ static const char *usage =
     "\n"
     "Move and resize a window (implemented as one action)\n"
     "\n"
+    "--wait                   flush output buffer before next command\n"
     "-w, --window <wid>       add window <wid> to the stack\n"
     "-h, --help               display this help and exit\n"
     "\n"
@@ -48,7 +51,7 @@ void do_move_resize(bonk_state_t *b,
 
 int b_move_resize(bonk_state_t *b)
 {
-    int screen = 0;
+    int screen = 0, wait = 0;
 
     xcb_ewmh_moveresize_window_opt_flags_t opt_flags =
         XCB_EWMH_MOVERESIZE_WINDOW_X |
@@ -113,6 +116,9 @@ int b_move_resize(bonk_state_t *b)
         do_move_resize(b, screen, iter_window,
                        opt_flags, x, y, w, h);
     )
+
+    if (wait)
+        bonk_connection_flush(b);
 
     return 1;
 }
