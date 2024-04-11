@@ -73,7 +73,12 @@ lcov -z --directory . > /dev/null
 ./scripts/run-with-env.sh scripts/verify.py tests/t_*.sh
 lcov \
     --directory . \
+    --capture \
+    --output-file .report.info \
+    > /dev/null 2> /dev/null
+lcov \
+    --directory . \
     --remove .report.info "/usr/*" \
-    --capture --output-file .report.info \
+    --output-file .report.info \
     > /dev/null 2> /dev/null
 lcov --list .report.info
