@@ -17,13 +17,11 @@ case opt_exact##criteria: \
 
 typedef enum {
     opt_exact_class,
-    opt_exact_classname,
     opt_exact_instance,
     opt_exact_title,
     opt_has_property,
     opt_has_state,
     opt_match_class,
-    opt_match_classname,
     opt_match_instance,
     opt_match_title,
     opt_show,
@@ -31,9 +29,7 @@ typedef enum {
 } optlist_t;
 
 struct option longopts[] = {
-    { "classname", required_argument, NULL, opt_match_classname },
     { "class", required_argument, NULL, opt_match_class },
-    { "exact-classname", required_argument, NULL, opt_exact_classname },
     { "exact-class", required_argument, NULL, opt_exact_class },
     { "exact-instance", required_argument, NULL, opt_exact_instance },
     { "exact-title", required_argument, NULL, opt_exact_title },
@@ -63,7 +59,7 @@ static const char *usage =
     "-h, --help                   display this help and exit\n"
     "\n"
     "Criteria can be any of the following:\n"
-    "  class, classname, instance, title\n"
+    "  class, instance, title\n"
     ;
 
 int b_reject(bonk_state_t *b)
@@ -80,14 +76,6 @@ int b_reject(bonk_state_t *b)
             CRITERIA_CASE(_class, B_SELECT_CLASS)
             CRITERIA_CASE(_instance, B_SELECT_INSTANCE)
             CRITERIA_CASE(_title, B_SELECT_TITLE)
-            case opt_match_classname:
-                fprintf(stderr, "bonk reject warning: use instance instead of classname (ok for now).\n");
-                ret = bonk_select_set_criteria(s, B_SELECT_INSTANCE, 1, optarg);
-                break;
-            case opt_exact_classname:
-                fprintf(stderr, "bonk reject warning: use instance instead of classname (ok for now).\n");
-                ret = bonk_select_set_criteria(s, B_SELECT_INSTANCE, 0, optarg);
-                break;
             case opt_has_property:
                 bonk_select_set_has_property(s, optarg);
                 break;

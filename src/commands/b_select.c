@@ -18,29 +18,24 @@ case opt_exact##criteria: \
 typedef enum {
     opt_all,
     opt_exact_class,
-    opt_exact_classname,
     opt_exact_instance,
     opt_exact_title,
     opt_has_property,
     opt_has_state,
     opt_if_empty_stack,
     opt_match_class,
-    opt_match_classname,
     opt_match_instance,
     opt_match_title,
     opt_retry,
     opt_show,
-    opt_sync,
     opt_clients = 'c',
     opt_help = 'h',
 } optlist_t;
 
 static struct option longopts[] = {
     { "all", no_argument, NULL, opt_all },
-    { "classname", required_argument, NULL, opt_match_classname },
     { "class", required_argument, NULL, opt_match_class },
     { "clients", no_argument, NULL, opt_clients },
-    { "exact-classname", required_argument, NULL, opt_exact_classname },
     { "exact-class", required_argument, NULL, opt_exact_class },
     { "exact-instance", required_argument, NULL, opt_exact_instance },
     { "exact-title", required_argument, NULL, opt_exact_title },
@@ -50,7 +45,6 @@ static struct option longopts[] = {
     { "instance", required_argument, NULL, opt_match_instance },
     { "retry", no_argument, NULL, opt_retry },
     { "show", no_argument, NULL, opt_show },
-    { "sync", no_argument, NULL, opt_sync },
     { "title", required_argument, NULL, opt_match_title },
     { "help", no_argument, NULL, opt_help },
     { NULL, 0, NULL, 0 },
@@ -69,7 +63,6 @@ static const char *usage =
     "\n"
     "--if-empty-stack             only search if the window stack is empty\n"
     "--retry                      retry until a result is found\n"
-    "--sync                       wait until a result is found\n"
     "\n"
     "--all                        include hidden windows\n"
     "-c, --clients                use managed clients\n"
@@ -78,7 +71,7 @@ static const char *usage =
     "-h, --help                   display this help and exit\n"
     "\n"
     "Criteria can be any of the following:\n"
-    "  class, classname, instance, title\n"
+    "  class, instance, title\n"
     ;
 
 int b_select(bonk_state_t *b)
@@ -100,14 +93,6 @@ int b_select(bonk_state_t *b)
             case opt_all:
                 bonk_select_set_show_hidden(s);
                 break;
-            case opt_match_classname:
-                fprintf(stderr, "bonk select warning: use instance instead of classname (ok for now).\n");
-                ret = bonk_select_set_criteria(s, B_SELECT_INSTANCE, 1, optarg);
-                break;
-            case opt_exact_classname:
-                fprintf(stderr, "bonk select warning: use instance instead of classname (ok for now).\n");
-                ret = bonk_select_set_criteria(s, B_SELECT_INSTANCE, 0, optarg);
-                break;
             case opt_has_property:
                 bonk_select_set_has_property(s, optarg);
                 break;
@@ -117,8 +102,6 @@ int b_select(bonk_state_t *b)
             case opt_if_empty_stack:
                 if_empty_stack = 1;
                 break;
-            case opt_sync:
-                fprintf(stderr, "bonk select warning: use retry instead of sync (ok for now).\n");
             case opt_retry:
                 bonk_select_set_retry(s);
                 retry = 1;

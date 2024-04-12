@@ -4,10 +4,6 @@
 xtrace -D :9 ./bonk select --all \
                     reject --show --exact-class XTerm \
                     select --all \
-                    reject --show --exact-classname xterm \
-                    select --all \
-                    reject --show --classname xterm \
-                    select --all \
                     reject --show --instance xterm \
                     select --all \
                     reject --show --exact-instance xterm \
@@ -137,72 +133,50 @@ exit $?
 000:<:006f:  8: Request(15): QueryTree window=@0
 000:<:0070:  8: Request(15): QueryTree window=@1
 000:<:0071:  8: Request(15): QueryTree window=@2
-000:<:0072:  8: Request(3): GetWindowAttributes window=@0
-000:<:0073:  8: Request(3): GetWindowAttributes window=@1
-000:<:0074:  8: Request(3): GetWindowAttributes window=@2
-000:<:0075: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("WM_CLASS") type=("STRING") long-offset=0x00000000 long-length=0x00000800
-000:<:0076: 24: Request(20): GetProperty delete=false(0x00) window=@1 property=("WM_CLASS") type=("STRING") long-offset=0x00000000 long-length=0x00000800
-000:<:0077: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("WM_CLASS") type=("STRING") long-offset=0x00000000 long-length=0x00000800
-000:<:0078:  8: Request(15): QueryTree window=@0
-000:<:0079:  8: Request(15): QueryTree window=@1
-000:<:007a:  8: Request(15): QueryTree window=@2
-000:<:007b:  8: Request(3): GetWindowAttributes window=@0
-000:<:007c:  8: Request(3): GetWindowAttributes window=@1
-000:<:007d:  8: Request(3): GetWindowAttributes window=@2
-000:<:007e: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("WM_CLASS") type=("STRING") long-offset=0x00000000 long-length=0x00000800
-000:<:007f: 24: Request(20): GetProperty delete=false(0x00) window=@1 property=("WM_CLASS") type=("STRING") long-offset=0x00000000 long-length=0x00000800
-000:<:0080: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("WM_CLASS") type=("STRING") long-offset=0x00000000 long-length=0x00000800
-000:<:0081:  8: Request(15): QueryTree window=@0
-000:<:0082:  8: Request(15): QueryTree window=@1
-000:<:0083:  8: Request(15): QueryTree window=@2
-000:<:0084: 16: Request(16): InternAtom only-if-exists=false(0x00) name='WM_NAME'
-000:<:0085:  8: Request(3): GetWindowAttributes window=@0
-000:<:0086:  8: Request(3): GetWindowAttributes window=@1
-000:<:0087:  8: Request(3): GetWindowAttributes window=@2
-000:<:0088: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0x00000000
-000:<:0089: 24: Request(20): GetProperty delete=false(0x00) window=@1 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0x00000000
-000:<:008a: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0x00000000
-000:<:008b:  8: Request(15): QueryTree window=@0
-000:<:008c:  8: Request(15): QueryTree window=@1
-000:<:008d:  8: Request(15): QueryTree window=@2
-000:<:008e:  8: Request(3): GetWindowAttributes window=@0
-000:<:008f:  8: Request(3): GetWindowAttributes window=@1
-000:<:0090:  8: Request(3): GetWindowAttributes window=@2
-000:<:0091: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:0092: 24: Request(20): GetProperty delete=false(0x00) window=@1 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:0093: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:0094: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:0095: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:0096:  8: Request(15): QueryTree window=@0
-000:<:0097:  8: Request(15): QueryTree window=@1
-000:<:0098:  8: Request(15): QueryTree window=@2
-000:<:0099:  8: Request(3): GetWindowAttributes window=@0
-000:<:009a:  8: Request(3): GetWindowAttributes window=@1
-000:<:009b:  8: Request(3): GetWindowAttributes window=@2
-000:<:009c: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("_NET_WM_STATE") type=any(0x0) long-offset=0x00000000 long-length=0x7fffffff
-000:<:009d: 24: Request(20): GetProperty delete=false(0x00) window=@1 property=("_NET_WM_STATE") type=any(0x0) long-offset=0x00000000 long-length=0x7fffffff
-000:<:009e: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("_NET_WM_STATE") type=any(0x0) long-offset=0x00000000 long-length=0x7fffffff
-000:<:009f:  8: Request(3): GetWindowAttributes window=@0
-000:<:00a0:  8: Request(3): GetWindowAttributes window=@1
-000:<:00a1:  8: Request(3): GetWindowAttributes window=@2
-000:<:00a2: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:00a3: 24: Request(20): GetProperty delete=false(0x00) window=@1 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:00a4: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:00a5: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:00a6: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:00a7:  8: Request(3): GetWindowAttributes window=@0
-000:<:00a8:  8: Request(3): GetWindowAttributes window=@2
-000:<:00a9: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:00aa: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:00ab: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:00ac: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:00ad:  4: Request(43): GetInputFocus 
+000:<:0072: 16: Request(16): InternAtom only-if-exists=false(0x00) name='WM_NAME'
+000:<:0073:  8: Request(3): GetWindowAttributes window=@0
+000:<:0074:  8: Request(3): GetWindowAttributes window=@1
+000:<:0075:  8: Request(3): GetWindowAttributes window=@2
+000:<:0076: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0x00000000
+000:<:0077: 24: Request(20): GetProperty delete=false(0x00) window=@1 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0x00000000
+000:<:0078: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0x00000000
+000:<:0079:  8: Request(15): QueryTree window=@0
+000:<:007a:  8: Request(15): QueryTree window=@1
+000:<:007b:  8: Request(15): QueryTree window=@2
+000:<:007c:  8: Request(3): GetWindowAttributes window=@0
+000:<:007d:  8: Request(3): GetWindowAttributes window=@1
+000:<:007e:  8: Request(3): GetWindowAttributes window=@2
+000:<:007f: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:0080: 24: Request(20): GetProperty delete=false(0x00) window=@1 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:0081: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:0082: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:0083: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:0084:  8: Request(15): QueryTree window=@0
+000:<:0085:  8: Request(15): QueryTree window=@1
+000:<:0086:  8: Request(15): QueryTree window=@2
+000:<:0087:  8: Request(3): GetWindowAttributes window=@0
+000:<:0088:  8: Request(3): GetWindowAttributes window=@1
+000:<:0089:  8: Request(3): GetWindowAttributes window=@2
+000:<:008a: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("_NET_WM_STATE") type=any(0x0) long-offset=0x00000000 long-length=0x7fffffff
+000:<:008b: 24: Request(20): GetProperty delete=false(0x00) window=@1 property=("_NET_WM_STATE") type=any(0x0) long-offset=0x00000000 long-length=0x7fffffff
+000:<:008c: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("_NET_WM_STATE") type=any(0x0) long-offset=0x00000000 long-length=0x7fffffff
+000:<:008d:  8: Request(3): GetWindowAttributes window=@0
+000:<:008e:  8: Request(3): GetWindowAttributes window=@1
+000:<:008f:  8: Request(3): GetWindowAttributes window=@2
+000:<:0090: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:0091: 24: Request(20): GetProperty delete=false(0x00) window=@1 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:0092: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:0093: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:0094: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:0095:  8: Request(3): GetWindowAttributes window=@0
+000:<:0096:  8: Request(3): GetWindowAttributes window=@2
+000:<:0097: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:0098: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:0099: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:009a: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:009b:  4: Request(43): GetInputFocus 
 @0
 @1
-@2
-@0
-@2
-@0
 @2
 @0
 @2
@@ -218,8 +192,6 @@ exit $?
 
 -----stderr-----
 Got connection from unknown(local)
-bonk reject warning: use instance instead of classname (ok for now).
-bonk reject warning: use instance instead of classname (ok for now).
 
 -----exitcode-----
 0
