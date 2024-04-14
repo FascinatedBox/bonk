@@ -8,7 +8,10 @@ xtrace -D :9 ./bonk select --instance xterm \
                     prop-adjust --instance xterm- \
                     prop-adjust --wait --instance xterm \
                     prop-adjust --title xterm- \
-                    prop-adjust --window $WID --wait --title xterm
+                    prop-adjust --window $WID --wait --title xterm \
+                    prop-adjust --desktop 0 \
+                    prop-adjust --desktop 1 \
+                    prop-adjust --desktop -1
 
 xtrace -D :9 ./bonk select --instance xterm \
                     prop-delete --wait WM_HINTS \
@@ -123,7 +126,10 @@ exit $?
 000:<:0067: 32: Request(18): ChangeProperty mode=Replace(0x00) window=@1 property=("_NET_WM_NAME") type=("UTF8_STRING") data=0x78,0x74,0x65,0x72,0x6d,0x2d;
 000:<:0068: 32: Request(18): ChangeProperty mode=Replace(0x00) window=@1 property=("_NET_WM_NAME") type=("UTF8_STRING") data=0x78,0x74,0x65,0x72,0x6d;
 000:<:0069:  4: Request(43): GetInputFocus 
-000:<:006a:  4: Request(43): GetInputFocus 
+000:<:006a: 28: Request(18): ChangeProperty mode=Replace(0x00) window=@1 property=("_NET_WM_DESKTOP") type=("CARDINAL") data=0x00000000;
+000:<:006b: 28: Request(18): ChangeProperty mode=Replace(0x00) window=@1 property=("_NET_WM_DESKTOP") type=("CARDINAL") data=0x00000001;
+000:<:006c: 28: Request(18): ChangeProperty mode=Replace(0x00) window=@1 property=("_NET_WM_DESKTOP") type=("CARDINAL") data=0xffffffff;
+000:<:006d:  4: Request(43): GetInputFocus 
 000:<: am lsb-first want 11:0 authorising with 'MIT-MAGIC-COOKIE-1' of length 16
 000:<:0001: 24: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_SUPPORTED'
 000:<:0002: 24: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_CLIENT_LIST'

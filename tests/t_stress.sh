@@ -31,4 +31,7 @@ DISPLAY=$SAVE_DISPLAY
 ./bonk select --all --instance xterm map
 ./bonk select --exact-instance ""
 ./bonk select --class "*" && exit 99
+./bonk get-focus prop-adjust --desktop 1a && exit 99
+./bonk get-focus prop-adjust --desktop aa && exit 99
+./bonk get-focus prop-adjust --desktop -2 && exit 99
 exit 0

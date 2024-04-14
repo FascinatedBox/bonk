@@ -1,4 +1,5 @@
 #include <getopt.h>
+#include <stdio.h>
 #include <string.h>
 
 #include <xcb/xcb_icccm.h>
@@ -7,6 +8,7 @@
 
 typedef enum {
     opt_class,
+    opt_desktop,
     opt_instance,
     opt_title,
     opt_wait,
@@ -17,6 +19,7 @@ typedef enum {
 static struct option longopts[] = {
     { "help", no_argument, NULL, opt_help },
     { "class", required_argument, NULL, opt_class },
+    { "desktop", required_argument, NULL, opt_desktop },
     { "instance", required_argument, NULL, opt_instance },
     { "title", required_argument, NULL, opt_title },
     { "wait", no_argument, NULL, opt_wait },
@@ -32,15 +35,18 @@ static const char *usage =
     "--class <value>          Update the class in WM_CLASS.\n"
     "--instance <value>       Update the instance in WM_CLASS.\n"
     "--title <value>          Update the window's title (_NET_WM_NAME).\n"
+    "--desktop <value>        The desktop the window is on (_NET_WM_DESKTOP).\n"
+    "                         (first = 0, -1 = all desktops)\n"
     "\n"
     "--wait                   flush output buffer before next command\n"
     "-w, --window <wid>       add window <wid> to the stack\n"
     "-h, --help               display this help and exit\n"
     ;
 
-#define ADJUST_CLASS    0x1
-#define ADJUST_INSTANCE 0x2
-#define ADJUST_TITLE    0x4
+#define ADJUST_CLASS    0x01
+#define ADJUST_DESKTOP  0x02
+#define ADJUST_INSTANCE 0x04
+#define ADJUST_TITLE    0x08
 
 char *get_wm_class_and_instance(bonk_state_t *b,
                                 xcb_window_t window,
@@ -88,10 +94,26 @@ char *get_wm_class_and_instance(bonk_state_t *b,
     return result;
 }
 
+static int parse_desktop_id(bonk_state_t *b, const char *arg, long *value)
+{
+    char *end;
+    long v = strtol(arg, &end, 10);
+
+    if (v < -1 || *end != '\0') {
+        fprintf(stderr, "bonk prop-adjust error: Invalid desktop index '%s'.\n",
+                arg);
+        return 0;
+    }
+
+    *value = v;
+    return 1;
+}
+
 int b_prop_adjust(bonk_state_t *b)
 {
     int wait = 0;
     int flags = 0;
+    long a_desktop = 0;
     char *a_class = NULL, *a_instance = NULL, *a_title = NULL;
 
     BONK_GETOPT_LOOP(c, b, "+hw:", longopts) {
@@ -99,6 +121,13 @@ int b_prop_adjust(bonk_state_t *b)
             case opt_class:
                 flags |= ADJUST_CLASS;
                 a_class = optarg;
+                break;
+            case opt_desktop:
+                flags |= ADJUST_DESKTOP;
+
+                if (parse_desktop_id(b, optarg, &a_desktop) == 0)
+                    return 0;
+
                 break;
             case opt_instance:
                 flags |= ADJUST_INSTANCE;
@@ -126,6 +155,16 @@ int b_prop_adjust(bonk_state_t *b)
         if (flags & ADJUST_TITLE) {
             xcb_ewmh_set_wm_name(
                     b->ewmh, iter_window, strlen(a_title), a_title);
+        }
+        if (flags & ADJUST_DESKTOP) {
+            xcb_change_property(b->conn,
+                                XCB_PROP_MODE_REPLACE,
+                                iter_window,
+                                b->ewmh->_NET_WM_DESKTOP,
+                                XCB_ATOM_CARDINAL,
+                                32,
+                                1,
+                                (const void *)&a_desktop);
         }
     )
 

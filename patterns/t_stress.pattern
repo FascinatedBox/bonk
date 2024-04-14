@@ -32,6 +32,9 @@ DISPLAY=$SAVE_DISPLAY
 ./bonk select --all --instance xterm map
 ./bonk select --exact-instance ""
 ./bonk select --class "*" && exit 99
+./bonk get-focus prop-adjust --desktop 1a && exit 99
+./bonk get-focus prop-adjust --desktop aa && exit 99
+./bonk get-focus prop-adjust --desktop -2 && exit 99
 exit 0
 
 -----stdout-----
@@ -49,6 +52,9 @@ bonk error: Invalid window index '-' (%0 .. %-1).
 bonk error: Invalid window index '' (%0 .. %-1).
 bonk raise error: The window stack is empty. Stopping.
 bonk select error: '*' is not a valid match pattern.
+bonk prop-adjust error: Invalid desktop index '1a'.
+bonk prop-adjust error: Invalid desktop index 'aa'.
+bonk prop-adjust error: Invalid desktop index '-2'.
 
 -----exitcode-----
 0
