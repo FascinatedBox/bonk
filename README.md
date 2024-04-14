@@ -131,6 +131,9 @@ window actions
 information
     get-title     Get title of a window
 
+miscellaneous
+    sleep         Suspend execution for a given duration
+
 properties
     prop-adjust   Update a simple property (class, instance, etc.)
     prop-delete   Remove a property from a window (use with caution)

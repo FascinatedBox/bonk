@@ -35,6 +35,8 @@ DISPLAY=$SAVE_DISPLAY
 ./bonk get-focus prop-adjust --desktop 1a && exit 99
 ./bonk get-focus prop-adjust --desktop aa && exit 99
 ./bonk get-focus prop-adjust --desktop -2 && exit 99
+./bonk sleep 1J && exit 99
+./bonk sleep -1s && exit 99
 exit 0
 
 -----stdout-----
@@ -55,6 +57,8 @@ bonk select error: '*' is not a valid match pattern.
 bonk prop-adjust error: Invalid desktop index '1a'.
 bonk prop-adjust error: Invalid desktop index 'aa'.
 bonk prop-adjust error: Invalid desktop index '-2'.
+bonk sleep error: Bad sleep interval '1J'.
+sleep: unrecognized option '-1s'
 
 -----exitcode-----
 0

@@ -36,6 +36,7 @@ set(
         src/commands/b_raise.c
         src/commands/b_reject.c
         src/commands/b_select.c
+        src/commands/b_sleep.c
         src/commands/b_state.c
         src/commands/b_unmap.c
 )

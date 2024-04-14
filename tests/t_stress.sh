@@ -34,4 +34,6 @@ DISPLAY=$SAVE_DISPLAY
 ./bonk get-focus prop-adjust --desktop 1a && exit 99
 ./bonk get-focus prop-adjust --desktop aa && exit 99
 ./bonk get-focus prop-adjust --desktop -2 && exit 99
+./bonk sleep 1J && exit 99
+./bonk sleep -1s && exit 99
 exit 0
