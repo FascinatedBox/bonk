@@ -38,6 +38,7 @@ set(
         src/commands/b_select.c
         src/commands/b_sleep.c
         src/commands/b_state.c
+        src/commands/b_terminate.c
         src/commands/b_unmap.c
 )
 

@@ -24,6 +24,7 @@ int b_help(bonk_state_t *b)
     "    move-resize   Specify an exact size and place for a window\n"
     "    raise         Pull a window to the front, ahead of other windows\n"
     "    state         Minimize, maximize, fullscreen, and more\n"
+    "    terminate     Terminate program associated with a window\n"
     "    unmap         Hide a window (does not minimize to taskbar)\n"
     "\n"
     "information\n"

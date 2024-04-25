@@ -27,6 +27,7 @@ extern int b_reject(bonk_state_t *);
 extern int b_select(bonk_state_t *);
 extern int b_sleep(bonk_state_t *);
 extern int b_state(bonk_state_t *);
+extern int b_terminate(bonk_state_t *);
 extern int b_unmap(bonk_state_t *);
 
 static bonk_dispatch_entry dispatch_table[] = {
@@ -49,6 +50,7 @@ static bonk_dispatch_entry dispatch_table[] = {
     { "select",               b_select },
     { "sleep",                b_sleep },
     { "state",                b_state },
+    { "terminate",            b_terminate },
     { "unmap",                b_unmap },
     { NULL,                   NULL },
 };

@@ -24,6 +24,7 @@ window actions
     move-resize   Specify an exact size and place for a window
     raise         Pull a window to the front, ahead of other windows
     state         Minimize, maximize, fullscreen, and more
+    terminate     Terminate program associated with a window
     unmap         Hide a window (does not minimize to taskbar)
 
 information
