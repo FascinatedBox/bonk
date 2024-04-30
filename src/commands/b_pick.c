@@ -4,8 +4,6 @@
 #include "bonk_internal.h"
 #include "xpick.h"
 
-extern void bonk_arg_require_n(bonk_state_t *, int);
-
 typedef enum {
     opt_help = 'h',
 } optlist_t;

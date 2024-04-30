@@ -5,8 +5,6 @@
 #include "bonk_internal.h"
 #include "bonk_select.h"
 
-extern void bonk_arg_require_n(bonk_state_t *, int);
-
 #define CRITERIA_CASE(criteria, flag) \
 case opt_match##criteria: \
     ret = bonk_select_set_criteria(s, flag, 1, optarg); \
