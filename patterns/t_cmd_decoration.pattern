@@ -2,7 +2,7 @@
 #!/usr/bin/env bash
 
 WID=`./bonk select --instance xterm`
-./bonk select --instance xterm \
+xtrace -D :9 ./bonk select --instance xterm \
                     decoration none \
                     decoration --wait maximize \
                     decoration -w $WID resize,maximize,minimize,close \
@@ -11,8 +11,112 @@ WID=`./bonk select --instance xterm`
 exit $?
 
 -----stdout-----
+000:<: am lsb-first want 11:0 authorising with 'MIT-MAGIC-COOKIE-1' of length 16
+000:<:0001: 24: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_SUPPORTED'
+000:<:0002: 24: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_CLIENT_LIST'
+000:<:0003: 36: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_CLIENT_LIST_STACKING'
+000:<:0004: 32: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_NUMBER_OF_DESKTOPS'
+000:<:0005: 32: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_DESKTOP_GEOMETRY'
+000:<:0006: 32: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_DESKTOP_VIEWPORT'
+000:<:0007: 28: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_CURRENT_DESKTOP'
+000:<:0008: 28: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_DESKTOP_NAMES'
+000:<:0009: 28: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_ACTIVE_WINDOW'
+000:<:000a: 24: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WORKAREA'
+000:<:000b: 32: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_SUPPORTING_WM_CHECK'
+000:<:000c: 28: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_VIRTUAL_ROOTS'
+000:<:000d: 28: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_DESKTOP_LAYOUT'
+000:<:000e: 28: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_SHOWING_DESKTOP'
+000:<:000f: 28: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_CLOSE_WINDOW'
+000:<:0010: 32: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_MOVERESIZE_WINDOW'
+000:<:0011: 28: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_MOVERESIZE'
+000:<:0012: 28: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_RESTACK_WINDOW'
+000:<:0013: 36: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_REQUEST_FRAME_EXTENTS'
+000:<:0014: 20: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_NAME'
+000:<:0015: 28: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_VISIBLE_NAME'
+000:<:0016: 28: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_ICON_NAME'
+000:<:0017: 36: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_VISIBLE_ICON_NAME'
+000:<:0018: 24: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_DESKTOP'
+000:<:0019: 28: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_WINDOW_TYPE'
+000:<:001a: 24: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_STATE'
+000:<:001b: 32: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_ALLOWED_ACTIONS'
+000:<:001c: 24: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_STRUT'
+000:<:001d: 32: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_STRUT_PARTIAL'
+000:<:001e: 32: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_ICON_GEOMETRY'
+000:<:001f: 20: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_ICON'
+000:<:0020: 20: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_PID'
+000:<:0021: 32: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_HANDLED_ICONS'
+000:<:0022: 28: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_USER_TIME'
+000:<:0023: 32: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_USER_TIME_WINDOW'
+000:<:0024: 28: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_FRAME_EXTENTS'
+000:<:0025: 20: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_PING'
+000:<:0026: 28: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_SYNC_REQUEST'
+000:<:0027: 36: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_SYNC_REQUEST_COUNTER'
+000:<:0028: 36: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_FULLSCREEN_MONITORS'
+000:<:0029: 32: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_FULL_PLACEMENT'
+000:<:002a: 20: Request(16): InternAtom only-if-exists=false(0x00) name='UTF8_STRING'
+000:<:002b: 20: Request(16): InternAtom only-if-exists=false(0x00) name='WM_PROTOCOLS'
+000:<:002c: 16: Request(16): InternAtom only-if-exists=false(0x00) name='MANAGER'
+000:<:002d: 36: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_WINDOW_TYPE_DESKTOP'
+000:<:002e: 32: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_WINDOW_TYPE_DOCK'
+000:<:002f: 36: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_WINDOW_TYPE_TOOLBAR'
+000:<:0030: 32: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_WINDOW_TYPE_MENU'
+000:<:0031: 36: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_WINDOW_TYPE_UTILITY'
+000:<:0032: 36: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_WINDOW_TYPE_SPLASH'
+000:<:0033: 36: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_WINDOW_TYPE_DIALOG'
+000:<:0034: 44: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_WINDOW_TYPE_DROPDOWN_MENU'
+000:<:0035: 40: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_WINDOW_TYPE_POPUP_MENU'
+000:<:0036: 36: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_WINDOW_TYPE_TOOLTIP'
+000:<:0037: 40: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_WINDOW_TYPE_NOTIFICATION'
+000:<:0038: 36: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_WINDOW_TYPE_COMBO'
+000:<:0039: 32: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_WINDOW_TYPE_DND'
+000:<:003a: 36: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_WINDOW_TYPE_NORMAL'
+000:<:003b: 28: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_STATE_MODAL'
+000:<:003c: 28: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_STATE_STICKY'
+000:<:003d: 36: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_STATE_MAXIMIZED_VERT'
+000:<:003e: 36: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_STATE_MAXIMIZED_HORZ'
+000:<:003f: 28: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_STATE_SHADED'
+000:<:0040: 36: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_STATE_SKIP_TASKBAR'
+000:<:0041: 32: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_STATE_SKIP_PAGER'
+000:<:0042: 28: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_STATE_HIDDEN'
+000:<:0043: 32: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_STATE_FULLSCREEN'
+000:<:0044: 28: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_STATE_ABOVE'
+000:<:0045: 28: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_STATE_BELOW'
+000:<:0046: 40: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_STATE_DEMANDS_ATTENTION'
+000:<:0047: 28: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_ACTION_MOVE'
+000:<:0048: 32: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_ACTION_RESIZE'
+000:<:0049: 32: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_ACTION_MINIMIZE'
+000:<:004a: 28: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_ACTION_SHADE'
+000:<:004b: 28: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_ACTION_STICK'
+000:<:004c: 36: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_ACTION_MAXIMIZE_HORZ'
+000:<:004d: 36: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_ACTION_MAXIMIZE_VERT'
+000:<:004e: 36: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_ACTION_FULLSCREEN'
+000:<:004f: 40: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_ACTION_CHANGE_DESKTOP'
+000:<:0050: 28: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_ACTION_CLOSE'
+000:<:0051: 28: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_ACTION_ABOVE'
+000:<:0052: 28: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_ACTION_BELOW'
+000:<:0053: 24: Request(16): InternAtom only-if-exists=false(0x00) name='_NET_WM_CM_S0'
+000:<:0054:  8: Request(15): QueryTree window=@0
+000:<:0055:  8: Request(15): QueryTree window=@1
+000:<:0056:  8: Request(15): QueryTree window=@2
+000:<:0057:  8: Request(3): GetWindowAttributes window=@0
+000:<:0058:  8: Request(3): GetWindowAttributes window=@1
+000:<:0059:  8: Request(3): GetWindowAttributes window=@2
+000:<:005a: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("WM_CLASS") type=("STRING") long-offset=0x00000000 long-length=0x00000800
+000:<:005b: 24: Request(20): GetProperty delete=false(0x00) window=@1 property=("WM_CLASS") type=("STRING") long-offset=0x00000000 long-length=0x00000800
+000:<:005c: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("WM_CLASS") type=("STRING") long-offset=0x00000000 long-length=0x00000800
+000:<:005d: 24: Request(16): InternAtom only-if-exists=false(0x00) name='_MOTIF_WM_HINTS'
+000:<:005e: 44: Request(18): ChangeProperty mode=Replace(0x00) window=@1 property=("_MOTIF_WM_HINTS") type=("_MOTIF_WM_HINTS") data=0x00000003,0x00000000,0x00000000,0x00000000,0x00000000;
+000:<:005f: 24: Request(16): InternAtom only-if-exists=false(0x00) name='_MOTIF_WM_HINTS'
+000:<:0060: 44: Request(18): ChangeProperty mode=Replace(0x00) window=@1 property=("_MOTIF_WM_HINTS") type=("_MOTIF_WM_HINTS") data=0x00000003,0x00000012,0x00000012,0x00000000,0x00000000;
+000:<:0061:  4: Request(43): GetInputFocus 
+000:<:0062: 24: Request(16): InternAtom only-if-exists=false(0x00) name='_MOTIF_WM_HINTS'
+000:<:0063: 44: Request(18): ChangeProperty mode=Replace(0x00) window=@1 property=("_MOTIF_WM_HINTS") type=("_MOTIF_WM_HINTS") data=0x00000003,0x0000003a,0x0000003a,0x00000000,0x00000000;
+000:<:0064: 24: Request(16): InternAtom only-if-exists=false(0x00) name='_MOTIF_WM_HINTS'
+000:<:0065: 44: Request(18): ChangeProperty mode=Replace(0x00) window=@1 property=("_MOTIF_WM_HINTS") type=("_MOTIF_WM_HINTS") data=0x00000003,0x0000003e,0x0000003e,0x00000000,0x00000000;
+000:<:0066:  4: Request(43): GetInputFocus 
 
 -----stderr-----
+Got connection from unknown(local)
 
 -----exitcode-----
 0
