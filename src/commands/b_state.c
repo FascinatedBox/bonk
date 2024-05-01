@@ -14,13 +14,13 @@ typedef enum {
 } optlist_t;
 
 static struct option longopts[] = {
-    {"add",    required_argument, NULL, opt_add},
-    {"remove", required_argument, NULL, opt_remove},
-    {"toggle", required_argument, NULL, opt_toggle},
-    {"wait",   no_argument,       NULL, opt_wait},
-    {"window", required_argument, NULL, opt_window},
-    {"help",   no_argument,       NULL, opt_help},
-    {NULL,     0,                 NULL, 0},
+    { "add", required_argument, NULL, opt_add },
+    { "remove", required_argument, NULL, opt_remove },
+    { "toggle", required_argument, NULL, opt_toggle },
+    { "wait", no_argument, NULL, opt_wait },
+    { "window", required_argument, NULL, opt_window },
+    { "help", no_argument, NULL, opt_help },
+    { NULL, 0, NULL, 0 },
 };
 
 static const char *usage =
