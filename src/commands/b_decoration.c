@@ -54,10 +54,10 @@ typedef struct {
 #define HINT_FUNCTIONS (1L << 0)
 #define HINT_DECORATIONS (1L << 1)
 
-void do_set_motif_wm_hints(bonk_state_t *b,
-                           xcb_window_t window,
-                           xcb_atom_t motif_atom,
-                           uint32_t decorations)
+static void do_set_motif_wm_hints(bonk_state_t *b,
+                                  xcb_window_t window,
+                                  xcb_atom_t motif_atom,
+                                  uint32_t decorations)
 {
     bonk_motif_wm_hints hints;
 
@@ -76,7 +76,7 @@ void do_set_motif_wm_hints(bonk_state_t *b,
                         (char *)&hints);
 }
 
-uint32_t parse_decorations(char *decoration_str)
+static uint32_t parse_decorations(char *decoration_str)
 {
     char *tok, *save_ptr;
     int decorations = 0;

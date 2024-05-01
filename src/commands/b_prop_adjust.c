@@ -48,11 +48,11 @@ static const char *usage =
 #define ADJUST_INSTANCE 0x04
 #define ADJUST_TITLE    0x08
 
-char *get_wm_class_and_instance(bonk_state_t *b,
-                                xcb_window_t window,
-                                const char *class_name,
-                                const char *instance_name,
-                                int *len)
+static char *get_wm_class_and_instance(bonk_state_t *b,
+                                       xcb_window_t window,
+                                       const char *class_name,
+                                       const char *instance_name,
+                                       int *len)
 {
     int have_reply = 0;
     xcb_icccm_get_wm_class_reply_t r;

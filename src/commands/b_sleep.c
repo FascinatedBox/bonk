@@ -70,7 +70,7 @@ do { \
 
 static int multiplier[7] = { 1, 100000, 10000, 1000, 100, 10, 1 };
 
-int uconvert(char *s, long *ip, long *up, char **ep)
+static int uconvert(char *s, long *ip, long *up, char **ep)
 {
     int n, mult;
     long ipart, upart;
@@ -127,7 +127,7 @@ int uconvert(char *s, long *ip, long *up, char **ep)
     RETURN(1);
 }
 
-static int parse_gnutimefmt (char *string, long *sp, long *up)
+static int parse_gnutimefmt(char *string, long *sp, long *up)
 {
     int c, r;
     char *s, *ep;
@@ -191,7 +191,7 @@ static int parse_gnutimefmt (char *string, long *sp, long *up)
     return 1;
 }
 
-int fsleep(unsigned int sec, unsigned int usec)
+static int fsleep(unsigned int sec, unsigned int usec)
 {
     int e, r;
     sigset_t blocked, prevmask;
