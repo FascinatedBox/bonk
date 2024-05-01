@@ -4,9 +4,10 @@
 WID=`./bonk select --instance xterm`
 xtrace -D :9 ./bonk select --instance xterm \
                     decoration none \
-                    decoration --wait maximize \
+                    decoration --wait close \
                     decoration -w $WID resize,maximize,minimize,close \
-                    decoration all
+                    decoration all \
+                    decoration -w $WID border,close,maximize,menu,minimize,resize,title \
 
 exit $?
 
@@ -105,15 +106,17 @@ exit $?
 000:<:005b: 24: Request(20): GetProperty delete=false(0x00) window=@1 property=("WM_CLASS") type=("STRING") long-offset=0x00000000 long-length=0x00000800
 000:<:005c: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("WM_CLASS") type=("STRING") long-offset=0x00000000 long-length=0x00000800
 000:<:005d: 24: Request(16): InternAtom only-if-exists=false(0x00) name='_MOTIF_WM_HINTS'
-000:<:005e: 44: Request(18): ChangeProperty mode=Replace(0x00) window=@1 property=("_MOTIF_WM_HINTS") type=("_MOTIF_WM_HINTS") data=0x00000003,0x00000000,0x00000000,0x00000000,0x00000000;
+000:<:005e: 44: Request(18): ChangeProperty mode=Replace(0x00) window=@1 property=("_MOTIF_WM_HINTS") type=("_MOTIF_WM_HINTS") data=0x00000003,0x00000001,0x00000000,0x00000000,0x00000000;
 000:<:005f: 24: Request(16): InternAtom only-if-exists=false(0x00) name='_MOTIF_WM_HINTS'
-000:<:0060: 44: Request(18): ChangeProperty mode=Replace(0x00) window=@1 property=("_MOTIF_WM_HINTS") type=("_MOTIF_WM_HINTS") data=0x00000003,0x00000012,0x00000012,0x00000000,0x00000000;
+000:<:0060: 44: Request(18): ChangeProperty mode=Replace(0x00) window=@1 property=("_MOTIF_WM_HINTS") type=("_MOTIF_WM_HINTS") data=0x00000003,0x00000021,0x00000000,0x00000000,0x00000000;
 000:<:0061:  4: Request(43): GetInputFocus 
 000:<:0062: 24: Request(16): InternAtom only-if-exists=false(0x00) name='_MOTIF_WM_HINTS'
-000:<:0063: 44: Request(18): ChangeProperty mode=Replace(0x00) window=@1 property=("_MOTIF_WM_HINTS") type=("_MOTIF_WM_HINTS") data=0x00000003,0x0000003a,0x0000003a,0x00000000,0x00000000;
+000:<:0063: 44: Request(18): ChangeProperty mode=Replace(0x00) window=@1 property=("_MOTIF_WM_HINTS") type=("_MOTIF_WM_HINTS") data=0x00000003,0x00000021,0x00000064,0x00000000,0x00000000;
 000:<:0064: 24: Request(16): InternAtom only-if-exists=false(0x00) name='_MOTIF_WM_HINTS'
-000:<:0065: 44: Request(18): ChangeProperty mode=Replace(0x00) window=@1 property=("_MOTIF_WM_HINTS") type=("_MOTIF_WM_HINTS") data=0x00000003,0x0000003e,0x0000003e,0x00000000,0x00000000;
-000:<:0066:  4: Request(43): GetInputFocus 
+000:<:0065: 44: Request(18): ChangeProperty mode=Replace(0x00) window=@1 property=("_MOTIF_WM_HINTS") type=("_MOTIF_WM_HINTS") data=0x00000003,0x00000001,0x00000001,0x00000000,0x00000000;
+000:<:0066: 24: Request(16): InternAtom only-if-exists=false(0x00) name='_MOTIF_WM_HINTS'
+000:<:0067: 44: Request(18): ChangeProperty mode=Replace(0x00) window=@1 property=("_MOTIF_WM_HINTS") type=("_MOTIF_WM_HINTS") data=0x00000003,0x00000021,0x0000007e,0x00000000,0x00000000;
+000:<:0068:  4: Request(43): GetInputFocus 
 
 -----stderr-----
 Got connection from unknown(local)
