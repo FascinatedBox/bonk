@@ -51,9 +51,7 @@ static const char *usage =
     "--has-state <atom>           window has <atom> in _NET_WM_STATE\n"
     "                             (see 'bonk state --help' for a list).\n"
     "\n"
-    "--retry                      retry until a result is found\n"
-    "--sync                       wait until a result is found\n"
-    "\n"
+    "--show                       print the window stack\n"
     "-h, --help                   display this help and exit\n"
     "\n"
     "Criteria can be any of the following:\n"
@@ -65,7 +63,6 @@ int b_reject(bonk_state_t *b)
     bonk_select_t *s = bonk_new_select(b);
     int ret = 1;
     int show = 0;
-    int retry = 0;
 
     bonk_select_set_is_reject(s);
 
