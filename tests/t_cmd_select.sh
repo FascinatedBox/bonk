@@ -6,7 +6,7 @@ xtrace -D :9 ./bonk select --show --instance xterm \
                     select --show --exact-class XTerm \
                     select --has-property WM_NAME \
                     select --retry --instance xterm \
-                    select --show --exact-title xterm \
+                    select --show --exact-title unfindable \
                     select --show --title xterm \
                     select --show --title xeyes
 

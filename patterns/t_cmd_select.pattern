@@ -7,7 +7,7 @@ xtrace -D :9 ./bonk select --show --instance xterm \
                     select --show --exact-class XTerm \
                     select --has-property WM_NAME \
                     select --retry --instance xterm \
-                    select --show --exact-title xterm \
+                    select --show --exact-title unfindable \
                     select --show --title xterm \
                     select --show --title xeyes
 
@@ -169,7 +169,6 @@ exit $?
 000:<:0098: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
 000:<:0099: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
 000:<:009a:  4: Request(43): GetInputFocus 
-@1
 @1
 @1
 @1
