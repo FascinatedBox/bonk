@@ -11,6 +11,10 @@ xtrace -D :9 ./bonk select --all \
                     select --all \
                     reject --show --exact-title xterm \
                     select --all \
+                    reject --desktop 1 \
+                    select --all \
+                    reject --desktop -1 \
+                    select --all \
                     reject --has-state ABOVE \
                     reject --show --title xterm \
                     reject --show --title xeyes

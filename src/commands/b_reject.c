@@ -14,6 +14,7 @@ case opt_exact##criteria: \
     break;
 
 typedef enum {
+    opt_desktop,
     opt_exact_class,
     opt_exact_instance,
     opt_exact_title,
@@ -28,6 +29,7 @@ typedef enum {
 
 struct option longopts[] = {
     { "class", required_argument, NULL, opt_match_class },
+    { "desktop", required_argument, NULL, opt_desktop },
     { "exact-class", required_argument, NULL, opt_exact_class },
     { "exact-instance", required_argument, NULL, opt_exact_instance },
     { "exact-title", required_argument, NULL, opt_exact_title },
@@ -50,6 +52,7 @@ static const char *usage =
     "--has-property <property>    window has <property> set to any value\n"
     "--has-state <atom>           window has <atom> in _NET_WM_STATE\n"
     "                             (see 'bonk state --help' for a list).\n"
+    "--desktop <n>                only windows on desktop <n> (-1 for all)\n"
     "\n"
     "--show                       print the window stack\n"
     "-h, --help                   display this help and exit\n"
@@ -71,6 +74,9 @@ int b_reject(bonk_state_t *b)
             CRITERIA_CASE(_class, B_SELECT_CLASS)
             CRITERIA_CASE(_instance, B_SELECT_INSTANCE)
             CRITERIA_CASE(_title, B_SELECT_TITLE)
+            case opt_desktop:
+                ret = bonk_select_set_desktop_id_str(s, optarg);
+                break;
             case opt_has_property:
                 bonk_select_set_has_property(s, optarg);
                 break;

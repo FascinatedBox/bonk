@@ -77,6 +77,9 @@ const char *bonk_select_error_str(bonk_select_t *s)
     const char *result = NULL;
 
     switch (s->error_code) {
+        case ec_bad_desktop_id:
+            result = "is not a valid desktop index.";
+            break;
         case ec_bad_pattern:
             result = "is not a valid match pattern.";
             break;
@@ -89,6 +92,26 @@ const char *bonk_select_error_str(bonk_select_t *s)
     }
 
     return result;
+}
+
+int bonk_select_set_desktop_id_str(bonk_select_t *s, const char *str)
+{
+    char *str_end;
+    int v = strtol(str, &str_end, 10);
+
+    if (v < -1 || v > 10000 || *str_end != '\0') {
+        s->error_code = ec_bad_desktop_id;
+        return 0;
+    }
+
+    bonk_select_set_desktop_id(s, (int32_t)v);
+    return 1;
+}
+
+void bonk_select_set_desktop_id(bonk_select_t *s, int32_t id)
+{
+    s->mask |= B_SELECT_DESKTOP_ID;
+    s->desktop_id = id;
 }
 
 void bonk_select_set_show_hidden(bonk_select_t *s)

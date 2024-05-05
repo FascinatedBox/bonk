@@ -15,6 +15,7 @@ case opt_exact##criteria: \
 
 typedef enum {
     opt_all,
+    opt_desktop,
     opt_exact_class,
     opt_exact_instance,
     opt_exact_title,
@@ -34,6 +35,7 @@ static struct option longopts[] = {
     { "all", no_argument, NULL, opt_all },
     { "class", required_argument, NULL, opt_match_class },
     { "clients", no_argument, NULL, opt_clients },
+    { "desktop", required_argument, NULL, opt_desktop },
     { "exact-class", required_argument, NULL, opt_exact_class },
     { "exact-instance", required_argument, NULL, opt_exact_instance },
     { "exact-title", required_argument, NULL, opt_exact_title },
@@ -58,6 +60,7 @@ static const char *usage =
     "--has-property <property>    window has <property> set to any value\n"
     "--has-state <atom>           window has <atom> in _NET_WM_STATE\n"
     "                             (see 'bonk state --help' for a list).\n"
+    "--desktop <n>                only windows on desktop <n> (-1 for all)\n"
     "\n"
     "--if-empty-stack             only search if the window stack is empty\n"
     "--retry                      retry until a result is found\n"
@@ -90,6 +93,9 @@ int b_select(bonk_state_t *b)
                 break;
             case opt_all:
                 bonk_select_set_show_hidden(s);
+                break;
+            case opt_desktop:
+                ret = bonk_select_set_desktop_id_str(s, optarg);
                 break;
             case opt_has_property:
                 bonk_select_set_has_property(s, optarg);
