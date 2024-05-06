@@ -4,17 +4,17 @@
 
 # include "bonk_internal.h"
 
-# define B_SELECT_CLASS       0x001
-# define B_SELECT_DESKTOP_ID  0x002
-# define B_SELECT_INSTANCE    0x004
-# define B_SELECT_TITLE       0x008
+# define B_SELECT_CLASS       (1 << 0)
+# define B_SELECT_DESKTOP_ID  (1 << 1)
+# define B_SELECT_INSTANCE    (1 << 2)
+# define B_SELECT_TITLE       (1 << 3)
 
-# define B_HAS_PROPERTY       0x010
-# define B_HAS_STATE          0x020
-# define B_IS_REJECT          0x040
-# define B_ONLY_VISIBLE       0x080
-# define B_RETRY              0x100
-# define B_USE_CLIENT_LIST    0x200
+# define B_HAS_PROPERTY       (1 << 4)
+# define B_HAS_STATE          (1 << 5)
+# define B_IS_REJECT          (1 << 6)
+# define B_ONLY_VISIBLE       (1 << 7)
+# define B_RETRY              (1 << 8)
+# define B_USE_CLIENT_LIST    (1 << 9)
 
 typedef enum {
     ec_ok,
