@@ -1,0 +1,30 @@
+bonk-raise(1) | Bonk manual
+===========================
+
+## NAME
+**bonk-raise** - Pull a window to the front, ahead of other windows
+
+## SYNOPSIS
+`raise` [<options>] [<window=%0>]
+
+## DESCRIPTION
+
+This command sends a request (`ConfigureWindow` to `Above`) to place the given window above all other windows on the desktop. It's the opposite of `lower`.
+
+This command does not automatically confer input focus to the target window. You can chain the `focus` command after this one to do that.
+
+This command may be silently ignored if the window is marked by the window manager as always being below others (ex: a desktop window), or the window is not a toplevel window.
+
+## OPTIONS
+
+`--wait`
+
+: Flush the output buffer before executing the next command.
+
+`-w`, `--window` <wid>
+
+: Replace the window stack with *wid*.
+
+## BONK
+
+Part of the bonk(1) suite

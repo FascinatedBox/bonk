@@ -1,0 +1,32 @@
+bonk-sleep(1) | Bonk manual
+===========================
+
+## NAME
+**bonk-sleep** - Suspend execution for a given duration
+
+## SYNOPSIS
+`sleep` <duration>
+
+## DESCRIPTION
+
+This command delays execution for a given duration. If <duration> is a simple integer, then seconds are assumed.
+
+If you want to be specific about waiting for seconds, or you want to wait for a different unit of time, you can use a suffix. The following suffixes are allowed.
+
+* s - seconds
+
+* m - minutes
+
+* h - hours
+
+* d - days (If you really want to...)
+
+You can mix and match these to wait for a specific duration. For example, you can use `1m20s` to wait for a minute and twenty seconds.
+
+This command **does not** support waiting for a given number of milliseconds. However, fractional durations **are** supported. If you're trying to, for example, wait half a second, you can use `.5s` or `0.5s` to do so.
+
+This operates similar to Bash's sleep builtin because it uses the same code.
+
+## BONK
+
+Part of the bonk(1) suite

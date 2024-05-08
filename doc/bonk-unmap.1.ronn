@@ -1,0 +1,28 @@
+bonk-unmap(1) | Bonk manual
+===========================
+
+## NAME
+**bonk-unmap** - Make a window invisible
+
+## SYNOPSIS
+`unmap` [<options>] [<window=%0>]
+
+## DESCRIPTION
+
+This command sends a request (`UnmapWindow`) to unmap a window. A window that is unmapped will always be hidden to the user, regardless of stacking order position. A window manager, if present, may remove the window from a taskbar and a pager.
+
+This command should be used with caution, because unmapped windows can be difficult to find again. A window manager may set a window's `WM_STATE` to Withdrawn when it is unmapped.
+
+## OPTIONS
+
+`--wait`
+
+: Flush the output buffer before executing the next command.
+
+`-w`, `--window` <wid>
+
+: Replace the window stack with *wid*.
+
+## BONK
+
+Part of the bonk(1) suite

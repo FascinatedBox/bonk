@@ -1,0 +1,32 @@
+bonk-get-active(1) | Bonk manual
+================================
+
+## NAME
+**bonk-get-active** - Get the window manager's active window
+
+## SYNOPSIS
+`get-active` [<options>]
+
+## DESCRIPTION
+
+This command sends a request (`GetProperty`) for the window manager's active window (`_NET_ACTIVE_WINDOW`).
+
+If `_NET_ACTIVE_WINDOW` is unset (because a window manager is not running or does not support the request), this command exits unsuccessfully, ignoring subsequent commands.
+
+If `_NET_ACTIVE_WINDOW` is set, the window stack is filled using the resulting window.
+
+If this command is the last command to be run, the resulting window is printed to stdout.
+
+## OPTIONS
+
+`--wait`
+
+: Flush the output buffer before executing the next command.
+
+`-w`, `--window` <wid>
+
+: Replace the window stack with *wid*.
+
+## BONK
+
+Part of the bonk(1) suite

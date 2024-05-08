@@ -1,0 +1,30 @@
+bonk-map(1) | Bonk manual
+=========================
+
+## NAME
+**bonk-map** - Make a window visible
+
+## SYNOPSIS
+`map` [<options>] [<window=%0>]
+
+## DESCRIPTION
+
+This command sends a request (`MapWindow`) to map a window. A window that is `unmapped` is always invisible. However, a mapped window **may** be visible to the user: If the mapped window has unmapped ancestors, or is below other windows, it will not be visible.
+
+This command should be used with caution. Some applications have windows that are not intended to be visible toplevel windows.
+
+If you are trying to show a window minimized to the taskbar, you want to instead remove the window's hidden state (`state -r hidden`).
+
+## OPTIONS
+
+`--wait`
+
+: Flush the output buffer before executing the next command.
+
+`-w`, `--window` <wid>
+
+: Replace the window stack with *wid*.
+
+## BONK
+
+Part of the bonk(1) suite

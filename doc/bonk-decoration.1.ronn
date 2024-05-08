@@ -1,0 +1,39 @@
+bonk-decoration(1) | Bonk manual
+================================
+
+## NAME
+**bonk-decoration** - Set window decorations
+
+## SYNOPSIS
+`decoration` [<options>] [<window=%0>] <decorations>
+
+## DESCRIPTION
+
+This command attempts to update the decorations that a window manager (wm) draws over a window.
+
+Valid decorations are:
+: *close*, *maximize*, *minimize*, *move*, and *resize*
+
+To make a window only show the close action:
+: `decoration` close
+
+Use commas for multiple decorations:
+: `decoration` minimize,maximize,close
+
+In addition to the decoration names listed above, there are two aliases: <all> and <none>. <none> removes all decorations, making the window borderless. <all>, on the other hand, restores decorations to their initial state.
+
+This command works by updating the _MOTIF_WM_HINTS property of a window. These hints are only honored if a window manager is running that understands them.
+
+## OPTIONS
+
+`--wait`
+
+: Flush the output buffer before executing the next command.
+
+`-w`, `--window` <wid>
+
+: Replace the window stack with *wid*.
+
+## BONK
+
+Part of the bonk(1) suite

@@ -1,0 +1,74 @@
+bonk-select(1) | Bonk manual
+============================
+
+## NAME
+**bonk-select** - Search for windows using criteria
+
+## SYNOPSIS
+`select` [<options>]
+
+## DESCRIPTION
+
+This command searches for windows using criteria provided, filling the window stack with the results.
+
+Finding the right window can be surprisingly tough!
+
+Many applications have subwindows inside of their windows. Some of them have windows that are invisible. Those windows could be invisible (unmapped) because they've been hidden by the window manager (minimized to a taskbar), or they're meant to be invisible. A window that is mapped is not necessarily a useful window. Some windows are mapped but are not actually showing content to the user.
+
+Every screen has a root window, and every window descends from that root window. By default, this command finds candidate windows by recursing through the window tree, returning every mapped window. However, if you use `-c` / `--clients`, the search is restricted to the window manager's client list (`_NET_CLIENT_LIST`). If you are only interested in toplevel windows, using `-c` / `--clients` is highly encouraged.
+
+Using **multiple kinds** of criteria (ex: exact class and matching title) is encouraged. However, this command **does not** support matching against multiple iterations of the same criteria (`--title <x> --title <y>).
+
+If this command is the last command to be run, the window stack is written to stdout.
+
+## CRITERIA
+
+These flags are the primary mechanism for searching. Matching is done by taking the value as a posix regex, whereas the non-matching entries check for exact string equality.
+
+`--class` <cls>
+: Match the window's class (first element of `WM_CLASS`) to <cls>.
+
+`--instance` <instance>
+: Match the window's instance (second element of `WM_CLASS`) to <instance>.
+
+`--title` <name>
+: Match the window's title to <name>. Uses `_NET_WM_NAME` if set, `WM_NAME` otherwise.
+
+`--exact-class` <cls>
+: The window's class (first element of `WM_CLASS`) must be exactly <cls>.
+
+`--exact-instance` <instance>
+: The window's instance (second element of WM_CLASS) must be exactly <instance>.
+
+`--exact-title` <name>
+: The window's title must be exactly <name>. Uses `_NET_WM_NAME` if set, `WM_NAME` otherwise.
+
+## OPTIONS
+
+`--all`
+: Include windows that are unmapped. If you are trying to find windows that have been minimized to a taskbar, consider combining this with `--has-state hidden`.
+
+`-c`, `--clients`
+: Instead of traversing the root window, use the window manager's list of clients (`_NET_CLIENT_LIST`). This is **highly** recommended if you are only interested in toplevel windows.
+
+`--desktop` <index>
+: Check the window's desktop index (`_NET_WM_DESKTOP`), with the first desktop as `0`. This also accepts `-1`, because some window managers use `-1` to indicate a window should be visible on all desktops (ex: a taskbar).
+
+`--has-property` <property>
+: Check for the window having an atom named <property> set to **any** value. **Property names are case sensitive**.
+
+`--has-state` <state>
+: Check for `_NET_WM_STATE` having <state> set. The following are all valid: `above`, `below`, `demands_attention`, `fullscreen`, `hidden`, `maximized_vert`, `maximized_horz`, `modal`, `shaded`, `skip_pager`, `skip_taskbar`, and `sticky`.
+
+`--if-empty-stack`
+: Continue parsing arguments, but only execute the search if the window stack is empty. You can use this to write searches that begin more specific, and then fan out to more general or to fallback targets.
+
+`--retry`
+: If the search fails to return any results, continue attempting it every half a second until at least one result is found.
+
+`--show`
+: Print the window stack before moving onto the next command, even if this command is not the last. This works even if `--if-empty-stack` is used.
+
+## BONK
+
+Part of the bonk(1) suite

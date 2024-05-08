@@ -1,0 +1,32 @@
+bonk-get-title(1) | Bonk manual
+===============================
+
+## NAME
+**bonk-get-title** - Get the title of a window
+
+## SYNOPSIS
+`get-title` [<options>] [<window=%0>]
+
+## DESCRIPTION
+
+This command writes the title of a given window.
+
+The title is determined by first checking for the presence of `_NET_WM_NAME`. If that is set, it is used regardless of the value.
+
+If `_NET_WM_NAME is not present, then `WM_NAME` is used instead.
+
+If neither property has been set on the window, then the window has no name.
+
+## OPTIONS
+
+`--wait`
+
+: Flush the output buffer before executing the next command.
+
+`-w`, `--window` <wid>
+
+: Replace the window stack with *wid*.
+
+## BONK
+
+Part of the bonk(1) suite

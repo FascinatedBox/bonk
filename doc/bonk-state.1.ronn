@@ -1,0 +1,64 @@
+bonk-state(1) | Bonk manual
+===========================
+
+## NAME
+**bonk-state** - Minimize, maximize, fullscreen, and more
+
+## SYNOPSIS
+`state` [<options>] [<window=%0>]
+
+## DESCRIPTION
+
+This command sends a message (`ClientMessage` with `_NET_WM_STATE`) to a window (not the window manager) to add, remove, or toggle atoms in the list. The message may be silently ignored if no window manager is present, or simply have no effect at all.
+
+This command accepts one or multiple actions to perform at once. Suppose you want to mark a window as being above others while removing hidden:
+: `bonk pick state -a above -r hidden`
+
+The following is a list of supported names, as well as brief descriptions of what they do.
+
+* `above`: This window should remain on top of other windows and ignore requests to be lowered.
+
+* `below`: Keep this window below other windows. 
+
+* `demands_attention`: This window would like the user's attention. The window manager may attempt to get the user's attention by having an associated taskbar entry flash. This is automatically cleared when the window manager decides that the window obtained the attention it wanted (usually, that it was activated).
+
+* `fullscreen`: This window should fill the entire screen and have no window decorations. If you only want the former, set BOTH maximized_horz and maximized_vert instead. If you just want the latter, use the decoration command and specify none. The window manager is responsible for restoring a window's size and position when a window is no longer fullscreen.
+
+* `hidden`: This window has been minimized by a window manager.
+
+* `maximized_horz`: This window is horizontally maximized.
+
+* `maximized_vert`: This window is vertically maximized. If you are trying to mimic the fullscreen button of a titlebar, you need to set BOTH maximized_horz AND maximized_vert.
+
+* `modal`: This indicates that the window is a modal dialog box for another window. If the `WM_TRANSIENT_FOR` hint is set to another toplevel window, the dialog is modal for that window; if `WM_TRANSIENT_FOR` is not set or set to the root window the dialog is modal for its window group. You probably don't need this one.
+
+* `shaded`: Only show the window's titlebar.
+
+* `skip_pager`: This should not be included in a pager. Again, not necessary if the window type already conveys that the window shouldn't be in the taskbar.
+
+* `skip_taskbar`: Do not show this window in the taskbar. This is not necessary if the window type (`_NET_WM_WINDOW_TYPE`) already conveys that the window does not belong in the taskbar (ex: toolbars).
+
+* `sticky`: The window manager should keep this window's position fixed on the screen, even if the virtual desktop scrolls.
+
+## OPTIONS
+
+`-a, --add <property>`
+: Add a property
+
+`-r, --remove <property>`
+: Remove a property
+
+`-t, --toggle <property>`
+: Set a property if unset, or unset it if already set
+
+`--wait`
+
+: Flush the output buffer before executing the next command.
+
+`-w`, `--window` <wid>
+
+: Replace the window stack with *wid*.
+
+## BONK
+
+Part of the bonk(1) suite

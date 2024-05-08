@@ -1,0 +1,53 @@
+bonk-reject(1) | Bonk manual
+============================
+
+## NAME
+**bonk-reject** - Remove windows using criteria
+
+## SYNOPSIS
+`reject` [<options>]
+
+## DESCRIPTION
+
+This command removes windows from the window stack that match the criteria provided.
+
+This command carries most of the same options that select does, minus the ones that make no sense (ex: `--if-stack-empty`).
+
+If this command is the last command to be run, the window stack is written to stdout.
+
+## CRITERIA
+
+These flags are the primary mechanism for searching. Matching is done by taking the value as a posix regex, whereas the non-matching entries check for exact string equality.
+
+`--class` <cls>
+: Match the window's class (first element of `WM_CLASS`) to <cls>.
+
+`--instance` <instance>
+: Match the window's instance (second element of `WM_CLASS`) to <instance>.
+
+`--title` <name>
+: Match the window's title to <name>. Uses `_NET_WM_NAME` if set, `WM_NAME` otherwise.
+
+`--exact-class` <cls>
+: The window's class (first element of `WM_CLASS`) must be exactly <cls>.
+
+`--exact-instance` <instance>
+: The window's instance (second element of WM_CLASS) must be exactly <instance>.
+
+`--exact-title` <name>
+: The window's title must be exactly <name>. Uses `_NET_WM_NAME` if set, `WM_NAME` otherwise.
+
+## OPTIONS
+
+`--desktop` <index>
+: Check the window's desktop index (`_NET_WM_DESKTOP`), with the first desktop as `0`. This also accepts `-1`, because some window managers use `-1` to indicate a window should be visible on all desktops (ex: a taskbar).
+
+`--has-property` <property>
+: Check for the window having an atom named <property> set to **any** value. **Property names are case sensitive**.
+
+`--has-state` <state>
+: Check for `_NET_WM_STATE` having <state> set. The following are all valid: `above`, `below`, `demands_attention`, `fullscreen`, `hidden`, `maximized_vert`, `maximized_horz`, `modal`, `shaded`, `skip_pager`, `skip_taskbar`, and `sticky`.
+
+## BONK
+
+Part of the bonk(1) suite

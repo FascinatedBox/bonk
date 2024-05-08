@@ -1,0 +1,140 @@
+bonk(1) | User commands
+=======================
+
+## NAME
+**bonk** - **B**ox's wind**O**w ma**N**ager tool**K**it
+
+## SYNOPSIS
+`$ bonk COMMAND <args> COMMAND <args>...`
+
+## DESCRIPTION
+
+**Bonk** lets you programmatically adjust windows: Minimize, move, resize, and more.
+
+Bonk was written with X11 in mind, so it won't work if you're using Wayland. You can find out if you're using Wayland by executing the following command:
+
+: `echo $XDG_SESSION_TYPE`
+
+Bonk reads the command line to determine what commands to run. Each command reads arguments, determines what to do, then hands control off to the next command. The process continues until there are no more arguments to read, or an error occurs. Bonk **does not** read any configuration files.
+
+Suppose you want to take the currently-focused window and push it behind other windows:
+: `bonk get-active lower`
+
+Select a window using the cursor to make fullscreen and focus on it:
+: `bonk pick state -a fullscreen focus`
+
+The `get-active` and `pick` commands load a window into Bonk's window stack. The other commands see that there is a window in the stack and operate on that. Bonk's most useful command is `select`, a versatile mechanism for window discovery.
+
+If you're looking to get started, this page mentions the commands available to Bonk, each of which has a dedicated page. If you are trying to target specific windows, you'll want to familiarize yourself with select, and possibly reject as well.
+
+## OPTIONS
+
+**Bonk** itself does not take any options. Each of Bonk's subcommands takes a variety of options listed in the man page for that particular subcommand.
+
+## WINDOW STACK
+
+There are two kinds of subcommands: Those that fill the window stack, and those that operate on the window stack.
+
+When a subcommand fills the window stack, the existing windows are removed first.
+
+Subcommands that operate on the window stack **do not** remove the window they use, so that subcommands can be chained (ex: bonk pick raise focus)
+
+When a window arg is needed, the following can be used:
+
+* `%N`: N-th window (first window is `%0`)
+* `%-N`: Select from the end of the stack (last window is `%-1`)
+* `%@`: Select all windows
+
+Subcommands that use a window will default to `%0` if no window is given.
+
+## STACK MANAGEMENT
+
+### bonk-get-active(1)
+
+: Use the WM's current window.
+
+### bonk-get-focus(1)
+
+: Use the window that has input focus.
+
+### bonk-pick(1)
+
+: Left click to select a window.
+
+### bonk-select(1)
+
+: Select a window using criteria.
+
+### bonk-reject(1)
+
+: Reject windows using criteria.
+
+## WINDOW ACTION
+
+### bonk-activate(1)
+
+: Make a window the WM's active window.
+
+### bonk-close(1)
+
+: Gracefully close a window.
+
+### bonk-decoration(1)
+
+: Set MOTIF (titlebar and border) hints.
+
+### bonk-focus(1)
+
+: Give input focus to a window.
+
+### bonk-get-title(1)
+
+: Get the title of a window.
+
+### bonk-lower(1)
+
+: Push a window back behind all other windows.
+
+### bonk-map(1)
+
+: Make a window visible.
+
+### bonk-move-resize(1)
+
+: Specify a size and position for a window.
+
+### bonk-prop-adjust(1)
+
+: Update a simple property (class, desktop id, title).
+
+### bonk-prop-delete(1)
+
+: Remove a property (use with caution).
+
+### bonk-raise(1)
+
+: Pull a window to the front of the desktop.
+
+### bonk-sleep(1)
+
+: Suspend execution for a given duration.
+
+### bonk-state(1)
+
+: Minimize, maximize, fullscreen, and more.
+
+### bonk-terminate(1)
+
+: Terminate the client that created a window (use extreme caution).
+
+### bonk-unmap(1)
+
+: Hide a window (does not minimize to a taskbar).
+
+## AUTHORS
+
+Written by FascinatedBox, with inspiration from xdotool, wmctrl, and similar tools.
+
+## REPORTING BUGS
+
+https://github.com/FascinatedBox/bonk/issues

@@ -1,0 +1,30 @@
+bonk-lower(1) | Bonk manual
+===========================
+
+## NAME
+**bonk-lower** - Push a window back behind all other windows
+
+## SYNOPSIS
+`lower` [<options>] [<window=%0>]
+
+## DESCRIPTION
+
+This command sends a request (`ConfigureWindow` to `Below`) to place the given window behind other windows on the desktop. The opposite of this command is `raise`.
+
+If the target window has input focus, it may still retain input focus, even if it's entirely covered by other windows.
+
+This instruction may be ignored if the window manager has the target window marked as always being above other windows, or if the target window is not a toplevel window.
+
+## OPTIONS
+
+`--wait`
+
+: Flush the output buffer before executing the next command.
+
+`-w`, `--window` <wid>
+
+: Replace the window stack with *wid*.
+
+## BONK
+
+Part of the bonk(1) suite

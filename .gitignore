@@ -2,6 +2,7 @@ bonk
 CMakeCache.txt
 CMakeFiles/
 cmake_install.cmake
+doc/*.1
 install_manifest.txt
 Makefile
 .report.info

@@ -1,0 +1,22 @@
+bonk-pick(1) | Bonk manual
+==========================
+
+## NAME
+**bonk-pick** - Select a window using crosshair cursor
+
+## SYNOPSIS
+`pick`
+
+## DESCRIPTION
+
+This command changes the mouse cursor into a crosshair cursor and grabs it. The user is then allowed to select a window by clicking on it. If this command is unable to grab the cursor, this command exits unsuccessfully, ignoring subsequent commmands.
+
+If the user left clicks on a window, the window stack is filled with the id of the window.
+
+If the user uses any other mouse button, the window stack is filled with `None` (0x0).
+
+If this command is the last command to be run, the resulting window will be printed.
+
+## BONK
+
+Part of the bonk(1) suite

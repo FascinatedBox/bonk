@@ -1,0 +1,31 @@
+bonk-move-resize(1) | Bonk manual
+=================================
+
+## NAME
+**bonk-move-resize** - Specify an exact size and place for a window
+
+## SYNOPSIS
+`move-resize` [<options>] [<window=%0>] <x> <y> <width> <height>
+
+## DESCRIPTION
+
+This command sends a message (`ClientMessage` with `_NET_MOVERESIZE_WINDOW`) to the window manager to reposition and/or resize a window.
+
+If you use the first letter (x, y, w, h) as an argument, then that portion is skipped. Suppose, for example, you want to move a window's x to 100, and set the width to 500.
+: `move-resize` 100 y 500 h
+
+If no window manager is present, the message is ignored and the window will remain unchanged.
+
+## OPTIONS
+
+`--wait`
+
+: Flush the output buffer before executing the next command.
+
+`-w`, `--window` <wid>
+
+: Replace the window stack with *wid*.
+
+## BONK
+
+Part of the bonk(1) suite

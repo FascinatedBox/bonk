@@ -1,0 +1,30 @@
+bonk-activate(1) | Bonk manual
+==============================
+
+## NAME
+**bonk-activate** - Make a window the WM's active window
+
+## SYNOPSIS
+`activate` [<options>] [<window=%0>]
+
+## DESCRIPTION
+
+This command sends a message (`ClientMessage` with `_NET_ACTIVE_WINDOW`) to the window manager indicating a window to make the active window. The window manager may make the window the current window, or it may ignore the request.
+
+If a window manager honors this request, it may bring the window into the current desktop, may raise it, and may focus it.
+
+If no window manager is present, this command fails and subsequent commands are not executed.
+
+## OPTIONS
+
+`--wait`
+
+: Flush the output buffer before executing the next command.
+
+`-w`, `--window` <wid>
+
+: Replace the window stack with *wid*.
+
+## BONK
+
+Part of the bonk(1) suite

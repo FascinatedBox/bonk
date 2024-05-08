@@ -1,0 +1,30 @@
+bonk-prop-delete(1) | Bonk manual
+=================================
+
+## NAME
+**bonk-prop-delete** - Remove a property from a window
+
+## SYNOPSIS
+`prop-delete` [<options>] [<window=%0>] <property>
+
+## DESCRIPTION
+
+This command sends a request (`DeleteProperty`) to remove <property> on the window provided.
+
+Only one property can be deleted at a time with this command. If you want to delete multiple properties, simply chain multiple invocations of this command.
+
+Use caution with this command. Deleting core properties on a window (`_NET_WM_*` and `WM_*`) may have adverse effects.
+
+## OPTIONS
+
+`--wait`
+
+: Flush the output buffer before executing the next command.
+
+`-w`, `--window` <wid>
+
+: Replace the window stack with *wid*.
+
+## BONK
+
+Part of the bonk(1) suite

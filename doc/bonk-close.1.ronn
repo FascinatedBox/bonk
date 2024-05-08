@@ -1,0 +1,28 @@
+bonk-close(1) | Bonk manual
+===========================
+
+## NAME
+**bonk-close** - Attempt to close a window
+
+## SYNOPSIS
+`close` [<options>] [<window=%0>]
+
+## DESCRIPTION
+
+This command sends a message (`WM_DELETE_WINDOW`) to the client that owns a given window. This is the same message that a window manager sends to a client when a window's "X" is clicked.
+
+A client that receives a request to close a window can respond by closing it, requesting more info from the user, or ignoring it.
+
+## OPTIONS
+
+`--wait`
+
+: Flush the output buffer before executing the next command.
+
+`-w`, `--window` <wid>
+
+: Replace the window stack with *wid*.
+
+## BONK
+
+Part of the bonk(1) suite

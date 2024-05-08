@@ -1,0 +1,28 @@
+bonk-focus(1) | Bonk manual
+===========================
+
+## NAME
+**bonk-focus** - Give input focus to a window
+
+## SYNOPSIS
+`focus` [<options>] [<window=%0>]
+
+## DESCRIPTION
+
+This comamnd sends a request (`SetInputFocus`) to give input focus to <window>.
+
+This command does **not** require a window manager to be running.
+
+## OPTIONS
+
+`--wait`
+
+: Flush the output buffer before executing the next command.
+
+`-w`, `--window` <wid>
+
+: Replace the window stack with *wid*.
+
+## BONK
+
+Part of the bonk(1) suite

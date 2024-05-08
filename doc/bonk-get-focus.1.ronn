@@ -1,0 +1,34 @@
+bonk-get-focus(1) | Bonk manual
+===============================
+
+## NAME
+**bonk-get-focus** - Get the window that has input focus
+
+## SYNOPSIS
+`get-focus` [<options>]
+
+## DESCRIPTION
+
+This command sends a request (`GetFocus`) to obtain the window that currently has input focus. Unlike `activate`, this command **does not** rely on a window manager being present.
+
+This command can yield the following results:
+
+* `None` (0x0), if no window has input focus.
+
+* `PointerRoot` (0x1), if focus belongs to the root window of the screen the mouse pointer is on. Because `PointerRoot` is not a true window, many commands will ignore it. This command finds the current root window and sends that back instead of `PointerRoot`.
+
+* The id of a window that currently has input focus.
+
+The window stack is filled with the resulting window.
+
+If this command is the last command to be run, the resulting window is printed to stdout.
+
+## OPTIONS
+
+`--wait`
+
+: Flush the output buffer before executing the next command.
+
+## BONK
+
+Part of the bonk(1) suite

@@ -1,0 +1,30 @@
+bonk-terminate(1) | Bonk manual
+===============================
+
+## NAME
+**bonk-terminate** - Terminate client that created a window
+
+## SYNOPSIS
+`terminate` [<options>] [<window=%0>]
+
+## DESCRIPTION
+
+This command sends a request (`KillClient`) to kill the client of a window.
+
+In most cases, you probably want to use the **close** command instead. The **close** command can be gracefully handled by a window's client.
+
+Terminating the client of a window results in the client (the program that created the window) losing connection to X. In most cases, a client that is terminated will abort execution without saving any data.
+
+## OPTIONS
+
+`--wait`
+
+: Flush the output buffer before executing the next command.
+
+`-w`, `--window` <wid>
+
+: Replace the window stack with *wid*.
+
+## BONK
+
+Part of the bonk(1) suite
