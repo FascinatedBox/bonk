@@ -5,7 +5,7 @@
 #include "xpick.h"
 
 typedef enum {
-    opt_help = 'h',
+    opt_help,
 } optlist_t;
 
 static struct option longopts[] = {
@@ -21,7 +21,6 @@ static const char *usage =
     "Left click selects a window, any other mouse press cancels it.\n"
     "The selected window replaces the window stack.\n"
     "\n"
-    "-h, --help               display this help and exit\n"
     ;
 
 int b_pick(bonk_state_t *b)

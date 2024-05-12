@@ -6,7 +6,7 @@
 #include "bonk_internal.h"
 
 typedef enum {
-    opt_help = 'h',
+    opt_help,
     opt_window = 'w',
 } optlist_t;
 
@@ -20,7 +20,6 @@ static const char *usage =
     "\n"
     "Return the WM's active window (will probably focus and raise it)\n"
     "\n"
-    "-h, --help               display this help and exit\n"
     ;
 
 int b_get_active(bonk_state_t *b)

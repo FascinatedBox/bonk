@@ -1,5 +1,6 @@
 #include <ctype.h>
 #include <getopt.h>
+#include <unistd.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -308,4 +309,28 @@ xcb_atom_t bonk_window_state_atom_from_string(bonk_state_t *b, const char *str)
     xcb_atom_t result = window_state_atom_from_index(b, index);
 
     return result;
+}
+
+static void do_exec_man(char *buffer)
+{
+    execlp("man", "man", buffer, (char *)NULL);
+    fputs("bonk error: Failed to exec 'man' to view help.", stderr);
+    exit(EXIT_FAILURE);
+}
+
+void bonk_exec_command_man(bonk_state_t *b)
+{
+    char buffer[128] = "bonk-";
+
+    strcat(buffer, b->current_command);
+    do_exec_man(buffer);
+}
+
+void bonk_exec_man_for(const char *page)
+{
+    char *buffer = malloc(strlen(page) + strlen("bonk-") + 1);
+
+    strcpy(buffer, "bonk-");
+    strcat(buffer, page);
+    do_exec_man(buffer);
 }

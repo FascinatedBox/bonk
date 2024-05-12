@@ -5,8 +5,8 @@
 #include "bonk_internal.h"
 
 typedef enum {
+    opt_help,
     opt_wait,
-    opt_help = 'h',
     opt_window = 'w',
 } optlist_t;
 
@@ -24,7 +24,6 @@ static const char *usage =
     "\n"
     "--wait                   flush output buffer before next command\n"
     "-w, --window <wid>       add window <wid> to the stack\n"
-    "-h, --help               display this help and exit\n"
     ;
 
 int b_lower(bonk_state_t *b)

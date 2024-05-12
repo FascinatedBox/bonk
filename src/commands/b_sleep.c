@@ -28,7 +28,7 @@
 #include "bonk_internal.h"
 
 typedef enum {
-    opt_help = 'h',
+    opt_help,
 } optlist_t;
 
 static struct option longopts[] = {
@@ -51,7 +51,6 @@ static const char *usage =
     "\n"
     "Suffixes and fractional amounts can be combined (ex: 1m20s, .2d)\n"
     "\n"
-    "-h, --help               display this help and exit\n"
     ;
 
 #define DECIMAL   '.'

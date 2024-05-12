@@ -4,7 +4,7 @@
 #include "bonk_internal.h"
 
 typedef enum {
-    opt_help = 'h',
+    opt_help,
     opt_window = 'w',
 } optlist_t;
 
@@ -18,7 +18,6 @@ static const char *usage =
     "\n"
     "Return the window that currently has input focus\n"
     "\n"
-    "-h, --help               display this help and exit\n"
     ;
 
 static xcb_window_t get_pointer_root(bonk_state_t *b)

@@ -48,6 +48,9 @@ typedef struct {
 
 #define BONK_GETOPT_HELP \
     case opt_help: \
+        bonk_exec_command_man(b); \
+        break; \
+    case 'h': \
         bonk_usage(b, usage); \
         break; \
     default: \
@@ -85,5 +88,8 @@ xcb_window_t *bonk_window_list_get(bonk_state_t *, int *);
 
 void bonk_use_window_arg(bonk_state_t *, const char *);
 xcb_atom_t bonk_window_state_atom_from_string(bonk_state_t *, const char *);
+
+void bonk_exec_command_man(bonk_state_t *);
+void bonk_exec_man_for(const char *);
 
 #endif

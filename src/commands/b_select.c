@@ -21,6 +21,7 @@ typedef enum {
     opt_exact_title,
     opt_has_property,
     opt_has_state,
+    opt_help,
     opt_if_empty_stack,
     opt_match_class,
     opt_match_instance,
@@ -28,7 +29,6 @@ typedef enum {
     opt_retry,
     opt_show,
     opt_clients = 'c',
-    opt_help = 'h',
 } optlist_t;
 
 static struct option longopts[] = {
@@ -69,7 +69,6 @@ static const char *usage =
     "-c, --clients                use managed clients\n"
     "                             (wm must support _NET_CLIENT_LIST)\n"
     "--show                       print the window stack\n"
-    "-h, --help                   display this help and exit\n"
     "\n"
     "Criteria can be any of the following:\n"
     "  class, instance, title\n"

@@ -24,8 +24,8 @@
 #define HINT_DECORATIONS (1L << 1)
 
 typedef enum {
+    opt_help,
     opt_wait,
-    opt_help = 'h',
     opt_window = 'w',
 } optlist_t;
 
@@ -43,7 +43,6 @@ static const char *usage =
     "\n"
     "--wait                   flush output buffer before next command\n"
     "-w, --window <wid>       add window <wid> to the stack\n"
-    "-h, --help               display this help and exit\n"
     "\n"
     "Set a window's decorations to only include 'decorations'.\n"
     "Valid decorations are:\n"

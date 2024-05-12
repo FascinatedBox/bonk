@@ -20,11 +20,11 @@ typedef enum {
     opt_exact_title,
     opt_has_property,
     opt_has_state,
+    opt_help,
     opt_match_class,
     opt_match_instance,
     opt_match_title,
     opt_show,
-    opt_help = 'h',
 } optlist_t;
 
 struct option longopts[] = {
@@ -55,7 +55,6 @@ static const char *usage =
     "--desktop <n>                only windows on desktop <n> (-1 for all)\n"
     "\n"
     "--show                       print the window stack\n"
-    "-h, --help                   display this help and exit\n"
     "\n"
     "Criteria can be any of the following:\n"
     "  class, instance, title\n"

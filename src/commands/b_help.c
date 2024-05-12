@@ -4,6 +4,9 @@
 
 int b_help(bonk_state_t *b)
 {
+    if (b->argc > 1)
+        bonk_exec_man_for(b->argv[1]);
+
     puts(
     "Usage: bonk <commands [arguments]>\n"
     "\n"
