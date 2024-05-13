@@ -10,6 +10,7 @@ xtrace -D :9 ./bonk select --instance xterm \
                     set-window --window $WID --wait --title xterm \
                     set-window --desktop 0 \
                     set-window --desktop 1 \
-                    set-window --desktop -1
+                    set-window --desktop -1 \
+                    set-window --machine hello
 
 exit $?

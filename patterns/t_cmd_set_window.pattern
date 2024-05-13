@@ -11,7 +11,8 @@ xtrace -D :9 ./bonk select --instance xterm \
                     set-window --window $WID --wait --title xterm \
                     set-window --desktop 0 \
                     set-window --desktop 1 \
-                    set-window --desktop -1
+                    set-window --desktop -1 \
+                    set-window --machine hello
 
 exit $?
 
@@ -125,7 +126,8 @@ exit $?
 000:<:006a: 28: Request(18): ChangeProperty mode=Replace(0x00) window=@1 property=("_NET_WM_DESKTOP") type=("CARDINAL") data=0x00000000;
 000:<:006b: 28: Request(18): ChangeProperty mode=Replace(0x00) window=@1 property=("_NET_WM_DESKTOP") type=("CARDINAL") data=0x00000001;
 000:<:006c: 28: Request(18): ChangeProperty mode=Replace(0x00) window=@1 property=("_NET_WM_DESKTOP") type=("CARDINAL") data=0xffffffff;
-000:<:006d:  4: Request(43): GetInputFocus 
+000:<:006d: 32: Request(18): ChangeProperty mode=Replace(0x00) window=@1 property=("WM_CLIENT_MACHINE") type=("UTF8_STRING") data=0x68,0x65,0x6c,0x6c,0x6f;
+000:<:006e:  4: Request(43): GetInputFocus 
 
 -----stderr-----
 Got connection from unknown(local)

@@ -22,6 +22,9 @@ This command updates simple properties on a window. Each replacement is an argum
 `--instance <value>`
 : Update the instance (second element) in the window's `WM_CLASS`.
 
+`--machine <value>`
+: A window's machine name (`WM_CLIENT_MACHINE`) is the name of the machine that created the client. Changing this is unlikely to be useful, but the ability to do so is provided for convenience.
+
 `--title <value>`
 : Update the title stored in `_NET_WM_NAME`. This does **not** alter `WM_NAME`.
 

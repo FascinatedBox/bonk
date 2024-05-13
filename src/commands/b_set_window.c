@@ -11,6 +11,7 @@ typedef enum {
     opt_desktop,
     opt_help,
     opt_instance,
+    opt_machine,
     opt_title,
     opt_wait,
     opt_window = 'w',
@@ -21,6 +22,7 @@ static struct option longopts[] = {
     { "desktop", required_argument, NULL, opt_desktop },
     { "help", no_argument, NULL, opt_help },
     { "instance", required_argument, NULL, opt_instance },
+    { "machine", required_argument, NULL, opt_machine },
     { "title", required_argument, NULL, opt_title },
     { "wait", no_argument, NULL, opt_wait },
     { "window", required_argument, NULL, opt_window },
@@ -36,6 +38,7 @@ static const char *usage =
     "--desktop <value>        The desktop the window is on (_NET_WM_DESKTOP).\n"
     "                         (first = 0, -1 = all desktops)\n"
     "--instance <value>       Update the instance in WM_CLASS.\n"
+    "--machine <value>        Update the name in WM_CLIENT_MACHINE\n"
     "--title <value>          Update the window's title (_NET_WM_NAME).\n"
     "\n"
     "--wait                   flush output buffer before next command\n"
@@ -45,7 +48,8 @@ static const char *usage =
 #define ADJUST_CLASS    (1 << 0)
 #define ADJUST_DESKTOP  (1 << 1)
 #define ADJUST_INSTANCE (1 << 2)
-#define ADJUST_TITLE    (1 << 3)
+#define ADJUST_MACHINE  (1 << 3)
+#define ADJUST_TITLE    (1 << 4)
 
 static char *get_wm_class_and_instance(bonk_state_t *b,
                                        xcb_window_t window,
@@ -113,7 +117,8 @@ int b_set_window(bonk_state_t *b)
     int wait = 0;
     int flags = 0;
     long a_desktop = 0;
-    char *a_class = NULL, *a_instance = NULL, *a_title = NULL;
+    char *a_class = NULL, *a_instance = NULL, *a_machine = NULL,
+         *a_title = NULL;
 
     BONK_GETOPT_LOOP(c, b, "+hw:", longopts) {
         switch (c) {
@@ -131,6 +136,10 @@ int b_set_window(bonk_state_t *b)
             case opt_instance:
                 flags |= ADJUST_INSTANCE;
                 a_instance = optarg;
+                break;
+            case opt_machine:
+                flags |= ADJUST_MACHINE;
+                a_machine = optarg;
                 break;
             case opt_title:
                 flags |= ADJUST_TITLE;
@@ -150,6 +159,11 @@ int b_set_window(bonk_state_t *b)
 
             xcb_icccm_set_wm_class(b->conn, iter_window, buffer_len, buffer);
             free(buffer);
+        }
+        if (flags & ADJUST_MACHINE) {
+            xcb_icccm_set_wm_client_machine(
+                    b->conn, iter_window, b->ewmh->UTF8_STRING, 8,
+                    strlen(a_machine), a_machine);
         }
         if (flags & ADJUST_TITLE) {
             xcb_ewmh_set_wm_name(
