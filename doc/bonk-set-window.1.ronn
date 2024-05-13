@@ -16,6 +16,9 @@ This command updates simple properties on a window. Each replacement is an argum
 `--class <name>`
 : Update the class (first element) in the window's `WM_CLASS`.
 
+`--delete <prop>`
+: Remove property `prop`, if present on the window. This option can be supplied multiple times.
+
 `--desktop <id>`
 : The index of the desktop the window is on (`_NET_WM_DESKTOP`). The first desktop is at index `0`. If you want the window visible on all desktops (assuming wm support), use the value `-1`.
 

@@ -13,6 +13,11 @@ XEYES_WID=`./bonk select --retry --instance xeyes`
 ./bonk state -w $XEYES_WID -t above -t above -t above -t above -t above \
 						   -t above -t above -t above -t above -t above \
 						   -t above -t above -t above -t above -t above
+./bonk set-window -w $XEYES_WID --delete WM_STATE --delete WM_STATE \
+                                --delete WM_STATE --delete WM_STATE \
+                                --delete WM_STATE --delete WM_STATE \
+                                --delete WM_STATE --delete WM_STATE \
+                                --delete WM_STATE --delete WM_STATE
 ./bonk get-focus state || exit 99
 pkill xeyes
 ./bonk quickbrownfox && exit 99
@@ -57,6 +62,7 @@ exit 0
 -----stderr-----
 bonk state error: 'sphinxofblackquartzjudgemyvow' is not a valid state atom. Stopping.
 bonk state error: Too many atoms to adjust at once (max = 8)
+bonk set-window error: Too many atoms to delete at once (max = 8)
 bonk error: Invalid command 'quickbrownfox'.
 bonk error: Unable to open X display. Stopping.
 bonk error: Invalid window index '-2' (%0 .. %-1).

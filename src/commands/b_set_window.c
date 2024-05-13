@@ -8,6 +8,7 @@
 
 typedef enum {
     opt_class,
+    opt_delete,
     opt_desktop,
     opt_help,
     opt_instance,
@@ -19,6 +20,7 @@ typedef enum {
 
 static struct option longopts[] = {
     { "class", required_argument, NULL, opt_class },
+    { "delete", required_argument, NULL, opt_delete },
     { "desktop", required_argument, NULL, opt_desktop },
     { "help", no_argument, NULL, opt_help },
     { "instance", required_argument, NULL, opt_instance },
@@ -35,6 +37,7 @@ static const char *usage =
     "Adjust simple window properties.\n"
     "\n"
     "--class <name>           Update the class in WM_CLASS\n"
+    "--delete <prop>          Remove property named <prop>\n"
     "--desktop <id>           The desktop the window is on (_NET_WM_DESKTOP)\n"
     "                         (first = 0, -1 = all desktops)\n"
     "--instance <name>        Update the instance in WM_CLASS\n"
@@ -112,6 +115,9 @@ static int parse_desktop_id(bonk_state_t *b, const char *arg, long *value)
     return 1;
 }
 
+/* Good enough for reasonable usage. */
+#define MAX_AT_ONCE 8
+
 int b_set_window(bonk_state_t *b)
 {
     int wait = 0;
@@ -119,6 +125,8 @@ int b_set_window(bonk_state_t *b)
     long a_desktop = 0;
     char *a_class = NULL, *a_instance = NULL, *a_machine = NULL,
          *a_title = NULL;
+    xcb_atom_t a_to_delete[MAX_AT_ONCE];
+    int delete_count = 0;
 
     BONK_GETOPT_LOOP(c, b, "+hw:", longopts) {
         switch (c) {
@@ -126,6 +134,20 @@ int b_set_window(bonk_state_t *b)
                 flags |= ADJUST_CLASS;
                 a_class = optarg;
                 break;
+            case opt_delete: {
+                if (delete_count == MAX_AT_ONCE) {
+                    fprintf(stderr, "bonk set-window error: Too many atoms to delete at once (max = %d)\n",
+                            MAX_AT_ONCE);
+                    return 0;
+                }
+
+                /* Don't skip invalid atoms, or the limit will appear to be
+                   enforced inconsistenly. */
+                a_to_delete[delete_count] = bonk_atom_find_existing(b->conn,
+                        optarg);
+                delete_count++;
+                break;
+            }
             case opt_desktop:
                 flags |= ADJUST_DESKTOP;
 
@@ -178,6 +200,16 @@ int b_set_window(bonk_state_t *b)
                                 32,
                                 1,
                                 (const void *)&a_desktop);
+        }
+        if (delete_count) {
+            for (int i = 0;i < delete_count;i++) {
+                xcb_atom_t target = a_to_delete[i];
+
+                if (target == XCB_ATOM_NONE)
+                    continue;
+
+                xcb_delete_property(b->conn, iter_window, target);
+            }
         }
     )
 

@@ -12,6 +12,11 @@ XEYES_WID=`./bonk select --retry --instance xeyes`
 ./bonk state -w $XEYES_WID -t above -t above -t above -t above -t above \
 						   -t above -t above -t above -t above -t above \
 						   -t above -t above -t above -t above -t above
+./bonk set-window -w $XEYES_WID --delete WM_STATE --delete WM_STATE \
+                                --delete WM_STATE --delete WM_STATE \
+                                --delete WM_STATE --delete WM_STATE \
+                                --delete WM_STATE --delete WM_STATE \
+                                --delete WM_STATE --delete WM_STATE
 ./bonk get-focus state || exit 99
 pkill xeyes
 ./bonk quickbrownfox && exit 99

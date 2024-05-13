@@ -11,6 +11,7 @@ xtrace -D :9 ./bonk select --instance xterm \
                     set-window --desktop 0 \
                     set-window --desktop 1 \
                     set-window --desktop -1 \
+                    set-window --delete WM_ICON_NAME \
                     set-window --machine hello
 
 exit $?
