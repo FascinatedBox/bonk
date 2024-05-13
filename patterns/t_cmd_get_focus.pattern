@@ -189,7 +189,6 @@ Usage: get-focus [options]
 
 Return the window that currently has input focus
 
--h, --help               display this help and exit
 
 -----exitcode-----
 0
