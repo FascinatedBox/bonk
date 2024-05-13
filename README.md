@@ -125,6 +125,7 @@ window actions
     map           Reveal a window a window hidden with unmap
     move-resize   Specify an exact size and place for a window
     raise         Pull a window to the front, ahead of other windows
+    set-window    Update simple properties (class, instance, etc.)
     state         Minimize, maximize, fullscreen, and more
     terminate     Terminate program associated with a window
     unmap         Hide a window (does not minimize to taskbar)
@@ -136,6 +137,6 @@ miscellaneous
     sleep         Suspend execution for a given duration
 
 properties
-    prop-adjust   Update a simple property (class, instance, etc.)
+    prop-adjust   (deprecated, use set-window instead)
     prop-delete   Remove a property from a window (use with caution)
 ```

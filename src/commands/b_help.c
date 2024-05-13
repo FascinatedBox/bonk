@@ -26,6 +26,7 @@ int b_help(bonk_state_t *b)
     "    map           Reveal a window a window hidden with unmap\n"
     "    move-resize   Specify an exact size and place for a window\n"
     "    raise         Pull a window to the front, ahead of other windows\n"
+    "    set-window    Update simple properties (class, instance, etc.)\n"
     "    state         Minimize, maximize, fullscreen, and more\n"
     "    terminate     Terminate program associated with a window\n"
     "    unmap         Hide a window (does not minimize to taskbar)\n"
@@ -37,7 +38,7 @@ int b_help(bonk_state_t *b)
     "    sleep         Suspend execution for a given duration\n"
     "\n"
     "properties\n"
-    "    prop-adjust   Update a simple property (class, instance, etc.)\n"
+    "    prop-adjust   (deprecated, use set-window instead)\n"
     "    prop-delete   Remove a property from a window (use with caution)\n"
     );
 

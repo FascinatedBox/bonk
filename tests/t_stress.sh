@@ -3,9 +3,9 @@
 xeyes 2> /dev/null &
 XEYES_WID=`./bonk select --retry --instance xeyes`
 ./bonk prop-delete -w $XEYES_WID WM_CLASS
-./bonk prop-adjust -w $XEYES_WID --class xeyes
+./bonk set-window -w $XEYES_WID --class xeyes
 ./bonk prop-delete -w $XEYES_WID WM_CLASS
-./bonk prop-adjust -w $XEYES_WID --instance xeyes
+./bonk set-window -w $XEYES_WID --instance xeyes
 ./bonk prop-delete -w $XEYES_WID sphinxofblackquartzjudgemyvow
 ./bonk state -w $XEYES_WID
 ./bonk state -w $XEYES_WID -a sphinxofblackquartzjudgemyvow
@@ -39,9 +39,9 @@ DISPLAY=$SAVE_DISPLAY
 ./bonk select --pid 123456789012 && exit 99
 ./bonk select --pid 1a && exit 99
 ./bonk select --pid lol && exit 99
-./bonk get-focus prop-adjust --desktop 1a && exit 99
-./bonk get-focus prop-adjust --desktop aa && exit 99
-./bonk get-focus prop-adjust --desktop -2 && exit 99
+./bonk get-focus set-window --desktop 1a && exit 99
+./bonk get-focus set-window --desktop aa && exit 99
+./bonk get-focus set-window --desktop -2 && exit 99
 ./bonk sleep 1J && exit 99
 ./bonk sleep -1s && exit 99
 exit 0

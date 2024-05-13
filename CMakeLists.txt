@@ -42,6 +42,7 @@ set(
         doc/bonk-raise.1
         doc/bonk-reject.1
         doc/bonk-select.1
+        doc/bonk-set-window.1
         doc/bonk-sleep.1
         doc/bonk-state.1
         doc/bonk-terminate.1
@@ -67,6 +68,7 @@ set(
         src/commands/b_raise.c
         src/commands/b_reject.c
         src/commands/b_select.c
+        src/commands/b_set_window.c
         src/commands/b_sleep.c
         src/commands/b_state.c
         src/commands/b_terminate.c

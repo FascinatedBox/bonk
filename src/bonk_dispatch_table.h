@@ -25,6 +25,7 @@ extern int b_prop_delete(bonk_state_t *);
 extern int b_raise(bonk_state_t *);
 extern int b_reject(bonk_state_t *);
 extern int b_select(bonk_state_t *);
+extern int b_set_window(bonk_state_t *);
 extern int b_sleep(bonk_state_t *);
 extern int b_state(bonk_state_t *);
 extern int b_terminate(bonk_state_t *);
@@ -48,6 +49,7 @@ static bonk_dispatch_entry dispatch_table[] = {
     { "raise",                b_raise },
     { "reject",               b_reject },
     { "select",               b_select },
+    { "set-window",           b_set_window },
     { "sleep",                b_sleep },
     { "state",                b_state },
     { "terminate",            b_terminate },

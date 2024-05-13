@@ -103,10 +103,6 @@ Subcommands that use a window will default to `%0` if no window is given.
 
 : Specify a size and position for a window.
 
-### bonk-prop-adjust(1)
-
-: Update a simple property (class, desktop id, title).
-
 ### bonk-prop-delete(1)
 
 : Remove a property (use with caution).
@@ -114,6 +110,10 @@ Subcommands that use a window will default to `%0` if no window is given.
 ### bonk-raise(1)
 
 : Pull a window to the front of the desktop.
+
+### bonk-set-window(1)
+
+: Update a simple properties (class, desktop id, title).
 
 ### bonk-sleep(1)
 
