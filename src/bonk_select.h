@@ -7,19 +7,21 @@
 # define B_SELECT_CLASS       (1 << 0)
 # define B_SELECT_DESKTOP_ID  (1 << 1)
 # define B_SELECT_INSTANCE    (1 << 2)
-# define B_SELECT_TITLE       (1 << 3)
+# define B_SELECT_PID         (1 << 3)
+# define B_SELECT_TITLE       (1 << 4)
 
-# define B_HAS_PROPERTY       (1 << 4)
-# define B_HAS_STATE          (1 << 5)
-# define B_IS_REJECT          (1 << 6)
-# define B_ONLY_VISIBLE       (1 << 7)
-# define B_RETRY              (1 << 8)
-# define B_USE_CLIENT_LIST    (1 << 9)
+# define B_HAS_PROPERTY       (1 << 5)
+# define B_HAS_STATE          (1 << 6)
+# define B_IS_REJECT          (1 << 7)
+# define B_ONLY_VISIBLE       (1 << 8)
+# define B_RETRY              (1 << 9)
+# define B_USE_CLIENT_LIST    (1 << 10)
 
 typedef enum {
     ec_ok,
     ec_bad_desktop_id,
     ec_bad_pattern,
+    ec_bad_pid,
     ec_bad_state_name,
 } bonk_select_error_code;
 
@@ -42,6 +44,7 @@ typedef struct {
     xcb_atom_t has_prop;
     xcb_atom_t has_state_atom;
     int32_t desktop_id;
+    int32_t pid;
 
     bonk_select_error_code error_code;
     unsigned int mask;
@@ -74,6 +77,8 @@ void bonk_select_set_retry(bonk_select_t *);
 void bonk_select_set_has_property(bonk_select_t *, const char *);
 int bonk_select_set_has_state(bonk_select_t *, bonk_state_t *, const char *);
 void bonk_select_set_is_reject(bonk_select_t *);
+void bonk_select_set_pid(bonk_select_t *, int32_t);
+int bonk_select_set_pid_str(bonk_select_t *, const char *);
 int bonk_select_set_criteria(bonk_select_t *s,
                              unsigned int criteria,
                              int is_pattern,

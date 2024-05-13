@@ -24,6 +24,7 @@ typedef enum {
     opt_match_class,
     opt_match_instance,
     opt_match_title,
+    opt_pid,
     opt_show,
 } optlist_t;
 
@@ -36,6 +37,7 @@ struct option longopts[] = {
     { "has-property", required_argument, NULL, opt_has_property },
     { "has-state", required_argument, NULL, opt_has_state },
     { "instance", required_argument, NULL, opt_match_instance },
+    { "pid", required_argument, NULL, opt_pid },
     { "show", no_argument, NULL, opt_show },
     { "title", required_argument, NULL, opt_match_title },
     { "help", no_argument, NULL, opt_help },
@@ -53,6 +55,7 @@ static const char *usage =
     "--has-state <atom>           window has <atom> in _NET_WM_STATE\n"
     "                             (see 'bonk state --help' for a list).\n"
     "--desktop <n>                only windows on desktop <n> (-1 for all)\n"
+    "--pid <n>                    windows created by <pid>\n"
     "\n"
     "--show                       print the window stack\n"
     "\n"
@@ -81,6 +84,9 @@ int b_reject(bonk_state_t *b)
                 break;
             case opt_has_state:
                 ret = bonk_select_set_has_state(s, b, optarg);
+                break;
+            case opt_pid:
+                ret = bonk_select_set_pid_str(s, optarg);
                 break;
             case opt_show:
                 show = 1;

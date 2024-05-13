@@ -35,6 +35,10 @@ DISPLAY=$SAVE_DISPLAY
 ./bonk select --desktop 42069 && exit 99
 ./bonk select --desktop 1a && exit 99
 ./bonk select --desktop lol && exit 99
+./bonk select --pid -1 && exit 99
+./bonk select --pid 123456789012 && exit 99
+./bonk select --pid 1a && exit 99
+./bonk select --pid lol && exit 99
 ./bonk get-focus prop-adjust --desktop 1a && exit 99
 ./bonk get-focus prop-adjust --desktop aa && exit 99
 ./bonk get-focus prop-adjust --desktop -2 && exit 99

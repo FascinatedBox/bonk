@@ -8,6 +8,7 @@ xtrace -D :9 ./bonk select --show --instance xterm \
                     select --retry --instance xterm \
                     select --show --exact-title unfindable \
                     select --show --title xterm \
-                    select --show --title xeyes
+                    select --show --title xeyes \
+                    select --show --pid 1
 
 exit $?

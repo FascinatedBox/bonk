@@ -9,7 +9,8 @@ xtrace -D :9 ./bonk select --show --instance xterm \
                     select --retry --instance xterm \
                     select --show --exact-title unfindable \
                     select --show --title xterm \
-                    select --show --title xeyes
+                    select --show --title xeyes \
+                    select --show --pid 1
 
 exit $?
 
@@ -168,7 +169,16 @@ exit $?
 000:<:0097: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
 000:<:0098: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
 000:<:0099: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:009a:  4: Request(43): GetInputFocus 
+000:<:009a:  8: Request(15): QueryTree window=@0
+000:<:009b:  8: Request(15): QueryTree window=@1
+000:<:009c:  8: Request(15): QueryTree window=@2
+000:<:009d:  8: Request(3): GetWindowAttributes window=@0
+000:<:009e:  8: Request(3): GetWindowAttributes window=@1
+000:<:009f:  8: Request(3): GetWindowAttributes window=@2
+000:<:00a0: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("_NET_WM_PID") type=("CARDINAL") long-offset=0x00000000 long-length=0x00000001
+000:<:00a1: 24: Request(20): GetProperty delete=false(0x00) window=@1 property=("_NET_WM_PID") type=("CARDINAL") long-offset=0x00000000 long-length=0x00000001
+000:<:00a2: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("_NET_WM_PID") type=("CARDINAL") long-offset=0x00000000 long-length=0x00000001
+000:<:00a3:  4: Request(43): GetInputFocus 
 @1
 @1
 @1

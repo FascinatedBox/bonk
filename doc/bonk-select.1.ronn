@@ -63,6 +63,9 @@ These flags are the primary mechanism for searching. Matching is done by taking 
 `--if-empty-stack`
 : Continue parsing arguments, but only execute the search if the window stack is empty. You can use this to write searches that begin more specific, and then fan out to more general or to fallback targets.
 
+`--pid <pid>`
+: Check the process id that created a window (`_NET_WM_PID`). Some applications do not set this. This is not guaranteed to be correct, because it can be modified.
+
 `--retry`
 : If the search fails to return any results, continue attempting it every half a second until at least one result is found.
 

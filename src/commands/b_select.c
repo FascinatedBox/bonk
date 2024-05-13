@@ -26,6 +26,7 @@ typedef enum {
     opt_match_class,
     opt_match_instance,
     opt_match_title,
+    opt_pid,
     opt_retry,
     opt_show,
     opt_clients = 'c',
@@ -43,6 +44,7 @@ static struct option longopts[] = {
     { "has-state", required_argument, NULL, opt_has_state },
     { "if-empty-stack", no_argument, NULL, opt_if_empty_stack },
     { "instance", required_argument, NULL, opt_match_instance },
+    { "pid", required_argument, NULL, opt_pid },
     { "retry", no_argument, NULL, opt_retry },
     { "show", no_argument, NULL, opt_show },
     { "title", required_argument, NULL, opt_match_title },
@@ -61,6 +63,7 @@ static const char *usage =
     "--has-state <atom>           window has <atom> in _NET_WM_STATE\n"
     "                             (see 'bonk state --help' for a list).\n"
     "--desktop <n>                only windows on desktop <n> (-1 for all)\n"
+    "--pid <n>                    windows created by <pid>\n"
     "\n"
     "--if-empty-stack             only search if the window stack is empty\n"
     "--retry                      retry until a result is found\n"
@@ -104,6 +107,9 @@ int b_select(bonk_state_t *b)
                 break;
             case opt_if_empty_stack:
                 if_empty_stack = 1;
+                break;
+            case opt_pid:
+                ret = bonk_select_set_pid_str(s, optarg);
                 break;
             case opt_retry:
                 bonk_select_set_retry(s);

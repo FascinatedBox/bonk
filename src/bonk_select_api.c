@@ -83,6 +83,9 @@ const char *bonk_select_error_str(bonk_select_t *s)
         case ec_bad_pattern:
             result = "is not a valid match pattern.";
             break;
+        case ec_bad_pid:
+            result = "is not a valid process id.";
+            break;
         case ec_bad_state_name:
             result = "is not a valid atom state name.";
             break;
@@ -106,6 +109,26 @@ int bonk_select_set_desktop_id_str(bonk_select_t *s, const char *str)
 
     bonk_select_set_desktop_id(s, (int32_t)v);
     return 1;
+}
+
+int bonk_select_set_pid_str(bonk_select_t *s, const char *str)
+{
+    char *str_end;
+    int v = strtol(str, &str_end, 10);
+
+    if (v < 0 || v > 0x100000 || *str_end != '\0') {
+        s->error_code = ec_bad_pid;
+        return 0;
+    }
+
+    bonk_select_set_pid(s, (int32_t)v);
+    return 1;
+}
+
+void bonk_select_set_pid(bonk_select_t *s, int32_t pid)
+{
+    s->mask |= B_SELECT_PID;
+    s->pid = pid;
 }
 
 void bonk_select_set_desktop_id(bonk_select_t *s, int32_t id)

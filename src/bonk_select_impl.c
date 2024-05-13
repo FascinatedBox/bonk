@@ -174,6 +174,35 @@ static void filter_desktop_id(bonk_select_t *s)
     s->jar->pos = 0;
 }
 
+static void filter_pid(bonk_select_t *s)
+{
+    for (int i = 0;i < s->window_stack->pos;i++) {
+        xcb_window_t w = s->window_stack->data[i];
+        xcb_get_property_cookie_t c = xcb_ewmh_get_wm_pid(s->ewmh, w);
+
+        bonk_cookie_push(s->jar, c);
+    }
+
+    BONK_INIT_COOKIE_LIST(xcb_get_property_cookie_t *, cookie_list);
+    xcb_window_t *window_list = s->window_stack->data;
+    int cursor = 0;
+
+    for (int i = 0;i < s->jar->pos;i++) {
+        xcb_get_property_cookie_t c = cookie_list[i];
+        uint32_t pid;
+
+        if (xcb_ewmh_get_wm_pid_reply(s->ewmh, c, &pid, NULL) == 0 ||
+            (int32_t)pid != s->pid)
+            continue;
+
+        window_list[cursor] = window_list[i];
+        cursor++;
+    }
+
+    s->window_stack->pos = cursor;
+    s->jar->pos = 0;
+}
+
 static void filter_has_prop(bonk_select_t *s)
 {
     int i;
@@ -507,6 +536,9 @@ int bonk_select_exec(bonk_state_t *b, bonk_select_t *s)
 
     if (s->mask & B_SELECT_DESKTOP_ID)
         filter_desktop_id(s);
+
+    if (s->mask & B_SELECT_PID)
+        filter_pid(s);
 
     int result = s->window_stack->pos;
     int swap;
