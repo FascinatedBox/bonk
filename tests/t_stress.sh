@@ -35,6 +35,11 @@ DISPLAY=$SAVE_DISPLAY
 ./bonk select --desktop 42069 && exit 99
 ./bonk select --desktop 1a && exit 99
 ./bonk select --desktop lol && exit 99
+./bonk select --limit -2 && exit 99
+./bonk select --limit 0 && exit 99
+./bonk select --limit 42069 && exit 99
+./bonk select --limit 1a && exit 99
+./bonk select --limit lol && exit 99
 ./bonk select --pid -1 && exit 99
 ./bonk select --pid 123456789012 && exit 99
 ./bonk select --pid 1a && exit 99

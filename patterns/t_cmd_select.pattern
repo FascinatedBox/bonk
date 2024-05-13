@@ -10,7 +10,8 @@ xtrace -D :9 ./bonk select --show --instance xterm \
                     select --show --exact-title unfindable \
                     select --show --title xterm \
                     select --show --title xeyes \
-                    select --show --pid 1
+                    select --show --pid 1 \
+                    select --all --limit 1
 
 exit $?
 
@@ -178,10 +179,14 @@ exit $?
 000:<:00a0: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("_NET_WM_PID") type=("CARDINAL") long-offset=0x00000000 long-length=0x00000001
 000:<:00a1: 24: Request(20): GetProperty delete=false(0x00) window=@1 property=("_NET_WM_PID") type=("CARDINAL") long-offset=0x00000000 long-length=0x00000001
 000:<:00a2: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("_NET_WM_PID") type=("CARDINAL") long-offset=0x00000000 long-length=0x00000001
-000:<:00a3:  4: Request(43): GetInputFocus 
+000:<:00a3:  8: Request(15): QueryTree window=@0
+000:<:00a4:  8: Request(15): QueryTree window=@1
+000:<:00a5:  8: Request(15): QueryTree window=@2
+000:<:00a6:  4: Request(43): GetInputFocus 
 @1
 @1
 @1
+@0
 
 -----stderr-----
 Got connection from unknown(local)

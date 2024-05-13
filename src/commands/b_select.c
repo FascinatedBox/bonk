@@ -23,6 +23,7 @@ typedef enum {
     opt_has_state,
     opt_help,
     opt_if_empty_stack,
+    opt_limit,
     opt_match_class,
     opt_match_instance,
     opt_match_title,
@@ -44,6 +45,7 @@ static struct option longopts[] = {
     { "has-state", required_argument, NULL, opt_has_state },
     { "if-empty-stack", no_argument, NULL, opt_if_empty_stack },
     { "instance", required_argument, NULL, opt_match_instance },
+    { "limit", required_argument, NULL, opt_limit },
     { "pid", required_argument, NULL, opt_pid },
     { "retry", no_argument, NULL, opt_retry },
     { "show", no_argument, NULL, opt_show },
@@ -66,6 +68,7 @@ static const char *usage =
     "--pid <n>                    windows created by <pid>\n"
     "\n"
     "--if-empty-stack             only search if the window stack is empty\n"
+    "--limit <n>                  only keep the first <n> results\n"
     "--retry                      retry until a result is found\n"
     "\n"
     "--all                        include hidden windows\n"
@@ -107,6 +110,9 @@ int b_select(bonk_state_t *b)
                 break;
             case opt_if_empty_stack:
                 if_empty_stack = 1;
+                break;
+            case opt_limit:
+                ret = bonk_select_set_limit_str(s, optarg);
                 break;
             case opt_pid:
                 ret = bonk_select_set_pid_str(s, optarg);

@@ -80,6 +80,9 @@ const char *bonk_select_error_str(bonk_select_t *s)
         case ec_bad_desktop_id:
             result = "is not a valid desktop index.";
             break;
+        case ec_bad_limit:
+            result = "is not a valid limit.";
+            break;
         case ec_bad_pattern:
             result = "is not a valid match pattern.";
             break;
@@ -123,6 +126,26 @@ int bonk_select_set_pid_str(bonk_select_t *s, const char *str)
 
     bonk_select_set_pid(s, (int32_t)v);
     return 1;
+}
+
+int bonk_select_set_limit_str(bonk_select_t *s, const char *str)
+{
+    char *str_end;
+    int v = strtol(str, &str_end, 10);
+
+    if (v < 1 || v > 10000 || *str_end != '\0') {
+        s->error_code = ec_bad_limit;
+        return 0;
+    }
+
+    bonk_select_set_limit(s, (int32_t)v);
+    return 1;
+}
+
+void bonk_select_set_limit(bonk_select_t *s, int32_t limit)
+{
+    s->mask |= B_LIMIT;
+    s->limit = limit;
 }
 
 void bonk_select_set_pid(bonk_select_t *s, int32_t pid)

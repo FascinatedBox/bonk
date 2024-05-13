@@ -560,5 +560,9 @@ int bonk_select_exec(bonk_state_t *b, bonk_select_t *s)
         s->window_stack = temp;
     }
 
+    if (s->mask & B_LIMIT &&
+        b->window_stack->pos > s->limit)
+        b->window_stack->pos = s->limit;
+
     return result;
 }

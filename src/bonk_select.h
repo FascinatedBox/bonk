@@ -13,13 +13,15 @@
 # define B_HAS_PROPERTY       (1 << 5)
 # define B_HAS_STATE          (1 << 6)
 # define B_IS_REJECT          (1 << 7)
-# define B_ONLY_VISIBLE       (1 << 8)
-# define B_RETRY              (1 << 9)
-# define B_USE_CLIENT_LIST    (1 << 10)
+# define B_LIMIT              (1 << 8)
+# define B_ONLY_VISIBLE       (1 << 9)
+# define B_RETRY              (1 << 10)
+# define B_USE_CLIENT_LIST    (1 << 11)
 
 typedef enum {
     ec_ok,
     ec_bad_desktop_id,
+    ec_bad_limit,
     ec_bad_pattern,
     ec_bad_pid,
     ec_bad_state_name,
@@ -45,6 +47,7 @@ typedef struct {
     xcb_atom_t has_state_atom;
     int32_t desktop_id;
     int32_t pid;
+    int32_t limit;
 
     bonk_select_error_code error_code;
     unsigned int mask;
@@ -71,6 +74,8 @@ int bonk_select_exec(bonk_state_t *, bonk_select_t *);
 const char *bonk_select_error_str(bonk_select_t *);
 void bonk_select_set_desktop_id(bonk_select_t *, int32_t);
 int bonk_select_set_desktop_id_str(bonk_select_t *, const char *);
+void bonk_select_set_limit(bonk_select_t *, int32_t);
+int bonk_select_set_limit_str(bonk_select_t *, const char *);
 void bonk_select_set_show_hidden(bonk_select_t *);
 void bonk_select_use_client_list(bonk_select_t *);
 void bonk_select_set_retry(bonk_select_t *);
