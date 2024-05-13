@@ -13,19 +13,19 @@ This command updates simple properties on a window. Each replacement is an argum
 
 ## PROPERTY OPTIONS
 
-`--class <value>`
+`--class <name>`
 : Update the class (first element) in the window's `WM_CLASS`.
 
-`--desktop <value>`
+`--desktop <id>`
 : The index of the desktop the window is on (`_NET_WM_DESKTOP`). The first desktop is at index `0`. If you want the window visible on all desktops (assuming wm support), use the value `-1`.
 
-`--instance <value>`
+`--instance <name>`
 : Update the instance (second element) in the window's `WM_CLASS`.
 
-`--machine <value>`
+`--machine <name>`
 : A window's machine name (`WM_CLIENT_MACHINE`) is the name of the machine that created the client. Changing this is unlikely to be useful, but the ability to do so is provided for convenience.
 
-`--title <value>`
+`--title <name>`
 : Update the title stored in `_NET_WM_NAME`. This does **not** alter `WM_NAME`.
 
 ## OPTIONS
