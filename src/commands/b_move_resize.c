@@ -5,12 +5,14 @@
 
 typedef enum {
     opt_help,
+    opt_raw,
     opt_wait,
     opt_window = 'w',
 } optlist_t;
 
 static struct option longopts[] = {
     { "help", no_argument, NULL, opt_help },
+    { "raw", no_argument, NULL, opt_raw },
     { "wait", no_argument, NULL, opt_wait },
     { "window", required_argument, NULL, opt_window },
     { NULL, 0, NULL, 0 },
@@ -21,6 +23,8 @@ static const char *usage =
     "\n"
     "Move and resize a window (implemented as one action)\n"
     "\n"
+    "--raw                    Use configure window to perform the move\n"
+    "\n"
     "--wait                   flush output buffer before next command\n"
     "-w, --window <wid>       add window <wid> to the stack\n"
     "\n"
@@ -30,14 +34,40 @@ static const char *usage =
     "along only one\naxis.\n"
     ;
 
-void do_move_resize(bonk_state_t *b,
-                    int screen,
-                    xcb_window_t wid,
-                    xcb_ewmh_moveresize_window_opt_flags_t flags,
-                    uint32_t x,
-                    uint32_t y,
-                    uint32_t w,
-                    uint32_t h)
+static void do_raw_move_resize(bonk_state_t *b,
+                               xcb_window_t wid,
+                               xcb_ewmh_moveresize_window_opt_flags_t flags,
+                               uint32_t x,
+                               uint32_t y,
+                               uint32_t w,
+                               uint32_t h)
+{
+    uint16_t mask = 0;
+    uint32_t values[] = {x, y, w, h};
+
+    if (flags & XCB_EWMH_MOVERESIZE_WINDOW_X)
+        mask |= XCB_CONFIG_WINDOW_X;
+
+    if (flags & XCB_EWMH_MOVERESIZE_WINDOW_Y)
+        mask |= XCB_CONFIG_WINDOW_Y;
+
+    if (flags & XCB_EWMH_MOVERESIZE_WINDOW_WIDTH)
+        mask |= XCB_CONFIG_WINDOW_WIDTH;
+
+    if (flags & XCB_EWMH_MOVERESIZE_WINDOW_HEIGHT)
+        mask |= XCB_CONFIG_WINDOW_HEIGHT;
+
+    xcb_configure_window(b->conn, wid, mask, &values);
+}
+
+static void do_move_resize(bonk_state_t *b,
+                           int screen,
+                           xcb_window_t wid,
+                           xcb_ewmh_moveresize_window_opt_flags_t flags,
+                           uint32_t x,
+                           uint32_t y,
+                           uint32_t w,
+                           uint32_t h)
 {
     xcb_ewmh_request_moveresize_window(
             b->ewmh, screen, wid, XCB_GRAVITY_STATIC,
@@ -50,7 +80,7 @@ void do_move_resize(bonk_state_t *b,
 
 int b_move_resize(bonk_state_t *b)
 {
-    int screen = 0, wait = 0;
+    int raw = 0, screen = 0, wait = 0;
 
     xcb_ewmh_moveresize_window_opt_flags_t opt_flags =
         XCB_EWMH_MOVERESIZE_WINDOW_X |
@@ -62,6 +92,9 @@ int b_move_resize(bonk_state_t *b)
 
     BONK_GETOPT_LOOP(c, b, "+hw:", longopts) {
         switch (c) {
+            case opt_raw:
+                raw = 1;
+                break;
             BONK_GETOPT_COMMON
         }
     }
@@ -112,8 +145,10 @@ int b_move_resize(bonk_state_t *b)
              h = values[3];
 
     BONK_FOREACH_WINDOW_DO(
-        do_move_resize(b, screen, iter_window,
-                       opt_flags, x, y, w, h);
+        if (raw == 0)
+            do_move_resize(b, screen, iter_window, opt_flags, x, y, w, h);
+        else
+            do_raw_move_resize(b, iter_window, opt_flags, x, y, w, h);
     )
 
     if (wait)

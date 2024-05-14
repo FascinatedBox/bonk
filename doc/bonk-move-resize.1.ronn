@@ -18,6 +18,10 @@ If no window manager is present, the message is ignored and the window will rema
 
 ## OPTIONS
 
+`--raw`
+
+: Instead of sending `ClientMessage` with `_NET_MOVERESIZE_WINDOW`, use `ConfigureWindow`. This is necessary if you don't have a window manager running, and may also be necessary if you're trying to move/resize a window inside of another one. In most cases, the default is what you want, because it moves windows consistently (using `Static` gravity). On the other hand, `ConfigureWindow` always uses the gravity set on the window, which can result in movement behaving differently for different kinds of windows.
+
 `--wait`
 
 : Flush the output buffer before executing the next command.
