@@ -15,7 +15,7 @@ void bonk_usage(bonk_state_t *b, const char *usage)
     exit(EXIT_SUCCESS);
 }
 
-char *bonk_arg_next_unchecked(bonk_state_t *b)
+char *bonk_arg_take_next(bonk_state_t *b)
 {
     char *arg = b->argv[0];
 

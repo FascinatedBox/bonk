@@ -220,7 +220,7 @@ int b_sleep(bonk_state_t *b)
     }
 
     bonk_arg_require_n(b, 1);
-    char *s = bonk_arg_next_unchecked(b);
+    char *s = bonk_arg_take_next(b);
     char *ep;
     long sec, usec;
 

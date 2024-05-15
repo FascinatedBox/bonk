@@ -37,7 +37,7 @@ int b_prop_delete(bonk_state_t *b)
     bonk_arg_window_and_require_n(b, 1);
 
     xcb_atom_t to_delete = bonk_atom_find_existing(b->conn,
-            bonk_arg_next_unchecked(b));
+            bonk_arg_take_next(b));
 
     if (to_delete == 0)
         return 1;

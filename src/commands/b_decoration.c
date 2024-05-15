@@ -144,7 +144,7 @@ int b_decoration(bonk_state_t *b)
     bonk_arg_window_and_require_n(b, 1);
 
     uint32_t funcs, decorations;
-    parse_decorations(bonk_arg_next_unchecked(b), &funcs, &decorations);
+    parse_decorations(bonk_arg_take_next(b), &funcs, &decorations);
 
     xcb_atom_t motif_atom = bonk_atom_find_or_intern(b->conn,
             "_MOTIF_WM_HINTS");

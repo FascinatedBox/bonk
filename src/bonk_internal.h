@@ -73,7 +73,7 @@ bonk_window_list *bonk_new_window_list(int);
 void bonk_free_window_list(bonk_window_list *);
 void bonk_window_list_push(bonk_window_list *, xcb_window_t);
 
-char *bonk_arg_next_unchecked(bonk_state_t *);
+char *bonk_arg_take_next(bonk_state_t *);
 void bonk_arg_require_n(bonk_state_t *, int);
 void bonk_arg_window_and_require_n(bonk_state_t *, int);
 void bonk_arg_window_only(bonk_state_t *);

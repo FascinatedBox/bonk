@@ -113,7 +113,7 @@ int b_move_resize(bonk_state_t *b)
     int valid = 1;
 
     for (int i = 0;i < 4;i++) {
-        char *a = bonk_arg_next_unchecked(b);
+        char *a = bonk_arg_take_next(b);
         char *a_end;
         int a_value = strtol(a, &a_end, 10);
         int ok = 1;
