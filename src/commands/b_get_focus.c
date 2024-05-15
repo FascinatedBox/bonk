@@ -5,7 +5,6 @@
 
 typedef enum {
     opt_help,
-    opt_window = 'w',
 } optlist_t;
 
 static struct option longopts[] = {
@@ -56,7 +55,7 @@ int b_get_focus(bonk_state_t *b)
 {
     BONK_GETOPT_LOOP(c, b, "+h", longopts) {
         switch (c) {
-            BONK_GETOPT_COMMON_NOWAIT
+            BONK_GETOPT_HELP
         }
     }
 
