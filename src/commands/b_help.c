@@ -25,6 +25,7 @@ int b_help(bonk_state_t *b)
     "    lower         Push a window to the back, behind other windows\n"
     "    map           Reveal a window a window hidden with unmap\n"
     "    move-resize   Specify an exact size and place for a window\n"
+    "    opacity       Adjust window transparency\n"
     "    raise         Pull a window to the front, ahead of other windows\n"
     "    set-window    Update simple properties (class, instance, etc.)\n"
     "    state         Minimize, maximize, fullscreen, and more\n"

@@ -1,0 +1,62 @@
+bonk-opacity(1) | Bonk manual
+=============================
+
+## NAME
+**bonk-opacity** - Adjust window transparency
+
+## SYNOPSIS
+`opacity` [<options>] [<window=%0>]
+
+## DESCRIPTION
+
+This command sends a request (`ChangeProperty`) to the transparency of a window (`_NET_WM_WINDOW_OPACITY`). To observe the effect, you need a window manager running, **and** it must support transparency. This command returns successfully unless one or more parameters are out of the allowed range.
+
+A window with 75% opacity is 25% transparent. Windows that do not have `_NET_WM_WINDOW_OPACITY` set are treated as though it is set to `100%`.
+
+This command operates as follows:
+
+* Obtain existing opacity (none set is treated as 100%).
+
+* Calculate the adjustment, if one is given (`--inc` or `--dec`).
+
+* Clamp opacity to be within min (default = 0.00) and max (default = 1.00).
+
+* If the given opacity is 100% or close to it, delete opacity. Otherwise, set a new opacity.
+
+If you accidentally make a window too transparent, but you know where it is:
+
+    bonk pick set-window --delete _NET_WM_WINDOW_OPACITY
+
+To get rid of transparency across the board:
+
+    bonk select --all set-window --delete _NET_WM_WINDOW_OPACITY %@
+
+## OPTIONS
+
+`--dec <N>`
+
+: Reduce opacity (increasing transparency) by `N` percent. `--dec .25` makes a window 25% more transparent.
+
+`--inc <N>`
+
+: Increase opacity by `N` percent.
+
+`--min <N>`
+
+: Set the minimum possible opacity. Clamping is done after calculating any inc or dec. Default: 0%.
+
+`--max <N>`
+
+: Set the max opacity, applied after any adjustment. This defaults to 100%, and cannot be raised higher.
+
+`--wait`
+
+: Flush the output buffer before executing the next command.
+
+`-w`, `--window` <wid>
+
+: Replace the window stack with *wid*.
+
+## BONK
+
+Part of the bonk(1) suite

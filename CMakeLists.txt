@@ -36,6 +36,7 @@ set(
         doc/bonk-lower.1
         doc/bonk-map.1
         doc/bonk-move-resize.1
+        doc/bonk-opacity.1
         doc/bonk-pick.1
         doc/bonk-prop-adjust.1
         doc/bonk-prop-delete.1
@@ -62,6 +63,7 @@ set(
         src/commands/b_lower.c
         src/commands/b_map.c
         src/commands/b_move_resize.c
+        src/commands/b_opacity.c
         src/commands/b_pick.c
         src/commands/b_prop_adjust.c
         src/commands/b_prop_delete.c

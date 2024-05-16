@@ -124,6 +124,7 @@ window actions
     lower         Push a window to the back, behind other windows
     map           Reveal a window a window hidden with unmap
     move-resize   Specify an exact size and place for a window
+    opacity       Adjust window transparency
     raise         Pull a window to the front, ahead of other windows
     set-window    Update simple properties (class, instance, etc.)
     state         Minimize, maximize, fullscreen, and more

@@ -103,6 +103,10 @@ Subcommands that use a window will default to `%0` if no window is given.
 
 : Specify a size and position for a window.
 
+### bonk-opacity(1)
+
+: Adjust window transparency.
+
 ### bonk-prop-delete(1)
 
 : Remove a property (use with caution).

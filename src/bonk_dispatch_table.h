@@ -19,6 +19,7 @@ extern int b_help(bonk_state_t *);
 extern int b_lower(bonk_state_t *);
 extern int b_map(bonk_state_t *);
 extern int b_move_resize(bonk_state_t *);
+extern int b_opacity(bonk_state_t *);
 extern int b_pick(bonk_state_t *);
 extern int b_prop_adjust(bonk_state_t *);
 extern int b_prop_delete(bonk_state_t *);
@@ -43,6 +44,7 @@ static bonk_dispatch_entry dispatch_table[] = {
     { "lower",                b_lower },
     { "map",                  b_map },
     { "move-resize",          b_move_resize },
+    { "opacity",              b_opacity },
     { "pick",                 b_pick },
     { "prop-adjust",          b_prop_adjust },
     { "prop-delete",          b_prop_delete },
