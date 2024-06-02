@@ -1,12 +1,14 @@
 -----source-----
 #!/usr/bin/env bash
 
-WID=`./bonk select --instance xterm`
-xtrace -D :9 ./bonk select --instance xterm \
-                    get-title \
-                    get-title --wait -w $WID %0 \
-                    select --all get-title %@
+xeyes 2> /dev/null &
+WID=`./bonk select --retry --instance xeyes`
 
+xtrace -D :9 ./bonk select --instance xeyes \
+                    get-title \
+                    get-title --wait -w $WID %0
+
+pkill -9 xeyes
 exit $?
 
 -----stdout-----
@@ -97,27 +99,26 @@ exit $?
 000:<:0054:  8: Request(15): QueryTree window=@0
 000:<:0055:  8: Request(15): QueryTree window=@1
 000:<:0056:  8: Request(15): QueryTree window=@2
-000:<:0057:  8: Request(3): GetWindowAttributes window=@0
-000:<:0058:  8: Request(3): GetWindowAttributes window=@1
-000:<:0059:  8: Request(3): GetWindowAttributes window=@2
-000:<:005a: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("WM_CLASS") type=("STRING") long-offset=0x00000000 long-length=0x00000800
-000:<:005b: 24: Request(20): GetProperty delete=false(0x00) window=@1 property=("WM_CLASS") type=("STRING") long-offset=0x00000000 long-length=0x00000800
-000:<:005c: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("WM_CLASS") type=("STRING") long-offset=0x00000000 long-length=0x00000800
-000:<:005d: 24: Request(20): GetProperty delete=false(0x00) window=@1 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:005e: 24: Request(20): GetProperty delete=false(0x00) window=@1 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:005f:  4: Request(43): GetInputFocus 
-000:<:0060:  8: Request(15): QueryTree window=@0
-000:<:0061:  8: Request(15): QueryTree window=@1
-000:<:0062:  8: Request(15): QueryTree window=@2
-000:<:0063: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:0064: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:0065: 24: Request(20): GetProperty delete=false(0x00) window=@1 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:0066: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:0067: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:0057:  8: Request(15): QueryTree window=@3
+000:<:0058:  8: Request(15): QueryTree window=@4
+000:<:0059:  8: Request(3): GetWindowAttributes window=@0
+000:<:005a:  8: Request(3): GetWindowAttributes window=@1
+000:<:005b:  8: Request(3): GetWindowAttributes window=@2
+000:<:005c:  8: Request(3): GetWindowAttributes window=@3
+000:<:005d:  8: Request(3): GetWindowAttributes window=@4
+000:<:005e: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("WM_CLASS") type=("STRING") long-offset=0x00000000 long-length=0x00000800
+000:<:005f: 24: Request(20): GetProperty delete=false(0x00) window=@1 property=("WM_CLASS") type=("STRING") long-offset=0x00000000 long-length=0x00000800
+000:<:0060: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("WM_CLASS") type=("STRING") long-offset=0x00000000 long-length=0x00000800
+000:<:0061: 24: Request(20): GetProperty delete=false(0x00) window=@3 property=("WM_CLASS") type=("STRING") long-offset=0x00000000 long-length=0x00000800
+000:<:0062: 24: Request(20): GetProperty delete=false(0x00) window=@4 property=("WM_CLASS") type=("STRING") long-offset=0x00000000 long-length=0x00000800
+000:<:0063: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:0064: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:0065: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:0066: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:0067:  4: Request(43): GetInputFocus 
 000:<:0068:  4: Request(43): GetInputFocus 
-box@desktop: /media/box/storage/p/bonk
-box@desktop: /media/box/storage/p/bonk
-box@desktop: /media/box/storage/p/bonk
+xeyes
+xeyes
 
 -----stderr-----
 Got connection from unknown(local)
