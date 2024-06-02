@@ -37,10 +37,6 @@ int b_help(bonk_state_t *b)
     "\n"
     "miscellaneous\n"
     "    sleep         Suspend execution for a given duration\n"
-    "\n"
-    "properties\n"
-    "    prop-adjust   (deprecated, use set-window instead)\n"
-    "    prop-delete   Remove a property from a window (use with caution)\n"
     );
 
     exit(EXIT_SUCCESS);

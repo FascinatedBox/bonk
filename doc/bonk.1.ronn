@@ -107,10 +107,6 @@ Subcommands that use a window will default to `%0` if no window is given.
 
 : Adjust window transparency.
 
-### bonk-prop-delete(1)
-
-: Remove a property (use with caution).
-
 ### bonk-raise(1)
 
 : Pull a window to the front of the desktop.
