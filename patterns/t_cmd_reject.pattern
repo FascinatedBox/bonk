@@ -202,24 +202,28 @@ exit $?
 000:<:00ae: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
 000:<:00af: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
 000:<:00b0:  8: Request(3): GetWindowAttributes window=@0
-000:<:00b1:  8: Request(3): GetWindowAttributes window=@2
-000:<:00b2: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:00b3: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:00b4: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:00b5: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
-000:<:00b6:  4: Request(43): GetInputFocus 
+000:<:00b1:  8: Request(3): GetWindowAttributes window=@1
+000:<:00b2:  8: Request(3): GetWindowAttributes window=@2
+000:<:00b3: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:00b4: 24: Request(20): GetProperty delete=false(0x00) window=@1 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:00b5: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("_NET_WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:00b6: 24: Request(20): GetProperty delete=false(0x00) window=@0 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:00b7: 24: Request(20): GetProperty delete=false(0x00) window=@2 property=("WM_NAME") type=any(0x0) long-offset=0x00000000 long-length=0xffffffff
+000:<:00b8:  4: Request(43): GetInputFocus 
+@0
+@2
+@0
+@2
+@0
+@2
 @0
 @1
 @2
 @0
+@1
 @2
 @0
-@2
-@0
-@2
-@0
-@2
-@0
+@1
 @2
 
 -----stderr-----

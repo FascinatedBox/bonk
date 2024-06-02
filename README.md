@@ -136,8 +136,4 @@ information
 
 miscellaneous
     sleep         Suspend execution for a given duration
-
-properties
-    prop-adjust   (deprecated, use set-window instead)
-    prop-delete   Remove a property from a window (use with caution)
 ```

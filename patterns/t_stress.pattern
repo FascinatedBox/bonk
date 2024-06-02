@@ -3,11 +3,11 @@
 
 xeyes 2> /dev/null &
 XEYES_WID=`./bonk select --retry --instance xeyes`
-./bonk prop-delete -w $XEYES_WID WM_CLASS
+./bonk set-window -w $XEYES_WID --delete WM_CLASS
 ./bonk set-window -w $XEYES_WID --class xeyes
-./bonk prop-delete -w $XEYES_WID WM_CLASS
+./bonk set-window -w $XEYES_WID --delete WM_CLASS
 ./bonk set-window -w $XEYES_WID --instance xeyes
-./bonk prop-delete -w $XEYES_WID sphinxofblackquartzjudgemyvow
+./bonk set-window -w $XEYES_WID --delete sphinxofblackquartzjudgemyvow
 ./bonk state -w $XEYES_WID
 ./bonk state -w $XEYES_WID -a sphinxofblackquartzjudgemyvow
 ./bonk state -w $XEYES_WID -t above -t above -t above -t above -t above \
