@@ -1,6 +1,12 @@
 bonk - X11 toolkit
 ==================
 
+### NOTICE
+
+I have started experimenting with Wayland with the intent of using it instead of
+X11, once I have tooling written. This project is unmaintained, and I doubt I
+will be returning to it.
+
 ### Overview
 
 bonk - **B**ox's wind**O**w ma**N**ager tool**K**it. Bonk is a command-line
