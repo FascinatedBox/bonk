@@ -1,5 +1,5 @@
-project(bonk)
 cmake_minimum_required(VERSION 3.5.0)
+project(bonk)
 
 include(FindPkgConfig)
 pkg_check_modules(
